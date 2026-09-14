@@ -1,7 +1,1039 @@
 <!doctype html>
 <html lang="es">
+<head>
 <meta charset="utf-8">
-<title>abigailpni.com</title>
-<link rel="canonical" href="https://www.abigailpni.com/">
-<meta http-equiv="refresh" content="0; url=https://www.abigailpni.com/">
-<p>Redirigiendo a <a href="https://www.abigailpni.com/">www.abigailpni.com</a></p>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Soberanía Digestiva</title>
+<style>
+@font-face{font-family:'Cormorant Garamond';src:url('fuentes/cormorant-garamond-400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('fuentes/cormorant-garamond-500.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('fuentes/cormorant-garamond-600.woff2') format('woff2');font-weight:600;font-display:swap}
+:root{
+  --petroleo:#032532; --medio:#123944; --marfil:#F4F1E9; --dorado:#B6A47A;
+  --serif:'Cormorant Garamond',Georgia,serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--petroleo);color:var(--marfil);font-family:var(--serif);
+  overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* aparición común a toda la página */
+.up{opacity:0;transform:translateY(20px);
+  transition:opacity .9s ease,transform .9s cubic-bezier(.22,.61,.36,1)}
+.up.vista{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.up{opacity:1;transform:none}}
+
+/* ============ 1 · APERTURA ============ */
+#s01{position:relative;min-height:100svh;display:flex;flex-direction:column;
+  padding:56px 26px 34px 30px;overflow:hidden}
+#s01 > *:not(.foto):not(.velo){position:relative;z-index:1}
+#s01 .foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:.42;pointer-events:none;
+  animation:acerca 18s ease-in-out infinite alternate}
+#s01 .velo{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(3,37,50,.92) 0%,rgba(3,37,50,.55) 38%,rgba(3,37,50,.96) 82%,var(--petroleo) 100%)}
+@keyframes acerca{from{transform:scale(1)}to{transform:scale(1.07)}}
+@media (min-width:900px){#s01 .foto.alta{display:none}}
+/* en móvil el recorte se va al centro y se pierde la fruta: la traemos y la alejamos */
+@media (max-width:899px){
+  #s01 .foto.ancha{display:none}
+  #s01 .foto.alta{object-position:center 42%}
+}
+#s01 .dicho{font-style:italic;font-size:17px;color:var(--dorado);margin:0 0 auto}
+#s01 .titular{font-weight:400;font-size:clamp(40px,11.5vw,62px);line-height:.98;
+  letter-spacing:-.022em;margin:0}
+#s01 .titular .b{display:block}
+#s01 .no{position:relative;white-space:nowrap}
+#s01 .no::after{content:"";position:absolute;left:0;right:0;bottom:.1em;height:3px;
+  background:var(--dorado);transform:scaleX(0);transform-origin:left;
+  transition:transform .7s cubic-bezier(.22,.61,.36,1) .5s}
+#s01 .titular.vista .no::after{transform:scaleX(1)}
+#s01 .marca{margin-top:30px;padding-top:20px;border-top:1px solid rgba(244,241,233,.14)}
+#s01 .nombre{font-size:15px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dorado);margin:0}
+#s01 .linea{font-size:16.5px;line-height:1.5;color:rgba(244,241,233,.74);margin:10px 0 0}
+#s01 .plazas{margin-top:30px;display:flex;align-items:baseline;gap:14px}
+#s01 .plazas .n{font-size:58px;font-weight:500;line-height:.9;color:var(--dorado);
+  font-variant-numeric:lining-nums;font-feature-settings:'lnum' 1}
+#s01 .plazas .t{font-size:20px;line-height:1.25}
+
+/* ============ 2 · LO QUE TE PASA ============ */
+#s02{position:relative;padding:14svh 0 42svh;overflow:hidden}
+#s02 > *{position:relative;z-index:1}
+#s02 .rotulo{padding:76px 30px 0;font-size:12px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--dorado);opacity:.85;margin:0}
+#s02 .parada{padding:0 30px;margin:0 0 46px}
+#s02 .parada:first-of-type{margin-top:30px}
+#s02 .parada p{margin:0;font-size:clamp(20px,5.4vw,25px);line-height:1.3;
+  letter-spacing:-.012em}
+#s02 .parada:not(.yo):not(.pivote) p{position:relative;padding-left:22px}
+#s02 .parada:not(.yo):not(.pivote) p::before{content:"";position:absolute;left:0;
+  top:.62em;width:5px;height:5px;border-radius:50%;background:var(--dorado);opacity:.75}
+#s02 .entrada p,#s02 .salida p{font-size:clamp(18px,4.6vw,21px);line-height:1.5;
+  color:rgba(244,241,233,.62);font-style:italic}
+#s02 .entrada{margin-bottom:40px}
+#s02 .grande p{font-size:clamp(22px,5.9vw,27px)}
+#s02 .salida{margin-top:44px}
+#s02 .yo{margin-top:56px}
+#s02 .yo p{font-size:clamp(30px,8.2vw,38px);line-height:1.18}
+#s02 .sub{text-decoration:underline;text-decoration-thickness:2px;
+  text-underline-offset:.2em;text-decoration-color:transparent;
+  transition:text-decoration-color .9s ease .5s}
+#s02 .yo.vista .sub{text-decoration-color:var(--dorado)}
+#s02 .pivote{margin-top:26px;margin-bottom:0}
+#s02 .pivote p{color:var(--dorado);font-size:clamp(26px,7vw,32px);line-height:1.2}
+
+
+/* ============ 3 · LA LÁMINA ============ */
+#s03{background:var(--marfil);color:var(--petroleo);position:relative}
+#s03::before{content:"";position:absolute;top:-2px;left:0;right:0;height:calc(50svh + 2px);z-index:2;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(3,37,50,1) 0%,rgba(3,37,50,0.972) 10%,rgba(3,37,50,0.896) 20%,rgba(3,37,50,0.784) 30%,rgba(3,37,50,0.648) 40%,rgba(3,37,50,0.5) 50%,rgba(3,37,50,0.352) 60%,rgba(3,37,50,0.216) 70%,rgba(3,37,50,0.104) 80%,rgba(3,37,50,0.028) 90%,rgba(3,37,50,0) 100%)}
+#s03 .escena{position:sticky;top:0;height:100svh;display:flex;
+  align-items:center;justify-content:flex-end;pointer-events:none;z-index:0}
+#s03 .escena .marco{position:relative;height:47svh;margin:-17svh 4% 0 0}
+#s03 .capa{position:absolute;top:0;left:0;height:100%;width:auto;max-width:none;
+  transition:opacity 1s ease}
+#s03 .capa.base{opacity:.16;position:relative}
+#s03 .foco{opacity:0}
+#s03 .f-todo{-webkit-mask-image:none;mask-image:none}
+#s03 .foco.on{opacity:1}
+#s03 .foco{-webkit-mask-size:100% 100%;mask-size:100% 100%;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+#s03 .f-estomago{-webkit-mask-image:url(img/lamina/mask_estomago.png?v=2);
+  mask-image:url(img/lamina/mask_estomago.png?v=2)}
+#s03 .f-delgado{-webkit-mask-image:url(img/lamina/mask_delgado.png?v=5);
+  mask-image:url(img/lamina/mask_delgado.png?v=5)}
+#s03 .f-colon{-webkit-mask-image:url(img/lamina/mask_colon.png?v=2);
+  mask-image:url(img/lamina/mask_colon.png?v=2)}
+#s03 .detalle,#s03 .nervioso{opacity:0;transition:opacity 1.1s ease}
+#s03 .marco.enterico .base,#s03 .marco.enterico .foco,#s03 .marco.enterico .detalle{opacity:0}
+#s03 .marco.enterico .nervioso{opacity:1}
+
+#s03 .marco.dentro .base,#s03 .marco.dentro .foco{opacity:0}
+#s03 .marco.dentro .detalle{opacity:.92}
+#s03 .textos{margin-top:-100svh;position:relative;z-index:1;padding-bottom:62svh}
+#s03 .paso{min-height:76svh;display:flex;align-items:flex-end;
+  padding:0 30px 7svh}
+#s03 .paso .parte{display:block;font-size:14px;font-weight:500;letter-spacing:.22em;
+  text-transform:uppercase;color:#6E5B32;margin:0 0 14px;opacity:.1;transition:opacity .7s ease}
+#s03 .paso.activo .parte{opacity:1}
+#s03 .paso p{margin:0;opacity:.1;transition:opacity .7s ease;font-size:clamp(22px,5.9vw,27px);line-height:1.26;
+  letter-spacing:-.01em;max-width:20ch}
+#s03 .paso.activo p{opacity:1}
+#s03 .paso em{font-style:normal;color:#8A7645}
+#s03 .paso.remate p{font-size:clamp(28px,7.6vw,36px);line-height:1.16}
+#s03 .paso.nombre p{font-size:clamp(26px,7vw,33px);line-height:1.2;max-width:16ch}
+#s03 .paso.nombre em{font-style:normal;color:#6E5B32;text-decoration:underline;
+  text-decoration-thickness:2px;text-underline-offset:.2em;
+  text-decoration-color:transparent;transition:text-decoration-color .9s ease .5s}
+#s03 .paso.nombre.activo em{text-decoration-color:#B6A47A}
+#s03 .velo-abajo{position:absolute;left:0;right:0;bottom:0;height:46svh;z-index:5;
+  background:linear-gradient(0deg,rgba(244,241,233,1) 0%,rgba(244,241,233,0.972) 10%,rgba(244,241,233,0.896) 20%,rgba(244,241,233,0.784) 30%,rgba(244,241,233,0.648) 40%,rgba(244,241,233,0.5) 50%,rgba(244,241,233,0.352) 60%,rgba(244,241,233,0.216) 70%,rgba(244,241,233,0.104) 80%,rgba(244,241,233,0.028) 90%,rgba(244,241,233,0) 100%);
+  pointer-events:none}
+@media (min-width:900px){
+  #s03 .escena{align-items:center;justify-content:flex-end}
+  #s03 .escena .marco{height:74svh;margin:-4svh 4% 0 0}
+  #s03 .velo-abajo{display:none}
+  #s03 .textos{max-width:1180px;margin-left:auto;margin-right:auto}
+  #s03 .paso{padding:0 0 0 40px}
+  #s03 .paso p{font-size:40px;max-width:14ch}
+  #s03 .paso .parte{font-size:15px;margin-bottom:18px}
+  #s03 .paso{align-items:center;padding:0 0 0 40px}
+  #s03 .paso.remate p{font-size:48px}
+  #s03 .paso.nombre p{font-size:46px;max-width:17ch}
+}
+
+
+
+/* ============ 3b · QUIÉN ESTÁ DETRÁS ============ */
+#s3b{background:var(--marfil);color:var(--petroleo);padding:12svh 26px 14svh}
+#s3b .env{max-width:760px;margin:0 auto}
+#s3b h2{font-weight:400;font-size:clamp(27px,7.2vw,34px);line-height:1.16;
+  letter-spacing:-.016em;margin:0;max-width:20ch}
+#s3b .fila{margin-top:28px}
+#s3b .foto{display:block;width:100%;max-width:300px;aspect-ratio:4/5;border-radius:10px;
+  object-fit:cover;object-position:center 22%}
+#s3b .intro{margin:24px 0 0;font-size:clamp(20px,5.4vw,24px);line-height:1.34}
+#s3b details{margin-top:20px}
+#s3b summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;
+  font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:#6E5B32}
+#s3b summary::-webkit-details-marker{display:none}
+#s3b summary .mas{transition:transform .3s ease}
+#s3b details[open] summary .mas{transform:rotate(45deg)}
+#s3b .cuerpo p{margin:18px 0 0;font-size:17px;line-height:1.62;color:#2b4550;max-width:62ch}
+#s3b .firma{margin-top:26px;font-size:14px;letter-spacing:.2em;text-transform:uppercase;
+  color:#6E5B32}
+@media (min-width:900px){
+  #s3b{padding:16svh 40px}
+  #s3b h2{font-size:46px}
+  #s3b .fila{display:grid;grid-template-columns:300px 1fr;gap:44px;align-items:start}
+  #s3b .intro{margin-top:0;font-size:26px}
+  #s3b .cuerpo p{font-size:18px}
+}
+
+/* ============ 4 · EL VÍDEO ============ */
+#s04{position:relative;background:var(--petroleo);color:var(--marfil);padding:46svh 30px 18svh;
+  display:flex;flex-direction:column;align-items:center;text-align:center}
+#s04::before{content:"";position:absolute;top:-2px;left:0;right:0;height:calc(42svh + 2px);
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(244,241,233,1) 0%,rgba(244,241,233,0.972) 10%,rgba(244,241,233,0.896) 20%,rgba(244,241,233,0.784) 30%,rgba(244,241,233,0.648) 40%,rgba(244,241,233,0.5) 50%,rgba(244,241,233,0.352) 60%,rgba(244,241,233,0.216) 70%,rgba(244,241,233,0.104) 80%,rgba(244,241,233,0.028) 90%,rgba(244,241,233,0) 100%)}
+#s04 > *{position:relative;z-index:1}
+#s04 .kick{font-size:13px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--dorado);margin:0}
+#s04 h2{font-weight:400;font-size:clamp(30px,8.4vw,40px);line-height:1.12;
+  letter-spacing:-.018em;margin:18px 0 0;max-width:16ch}
+#s04 .ventana{margin-top:34px;width:100%;max-width:640px;aspect-ratio:16/9;border-radius:10px;overflow:hidden;
+  background:#01161e;border:1px solid rgba(244,241,233,.16);
+  display:flex;align-items:center;justify-content:center;position:relative}
+#s04 .play{width:66px;height:66px;border-radius:50%;
+  border:1px solid rgba(182,164,122,.75);display:flex;align-items:center;justify-content:center}
+#s04 .play i{display:block;width:0;height:0;margin-left:5px;
+  border-left:15px solid var(--dorado);border-top:9px solid transparent;
+  border-bottom:9px solid transparent}
+#s04 .dura{position:absolute;right:16px;bottom:14px;font-size:12px;letter-spacing:.16em;
+  color:rgba(244,241,233,.6)}
+#s04 .pie{margin:22px 0 0;font-size:17px;line-height:1.5;
+  color:rgba(244,241,233,.72);max-width:34ch}
+@media (min-width:900px){
+  #s04{padding:46svh 40px 20svh}
+  #s04 h2{font-size:52px;max-width:18ch}
+  #s04 .pie{font-size:20px}
+}
+
+
+/* ============ 5 · EL PROGRAMA Y LOS BONUS ============ */
+#s05{position:relative;background:var(--marfil);color:var(--petroleo);
+  padding:44svh 26px 16svh}
+#s05::before{content:"";position:absolute;top:-2px;left:0;right:0;height:calc(38svh + 2px);
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(3,37,50,1) 0%,rgba(3,37,50,0.972) 10%,rgba(3,37,50,0.896) 20%,rgba(3,37,50,0.784) 30%,rgba(3,37,50,0.648) 40%,rgba(3,37,50,0.5) 50%,rgba(3,37,50,0.352) 60%,rgba(3,37,50,0.216) 70%,rgba(3,37,50,0.104) 80%,rgba(3,37,50,0.028) 90%,rgba(3,37,50,0) 100%)}
+#s05 > *{position:relative;z-index:1}
+#s05 .env{max-width:760px;margin:0 auto}
+#s05 .kick{font-size:13px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:#6E5B32;margin:0}
+#s05 h2{font-weight:400;font-size:clamp(29px,7.8vw,38px);line-height:1.14;
+  letter-spacing:-.018em;margin:16px 0 0;max-width:18ch}
+
+#s05 .nucleo{margin-top:34px;padding:26px 24px;background:#EDE9DE;border-radius:10px}
+#s05 .nucleo h3{margin:0;font-weight:400;font-size:clamp(22px,5.8vw,27px);line-height:1.2}
+#s05 .nucleo ul{margin:16px 0 0;padding:0;list-style:none}
+#s05 .nucleo li{position:relative;padding-left:20px;margin-bottom:9px;font-size:16.5px;
+  line-height:1.45;color:#2b4550}
+#s05 .nucleo li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;
+  border-radius:50%;background:var(--dorado)}
+#s05 .publico{margin:18px 0 0;font-size:15.5px;line-height:1.5;
+  color:#5F7078;font-style:italic}
+#s05 .nucleo .val{display:flex;justify-content:space-between;align-items:baseline;
+  margin-top:20px;padding-top:16px;border-top:1px solid rgba(3,37,50,.14);
+  font-size:15px;letter-spacing:.04em}
+#s05 .nucleo .val b{font-weight:400;font-size:26px;font-variant-numeric:lining-nums}
+
+#s05 .titb{margin:44px 0 0;font-size:13px;font-weight:500;letter-spacing:.22em;
+  text-transform:uppercase;color:#6E5B32}
+#s05 details{border-bottom:1px solid rgba(3,37,50,.13);padding:16px 0}
+#s05 details:first-of-type{border-top:1px solid rgba(3,37,50,.13);margin-top:14px}
+#s05 summary{list-style:none;cursor:pointer;display:flex;gap:14px;align-items:baseline}
+#s05 summary::-webkit-details-marker{display:none}
+#s05 .txt{flex:1}
+#s05 .nom{display:block;font-size:19px;line-height:1.24}
+#s05 .obj{display:block;margin-top:5px;font-size:14.5px;line-height:1.4;color:#5F7078}
+#s05 .eur{font-size:17px;white-space:nowrap;font-variant-numeric:lining-nums;color:#6E5B32}
+#s05 .mas{width:16px;text-align:center;color:#6E5B32;transition:transform .3s ease}
+#s05 details[open] .mas{transform:rotate(45deg)}
+#s05 .det{margin:12px 0 2px;padding-left:0;font-size:16px;line-height:1.55;color:#2b4550;
+  max-width:60ch}
+#s05 .suma{margin-top:26px;padding-top:16px;border-top:1px solid rgba(3,37,50,.14);
+  display:flex;justify-content:space-between;align-items:baseline;font-size:15px;color:#7d8b91}
+#s05 .suma b{font-weight:400;font-size:20px;color:#7d8b91;font-variant-numeric:lining-nums}
+#s05 .total{display:flex;justify-content:space-between;align-items:baseline;
+  margin-top:16px;padding-top:14px;border-top:1px solid rgba(3,37,50,.18);
+  font-size:15px;color:#7d8b91}
+#s05 .total b{font-weight:400;font-size:22px;color:#7d8b91;font-variant-numeric:lining-nums}
+#s05 .precio{display:flex;justify-content:space-between;align-items:baseline;
+  gap:16px;margin-top:20px;font-size:16px}
+#s05 .precio b{font-weight:400;font-size:56px;line-height:1;color:#6E5B32;
+  font-variant-numeric:lining-nums;white-space:nowrap}
+#s05 .nota{margin-top:18px;font-size:14.5px;line-height:1.6;color:#5F7078;max-width:52ch}
+@media (min-width:900px){
+  #s05{padding:44svh 40px 18svh}
+  #s05 h2{font-size:50px}
+  #s05 .nom{font-size:22px}
+  #s05 .obj{font-size:16px}
+  #s05 .eur{font-size:19px}
+  #s05 .precio b{font-size:68px}
+  #s05 .total b{font-size:24px}
+}
+
+/* ============ ORDENADOR ============ */
+@media (min-width:900px){
+  #s01{padding:0 80px;justify-content:center}
+  #s01 .dicho{margin:0 0 26px;font-size:20px}
+  #s01 .titular{font-size:82px;max-width:16ch}
+  #s01 .marca{margin-top:44px;max-width:620px}
+  #s01 .linea{font-size:19px}
+  #s01 .plazas{margin-top:40px}
+  #s01 .plazas .n{font-size:76px}
+  #s01 .plazas .t{font-size:24px}
+
+  #s02 .rotulo{max-width:860px;margin:0 auto;padding:120px 0 0;font-size:13px}
+  #s02 .parada{max-width:860px;margin-left:auto;margin-right:auto;padding:0;margin-bottom:60px}
+  #s02 .parada p{font-size:34px;max-width:30ch}
+  #s02 .parada:not(.yo):not(.pivote) p{padding-left:30px}
+  #s02 .parada:not(.yo):not(.pivote) p::before{width:6px;height:6px;top:.66em}
+  #s02 .parada:not(.yo):not(.pivote) p{position:relative;padding-left:22px}
+#s02 .parada:not(.yo):not(.pivote) p::before{content:"";position:absolute;left:0;
+  top:.62em;width:5px;height:5px;border-radius:50%;background:var(--dorado);opacity:.75}
+#s02 .entrada p,#s02 .salida p{font-size:24px}
+  #s02 .grande p{font-size:38px}
+  #s02 .yo p{font-size:56px;max-width:22ch}
+  #s02 .pivote p{font-size:48px}
+}
+
+/* ============ 6 · LA GARANTÍA ============ */
+#s06{position:relative;background:var(--petroleo);color:var(--marfil);
+  padding:46svh 26px 17svh}
+#s06::before{content:"";position:absolute;top:-2px;left:0;right:0;height:calc(40svh + 2px);
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(244,241,233,1) 0%,rgba(244,241,233,0.972) 10%,rgba(244,241,233,0.896) 20%,rgba(244,241,233,0.784) 30%,rgba(244,241,233,0.648) 40%,rgba(244,241,233,0.5) 50%,rgba(244,241,233,0.352) 60%,rgba(244,241,233,0.216) 70%,rgba(244,241,233,0.104) 80%,rgba(244,241,233,0.028) 90%,rgba(244,241,233,0) 100%)}
+#s06 > *{position:relative;z-index:1}
+#s06 .env{max-width:720px;margin:0 auto}
+#s06 .kick{font-size:13px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--dorado);margin:0}
+#s06 .grande{font-weight:400;font-size:clamp(27px,7.4vw,36px);line-height:1.2;
+  letter-spacing:-.016em;margin:20px 0 0}
+#s06 .grande .oro{display:block;width:fit-content;max-width:100%;
+  margin-top:.42em;color:var(--dorado);position:relative}
+#s06 .grande .oro::after{content:"";position:absolute;left:0;right:0;bottom:-.09em;height:2px;
+  background:var(--dorado);transform:scaleX(0);transform-origin:left;
+  transition:transform .85s cubic-bezier(.22,.61,.36,1) .5s}
+#s06 .grande.vista .oro::after{transform:scaleX(1)}
+#s06 .cifra{white-space:nowrap;font-variant-numeric:lining-nums;font-feature-settings:'lnum' 1}
+#s06 .pequeno{margin:22px 0 0;font-size:16px;line-height:1.6;font-style:italic;
+  color:rgba(244,241,233,.66);max-width:46ch}
+#s06 details{margin-top:38px;border-top:1px solid rgba(244,241,233,.16);
+  border-bottom:1px solid rgba(244,241,233,.16);padding:16px 0}
+#s06 summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;
+  align-items:center;gap:14px;font-size:14px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dorado)}
+#s06 summary::-webkit-details-marker{display:none}
+#s06 summary .mas{transition:transform .3s ease}
+#s06 details[open] summary .mas{transform:rotate(45deg)}
+#s06 .cond{margin:6px 0 0;padding:0;list-style:none}
+#s06 .cond li{display:grid;grid-template-columns:1fr;gap:2px;padding:14px 0;
+  border-bottom:1px solid rgba(244,241,233,.09)}
+#s06 .cond li:last-child{border-bottom:0;padding-bottom:2px}
+#s06 .cond .q{font-size:13px;letter-spacing:.13em;text-transform:uppercase;
+  color:rgba(244,241,233,.48)}
+#s06 .cond .r{font-size:16.5px;line-height:1.5;color:rgba(244,241,233,.88)}
+@media (min-width:900px){
+  #s06{padding:46svh 40px 20svh}
+  #s06 .grande{font-size:44px}
+  #s06 .pequeno{font-size:18px}
+  #s06 .cond li{grid-template-columns:230px 1fr;gap:24px;align-items:baseline}
+}
+
+/* ============ 7 · PARA QUIÉN SÍ Y PARA QUIÉN NO ============ */
+#s07{position:relative;background:var(--marfil);color:var(--petroleo);
+  padding:44svh 26px 16svh}
+#s07::before{content:"";position:absolute;top:-2px;left:0;right:0;height:calc(38svh + 2px);
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(3,37,50,1) 0%,rgba(3,37,50,0.972) 10%,rgba(3,37,50,0.896) 20%,rgba(3,37,50,0.784) 30%,rgba(3,37,50,0.648) 40%,rgba(3,37,50,0.5) 50%,rgba(3,37,50,0.352) 60%,rgba(3,37,50,0.216) 70%,rgba(3,37,50,0.104) 80%,rgba(3,37,50,0.028) 90%,rgba(3,37,50,0) 100%)}
+#s07 > *{position:relative;z-index:1}
+#s07 .env{max-width:900px;margin:0 auto}
+#s07 .kick{font-size:13px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:#6E5B32;margin:0}
+#s07 h2{font-weight:400;font-size:clamp(29px,7.8vw,38px);line-height:1.14;
+  letter-spacing:-.018em;margin:16px 0 0;max-width:18ch}
+#s07 .cols{margin-top:40px;display:grid;gap:38px}
+#s07 .caja h3{margin:0;font-weight:400;font-size:22px;line-height:1.2;
+  padding-bottom:12px;border-bottom:1px solid rgba(3,37,50,.16)}
+#s07 .si h3{color:#2b4550}
+#s07 .no h3{color:#5F7078}
+#s07 ul{margin:16px 0 0;padding:0;list-style:none}
+#s07 li{position:relative;padding-left:24px;margin-bottom:13px;font-size:16.5px;
+  line-height:1.5;color:#2b4550}
+#s07 .si li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;
+  border-radius:50%;background:var(--dorado)}
+#s07 .no li{color:#5F7078}
+#s07 .no li::before{content:"";position:absolute;left:0;top:.72em;width:11px;height:1px;
+  background:rgba(3,37,50,.34)}
+#s07 .cierre{margin:38px 0 0;font-size:clamp(19px,5vw,23px);line-height:1.35;
+  max-width:28ch}
+@media (min-width:900px){
+  #s07{padding:44svh 40px 18svh}
+  #s07 .cols{grid-template-columns:1fr 1fr;gap:56px;margin-top:48px}
+  #s07 li{font-size:17px}
+  #s07 .cierre{margin-top:48px;font-size:26px;max-width:34ch}
+}
+
+/* ============ 8 · PREGUNTAS FRECUENTES ============ */
+#s08{position:relative;background:var(--petroleo);color:var(--marfil);
+  padding:34svh 26px 17svh}
+#s08::before{content:"";position:absolute;top:-2px;left:0;right:0;height:calc(28svh + 2px);
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(244,241,233,1) 0%,rgba(244,241,233,0.972) 10%,rgba(244,241,233,0.896) 20%,rgba(244,241,233,0.784) 30%,rgba(244,241,233,0.648) 40%,rgba(244,241,233,0.5) 50%,rgba(244,241,233,0.352) 60%,rgba(244,241,233,0.216) 70%,rgba(244,241,233,0.104) 80%,rgba(244,241,233,0.028) 90%,rgba(244,241,233,0) 100%)}
+#s08 > *{position:relative;z-index:1}
+#s08::before{z-index:1}
+#s08 > .fondo{position:absolute;inset:0;z-index:0;overflow:hidden}
+#s08 .fondo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 48%,rgba(0,0,0,0) 96%);
+  mask-image:linear-gradient(180deg,#000 0%,#000 48%,rgba(0,0,0,0) 96%);
+  opacity:.62;animation:acerca 22s ease-in-out infinite alternate}
+#s08 .fondo .velo{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(3,37,50,.80) 0%,rgba(3,37,50,.34) 20%,rgba(3,37,50,.86) 52%,var(--petroleo) 72%)}
+#s08 .fondo .alta{display:none}
+@media (max-width:899px){
+  #s08 .fondo{height:66svh}
+  #s08 .fondo .ancha{display:none}
+  #s08 .fondo .alta{display:block;object-fit:contain;object-position:center top;opacity:.7;
+    -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 26%,rgba(0,0,0,0) 62%);
+    mask-image:linear-gradient(180deg,#000 0%,#000 26%,rgba(0,0,0,0) 62%)}
+  #s08 .fondo .velo{background:linear-gradient(180deg,rgba(3,37,50,.72) 0%,rgba(3,37,50,.26) 22%,rgba(3,37,50,.80) 62%,var(--petroleo) 92%)}
+}
+#s08 .env{max-width:760px;margin:0 auto}
+#s08 .kick{font-size:13px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--dorado);margin:0}
+#s08 h2{font-weight:400;font-size:clamp(29px,7.8vw,38px);line-height:1.14;
+  letter-spacing:-.018em;margin:16px 0 0}
+#s08 .lista{margin-top:34px}
+#s08 details{border-bottom:1px solid rgba(244,241,233,.14);padding:18px 0}
+#s08 details:first-child{border-top:1px solid rgba(244,241,233,.14)}
+#s08 summary{list-style:none;cursor:pointer;display:flex;gap:16px;align-items:baseline;
+  justify-content:space-between;font-size:18.5px;line-height:1.3}
+#s08 summary::-webkit-details-marker{display:none}
+#s08 summary .mas{flex:none;color:var(--dorado);transition:transform .3s ease}
+#s08 details[open] summary .mas{transform:rotate(45deg)}
+#s08 .resp p{margin:14px 0 0;font-size:16.5px;line-height:1.6;
+  color:rgba(244,241,233,.74);max-width:62ch}
+@media (min-width:900px){
+  #s08{padding:34svh 40px 18svh}
+  #s08 summary{font-size:21px}
+  #s08 .resp p{font-size:17.5px}
+}
+
+/* ============ EL BOTÓN ============ */
+.cta{display:block;margin-top:28px}
+.boton{display:flex;align-items:center;justify-content:center;text-align:center;
+  width:100%;max-width:420px;padding:20px 26px;text-decoration:none;
+  font-family:var(--serif);font-size:19px;letter-spacing:.02em;
+  border:1px solid transparent;border-radius:7px;cursor:pointer;
+  transition:background .35s ease,color .35s ease,border-color .35s ease}
+.cta .bajo{margin:12px 0 0;font-size:14px;letter-spacing:.06em}
+/* sobre marfil */
+.claro .boton{background:var(--dorado);color:var(--petroleo);border-color:#6E5B32}
+.claro .boton:hover{background:transparent;color:#6E5B32}
+.claro .bajo{color:#5F7078}
+/* sobre petróleo */
+.oscuro .boton{background:var(--dorado);color:var(--petroleo);border-color:#8A7645}
+.oscuro .boton:hover{background:transparent;color:var(--dorado);border-color:var(--dorado)}
+.oscuro .bajo{color:rgba(244,241,233,.6)}
+
+/* ============ 9 · CIERRE ============ */
+#s09{position:relative;background:var(--petroleo);color:var(--marfil);
+  padding:15svh 26px 16svh;text-align:center;
+  display:flex;flex-direction:column;align-items:center}
+#s09 h2{font-weight:400;font-size:clamp(28px,7.6vw,38px);line-height:1.16;
+  letter-spacing:-.018em;margin:0;max-width:17ch}
+#s09 .plazas{margin-top:30px;display:flex;align-items:baseline;gap:14px}
+#s09 .plazas .n{font-size:52px;color:var(--dorado);line-height:.9;
+  font-variant-numeric:lining-nums;font-feature-settings:'lnum' 1}
+#s09 .plazas .t{font-size:19px;text-align:left;line-height:1.25}
+#s09 .cta{display:flex;flex-direction:column;align-items:center}
+#s09 .firma{margin:44px 0 0;font-size:13px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(244,241,233,.42)}
+@media (min-width:900px){
+  #s09{padding:18svh 40px}
+  #s09 h2{font-size:48px}
+  .boton{font-size:20px}
+}
+
+/* ============ TEXTURA · grano y profundidad ============ */
+/* 2 · una luz dorada muy tenue, por detrás y lejos de las transiciones */
+#s02::after,#s04::after,#s06::after,#s09::after{content:"";position:absolute;
+  left:0;right:0;top:46svh;bottom:12svh;pointer-events:none;z-index:0;
+  background:radial-gradient(56% 58% at 80% 42%, rgba(182,164,122,.075) 0%,
+    rgba(182,164,122,.03) 38%, rgba(182,164,122,0) 72%)}
+#s02,#s04,#s06,#s09{position:relative}
+#s02 > *,#s04 > *,#s06 > *,#s09 > *{position:relative;z-index:1}
+
+/* 1 · grano: ruido generado, encima de todo, sin tocar los clics */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;
+  opacity:.035;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='r'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23r)'/></svg>");
+  background-size:160px 160px}
+
+
+/* 3 · papel: grano más grueso, solo en las secciones marfil */
+#s3b,#s07{position:relative}
+#s03::after,#s3b::after,#s05::after,#s07::after{content:"";position:absolute;inset:0;
+  pointer-events:none;z-index:8;opacity:.055;
+  -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,0) 0,#000 46svh);
+  mask-image:linear-gradient(180deg,rgba(0,0,0,0) 0,#000 46svh);
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='220' height='220' filter='url(%23p)'/></svg>");background-size:220px 220px}
+
+/* ============ PIE ============ */
+#pie{background:#02202c;color:rgba(244,241,233,.56);padding:9svh 26px 7svh;
+  font-family:var(--serif)}
+#pie .env{max-width:900px;margin:0 auto}
+#pie .marca{font-size:14px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dorado);margin:0}
+#pie .nota{margin:16px 0 0;font-size:14.5px;line-height:1.6;max-width:58ch}
+#pie .enlaces{margin:30px 0 0;padding:24px 0 0;border-top:1px solid rgba(244,241,233,.13);
+  display:flex;flex-wrap:wrap;gap:14px 28px;list-style:none}
+#pie .enlaces a{color:rgba(244,241,233,.66);text-decoration:none;font-size:14.5px;
+  border-bottom:1px solid transparent;transition:color .3s ease,border-color .3s ease}
+#pie .enlaces a:hover{color:var(--marfil);border-bottom-color:var(--dorado)}
+#pie .abajo{margin:26px 0 0;display:flex;flex-wrap:wrap;gap:8px 22px;
+  font-size:13px;color:rgba(244,241,233,.38)}
+@media (min-width:900px){
+  #pie{padding:11svh 40px 8svh}
+  #pie .nota{font-size:15.5px}
+}
+
+/* ============ 8b · ESCRÍBEME ============ */
+#s8b{position:relative;background:var(--petroleo);color:var(--marfil);padding:4svh 26px 12svh}
+#s8b .env{max-width:640px;margin:0 auto}
+#s8b h2{font-weight:400;font-size:clamp(24px,6.4vw,30px);line-height:1.16;
+  letter-spacing:-.016em;margin:0}
+#s8b .pie-nota{margin:12px 0 0;font-size:15.5px;line-height:1.55;color:rgba(244,241,233,.6)}
+#s8b form{margin-top:26px;padding:26px 24px;background:rgba(244,241,233,.045);
+  border:1px solid rgba(244,241,233,.14);border-radius:10px}
+#s8b label{display:block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dorado);margin-bottom:8px}
+#s8b input,#s8b textarea{width:100%;padding:13px 14px;margin-bottom:20px;
+  background:rgba(3,37,50,.5);border:1px solid rgba(244,241,233,.18);border-radius:7px;
+  color:var(--marfil);font-family:var(--serif);font-size:17px;line-height:1.45}
+#s8b textarea{min-height:130px;resize:vertical}
+#s8b input:focus,#s8b textarea:focus{outline:none;border-color:var(--dorado)}
+#s8b input::placeholder,#s8b textarea::placeholder{color:rgba(244,241,233,.32)}
+#s8b .acepto{display:flex;gap:11px;align-items:flex-start;margin-bottom:22px;
+  text-transform:none;letter-spacing:normal;font-size:inherit}
+#s8b .acepto input{width:17px;height:17px;margin:3px 0 0;flex:none;accent-color:var(--dorado)}
+#s8b .acepto span{font-size:14px;line-height:1.5;color:rgba(244,241,233,.62)}
+#s8b .acepto a{color:rgba(244,241,233,.8)}
+#s8b button{width:100%;padding:17px 24px;border:1px solid #8A7645;border-radius:7px;
+  background:var(--dorado);color:var(--petroleo);font-family:var(--serif);font-size:18px;
+  letter-spacing:.02em;cursor:pointer;transition:background .35s ease,color .35s ease}
+#s8b button:hover{background:transparent;color:var(--dorado)}
+#s8b .aviso{margin:16px 0 0;font-size:13.5px;line-height:1.5;color:rgba(244,241,233,.42)}
+#s8b .gracias{margin:16px 0 0;font-size:16px;color:var(--dorado)}
+@media (min-width:900px){
+  #s8b{padding:6svh 40px 14svh}
+  #s8b form{padding:32px 30px}
+}
+</style>
+</head>
+<body>
+
+<section id="s01">
+  <img class="foto ancha" src="img/granada_medio.jpg" alt="">
+  <img class="foto alta" src="img/granada_movil.jpg" alt="">
+  <div class="velo"></div>
+  <p class="dicho up">«No tienes nada.»</p>
+  <h1 class="titular up">
+    <span class="b">Todas las pruebas</span>
+    <span class="b">salen bien.</span>
+    <span class="b">Pero tú <span class="no">no</span> lo estás.</span>
+  </h1>
+  <div class="marca up">
+    <p class="nombre">Soberanía Digestiva</p>
+    <p class="linea">Programa educativo y de autoconocimiento de ocho semanas para dejar de comer a ciegas y por fin entender qué te pasa.</p>
+  </div>
+  <div class="plazas up">
+    <span class="n">25</span>
+    <span class="t">plazas<br>por edición</span>
+  </div>
+</section>
+
+<section id="s02">
+  <div class="parada up"><p>Miras dónde está el baño antes de aceptar un plan.</p></div>
+  <div class="parada up"><p>Te llevas ropa que no apriete.</p></div>
+  <div class="parada up"><p>Cancelas el sábado a las siete con una excusa que ya has usado otras veces.</p></div>
+  <div class="parada up"><p>Y la lista de lo que ya no comes es más larga que la de lo que comes.</p></div>
+  <div class="parada grande up"><p>Lo peor no es ninguno de los síntomas. Es no saber cuál va a ser el próximo, ni por qué.</p></div>
+  <div class="parada yo up"><p>Y sé que te pasa esto porque <span class="sub">yo lo viví durante ocho años</span>.</p></div>
+  <div class="parada pivote up"><p>Aquí te voy a dar la pieza que te falta.</p></div>
+</section>
+
+
+<section id="s03">
+  <div class="escena">
+    <div class="marco">
+      <img class="capa base" src="img/lamina/01_whole_digestive_tract.png" alt="Lámina del sistema digestivo">
+      <img class="capa foco f-todo" data-p="todo" src="img/lamina/01_whole_digestive_tract.png" alt="">
+      <img class="capa foco f-estomago" data-p="estomago" src="img/lamina/01_whole_digestive_tract.png" alt="">
+      <img class="capa foco f-delgado" data-p="delgado"  src="img/lamina/01_whole_digestive_tract.png" alt="">
+      <img class="capa foco f-colon" data-p="colon"    src="img/lamina/01_whole_digestive_tract.png" alt="">
+      <img class="capa detalle" src="img/lamina/06_intestinal_wall_nerve.png" alt="La pared por dentro y la señal subiendo">
+      <img class="capa nervioso" src="img/lamina/07_sistema_enterico.png?v=4" alt="El sistema nervioso entérico">
+    </div>
+    <div class="velo-abajo"></div>
+  </div>
+
+  <div class="textos">
+    <div class="paso" data-luz="todo"><p><span class="parte">Sistema digestivo</span>Esto es lo que miran las pruebas. Y casi siempre lo encuentran bien.</p></div>
+    <div class="paso" data-luz="estomago"><p><span class="parte">Estómago</span>Aquí empieza la digestión de verdad. Ácido y enzimas.</p></div>
+    <div class="paso" data-luz="delgado"><p><span class="parte">Intestino delgado</span>Aquí se absorbe lo que comes, y aquí se nota cuando algo va lento.</p></div>
+    <div class="paso" data-luz="colon"><p><span class="parte">Colon</span>El gas, el ruido y la hinchazón que sí notas.</p></div>
+    <div class="paso" data-luz="pared"><p><span class="parte">La pared, por dentro</span>No tiene que estar rota para doler. Basta con que esté <em>sensible</em>.</p></div>
+    <div class="paso remate" data-luz="pared"><p><span class="parte">La señal</span>Sale pequeña de aquí abajo. Y llega al cerebro <em>mucho más grande</em>.</p></div>
+    <div class="paso nombre" data-luz="enterico"><p>A eso lo llamamos <em>hipersensibilidad visceral</em>.</p></div>
+  </div>
+</section>
+
+
+
+<section id="s3b">
+ <div class="env">
+  <h2 class="up">¿Quién está detrás de Soberanía Digestiva?</h2>
+  <div class="fila">
+    <img class="foto up" src="img/abby.jpg" alt="Abby">
+    <div>
+      <p class="intro up">Soy Abby, y durante años mi barriga fue encogiendo mi vida sin que yo entendiera por qué.</p>
+      <details class="up">
+        <summary>Seguir leyendo <span class="mas">+</span></summary>
+        <div class="cuerpo">
+          <p>Vivía con dolor y reflujo. Había noches en las que las molestias no me dejaban dormir y días en los que comer fuera dejaba de ser un placer para convertirse en una preocupación. Tenía que pensar qué habría en el menú, cómo me sentaría y qué consecuencias tendría después. Nunca sabía cómo iba a reaccionar mi cuerpo.</p>
+          <p>Además, muchas personas de mi entorno me decían que era «muy rara» con la comida y con mi sistema digestivo. Me sentía observada y juzgada por tener que preguntar, evitar o pensármelo todo tanto. Llegué incluso a sentir envidia de quienes podían sentarse a comer cualquier cosa sin miedo, mientras yo veía cómo cada vez aparecían más problemas y mi mundo se hacía más pequeño.</p>
+          <p>Lo más difícil no era solo el síntoma. Era sentir que nadie terminaba de comprender cuánto estaba condicionando mi vida. Era acumular consejos, probar cosas y seguir sin una explicación que me permitiera unir todas las piezas.</p>
+          <p>Por eso empecé a estudiar. Necesitaba comprender qué había detrás de aquellas reacciones y cómo se relacionaban el intestino, el sistema nervioso, la inmunidad, el estrés y todo lo que ocurría alrededor. Durante años fui reuniendo piezas hasta conseguir ver un mapa donde antes solo había síntomas sueltos.</p>
+          <p>Soberanía Digestiva nace de ese recorrido. Es el mapa que me habría gustado encontrar cuando mi vida giraba alrededor de una barriga imprevisible y yo solo quería volver a vivir sin tener que pensar en ella a todas horas.</p>
+        </div>
+      </details>
+      <p class="firma up">Abby</p>
+    </div>
+  </div>
+ </div>
+</section>
+
+<section id="s04">
+  <h2 class="up">En qué consiste este programa</h2>
+  <div class="ventana up">
+    <div class="play"><i></i></div>
+    <span class="dura">02:00</span>
+  </div>
+  <p class="pie up">Para que sepas si esto es para ti antes de decidir nada.</p>
+</section>
+
+
+<section id="s05">
+ <div class="env">
+  <p class="kick up">Lo que hay dentro</p>
+  <h2 class="up">El programa</h2>
+
+  <div class="nucleo up">
+    <h3>Ocho semanas de programa</h3>
+    <ul>
+      <li class="up">Todo lo que hay detrás de tus síntomas, contado en orden</li>
+      <li class="up">Qué enciende la hipersensibilidad: sueño, estrés, ciclo y cabeza</li>
+      <li class="up">Qué daña la mucosa y qué la repara</li>
+      <li class="up">Tu semáforo de alimentos</li>
+      <li class="up">Las herramientas de criterio</li>
+      <li class="up">Las respuestas en vídeo, con las preguntas del grupo</li>
+      <li class="up">Acceso de por vida a todo</li>
+    </ul>
+    <p class="publico">Está explicado para ti, con metáforas muy sencillas y apoyo visual
+    para que lo entiendas fácilmente. No hace falta formación previa en biología ni nada
+    por el estilo.</p>
+    
+  </div>
+
+  <p class="titb up">Y ocho bonus</p>
+  <div class="bonus">
+      <details class="up">
+        <summary><span class="txt"><span class="nom">Guía: el mapa de tu sistema digestivo imprevisible</span><span class="obj">la guía completa, la misma que se vende suelta</span></span><span class="eur">48 €</span><span class="mas">+</span></summary>
+        <p class="det">Explica por qué unos síntomas que son reales pueden venir de un sistema que amplifica la señal, y no de un cuerpo roto ni de algo que te estés inventando. Y cuenta qué baja el umbral de tolerancia y cómo se reentrena el sistema nervioso.</p>
+      </details>
+      <details class="up">
+        <summary><span class="txt"><span class="nom">Comer bien</span><span class="obj">desde los macronutrientes hasta comer para la microbiota</span></span><span class="mas">+</span></summary>
+        <p class="det">Macronutrientes, micronutrientes, coste de oportunidad, y comer también para la microbiota.</p>
+      </details>
+      <details class="up">
+        <summary><span class="txt"><span class="nom">Los síntomas, uno a uno</span><span class="obj">«cuando me da, no sé qué hacer»</span></span><span class="mas">+</span></summary>
+        <p class="det">Hinchazón, dolor, cólico, reflujo, estreñimiento y diarrea, con sus tipos. Qué está pasando dentro y qué se puede hacer.</p>
+      </details>
+      <details class="up">
+        <summary><span class="txt"><span class="nom">Cómo afrontar un día malo</span><span class="obj">«el día que aprieta, no sé qué hacer conmigo»</span></span><span class="mas">+</span></summary>
+        <p class="det">Qué hacer cuando el día ya se ha torcido. Cómo hablarte cuando estás en mitad del pico, que es la mitad del trabajo. Y qué existe por si hiciera falta algo más, explicado para que sepas lo que es.</p>
+      </details>
+      <details class="up">
+        <summary><span class="txt"><span class="nom">Antibióticos: durante y después</span><span class="obj">«cada vez que tomo uno, vuelvo atrás»</span></span><span class="mas">+</span></summary>
+        <p class="det">Qué le hace un antibiótico a tu intestino mientras lo estás tomando, y qué pasa cuando lo dejas. Y qué se sabe sobre cómo acompañar esos días y los de después.</p>
+      </details>
+      <details class="up">
+        <summary><span class="txt"><span class="nom">El diccionario de metáforas</span><span class="obj">«leo sobre esto y no me entero de nada»</span></span><span class="mas">+</span></summary>
+        <p class="det">Las imágenes con las que lo explico todo, reunidas. Cuando tienes la metáfora, el término técnico deja de dar miedo.</p>
+      </details>
+      <details class="up">
+        <summary><span class="txt"><span class="nom">Aprender a leer una etiqueta de supermercado</span><span class="obj">«me paso media compra leyendo letra pequeña»</span></span><span class="mas">+</span></summary>
+        <p class="det">Dónde está el cambio en una etiqueta y qué cuatro cosas se miran, de pie, en el pasillo.</p>
+      </details>
+      <details class="up">
+        <summary><span class="txt"><span class="nom">Cómo devolver un alimento a tu mesa</span><span class="obj">el problema siguiente: recuperar lo que quitaste</span></span><span class="mas">+</span></summary>
+        <p class="det">El criterio para volver a probar sin retirar nada por una sola mala noche.</p>
+      </details>
+  </div>
+
+  
+  
+  <div class="precio up"><span>Precio de la primera edición</span><b>498 €</b></div>
+  <div class="cta claro up">
+    <a class="boton" href="#comprar">Accede a Soberanía Digestiva</a>
+    <p class="bajo">498 € · pago único · acceso de por vida</p>
+  </div>
+ </div>
+</section>
+
+<section id="s06">
+ <div class="env">
+  <p class="kick up">La garantía</p>
+  <p class="grande up">Haz el programa completo. Si al terminar las ocho semanas sientes que no te ha ayudado a comprender mejor lo que te pasa ni a tomar decisiones con más criterio,<span class="oro">te devolveré íntegros los <span class="cifra">498 €</span>.</span></p>
+  <p class="pequeno up">Tienes catorce días desde que terminas. Contestas dos preguntas y ya está: no tienes que justificarte ni convencerme de nada.</p>
+
+  <details class="up">
+    <summary>Las condiciones, en concreto <span class="mas">+</span></summary>
+    <ul class="cond">
+      <li><span class="q">Qué tienes que hacer</span><span class="r">Ver el programa entero y llegar al final de la semana ocho. Queda registrado solo, no tienes que enviarme nada.</span></li>
+      <li><span class="q">Cuándo puedes pedirlo</span><span class="r">Desde que terminas la semana ocho y hasta catorce días después.</span></li>
+      <li><span class="q">Cómo</span><span class="r">Un formulario de dos preguntas sobre qué esperabas encontrar.</span></li>
+      <li><span class="q">Qué recibes</span><span class="r">El importe íntegro, en siete días.</span></li>
+      <li><span class="q">Qué pasa con el acceso</span><span class="r">Se cierra al devolverte el dinero.</span></li>
+    </ul>
+  </details>
+ </div>
+</section>
+
+<section id="s07">
+ <div class="env">
+  <p class="kick up">Antes de entrar</p>
+  <h2 class="up">¿Es Soberanía Digestiva para ti?</h2>
+
+  <div class="cols">
+    <div class="caja si up">
+      <h3>Puede encajarte si…</h3>
+      <ul>
+        <li class="up">Te han hablado de colon irritable o dispepsia funcional.</li>
+        <li class="up">Llevas tiempo conviviendo con hinchazón, dolor, reflujo, estreñimiento, diarrea o digestiones difíciles.</li>
+        <li class="up">Te han hecho pruebas y, aunque no han encontrado una causa que explique lo que sientes, los síntomas siguen presentes.</li>
+        <li class="up">Has probado dietas, retiradas de alimentos o suplementos, pero sigues sin comprender qué hay detrás de tus síntomas.</li>
+        <li class="up">Convives con un SIBO que reaparece o con un reflujo persistente y sientes que estás atrapada en un ciclo de tratar, mejorar y volver a empezar.</li>
+        <li class="up">Eres celíaca, sigues correctamente la dieta sin gluten y, aun así, continúas teniendo molestias.</li>
+      </ul>
+    </div>
+
+    <div class="caja no up">
+      <h3>Este programa no es la opción adecuada si…</h3>
+      <ul>
+        <li class="up">Tus síntomas todavía no han sido valorados por un médico. Ese es siempre el primer paso.</li>
+        <li class="up">Necesitas el diagnóstico, tratamiento o seguimiento de una enfermedad orgánica como Crohn, colitis ulcerosa o gastritis atrófica. En ese caso, la atención de tu especialista debe ser la prioridad.</li>
+        <li class="up">Buscas una cura, una solución inmediata o una promesa de resultados.</li>
+        <li class="up">Quieres recibir una pauta personalizada que te diga exactamente qué comer.</li>
+        <li class="up">Necesitas que alguien valore tu caso de forma individual.</li>
+        <li class="up">Estás embarazada, te han operado recientemente o tienes un trastorno de la conducta alimentaria.</li>
+        <li class="up">Eres menor de edad.</li>
+      </ul>
+    </div>
+  </div>
+ </div>
+</section>
+
+<section id="s08">
+ <div class="fondo">
+   <img class="ancha" src="img/sandia_ancha.jpg" alt="">
+   <img class="alta" src="img/sandia_alta.jpg" alt="">
+   <div class="velo"></div>
+ </div>
+ <div class="env">
+  <h2 class="up">Preguntas frecuentes</h2>
+  <div class="lista">
+    <details class="up">
+      <summary>¿Qué es exactamente Soberanía Digestiva? <span class="mas">+</span></summary>
+      <div class="resp">
+      <p>Es un programa educativo de ocho semanas para ayudarte a comprender por qué tu sistema digestivo puede reaccionar de forma imprevisible, qué factores pueden influir en esa respuesta y qué factores la mejoran.</p>
+      </div>
+    </details>
+    <details class="up">
+      <summary>¿Qué incluye el programa? <span class="mas">+</span></summary>
+      <div class="resp">
+      <p>Incluye 34 vídeos, 17 fichas de consulta, cuatro herramientas prácticas, un póster visual con el mecanismo completo y la guía de Soberanía Digestiva.</p>
+      <p>El contenido suma aproximadamente 5 horas y 10 minutos de vídeo y tendrás acceso de por vida.</p>
+      </div>
+    </details>
+    <details class="up">
+      <summary>¿Cómo está organizado? <span class="mas">+</span></summary>
+      <div class="resp">
+      <p>Los contenidos se desbloquean progresivamente durante ocho semanas para que puedas avanzar sin recibir toda la información de golpe.</p>
+      <p>Si alguna semana necesitas parar, podrás retomarlo más adelante.</p>
+      </div>
+    </details>
+    <details class="up">
+      <summary>¿Cuánto tiempo necesito? <span class="mas">+</span></summary>
+      <div class="resp">
+      <p>La carga de contenido es ligera y está repartida durante ocho semanas. Además, muchas herramientas son fichas para móvil que puedes consultar en uno o dos minutos.</p>
+      <p>También tendrás una ruta mínima para saber qué priorizar cuando dispongas de poco tiempo.</p>
+      </div>
+    </details>
+    <details class="up">
+      <summary>¿Para quién está pensado? <span class="mas">+</span></summary>
+      <div class="resp">
+      <p>Para personas que conviven con hinchazón, dolor, reflujo, estreñimiento, diarrea o digestiones imprevisibles y quieren comprender mejor qué puede estar influyendo y qué puede mejorarlo.</p>
+      <p>También puede encajarte si te han hablado de colon irritable o dispepsia funcional, o si las pruebas médicas no explican por completo lo que sigues sintiendo.</p>
+      </div>
+    </details>
+    <details class="up">
+      <summary>¿Y si mi caso es diferente? <span class="mas">+</span></summary>
+      <div class="resp">
+      <p>No necesitas tener una combinación concreta de síntomas. El programa explica, de forma muy sencilla, mecanismos generales que pueden participar en la sensibilidad y la respuesta digestiva.</p>
+      </div>
+    </details>
+    <details class="up">
+      <summary>¿Qué puedo esperar al terminar? <span class="mas">+</span></summary>
+      <div class="resp">
+      <p>El objetivo es que puedas interpretar mejor tus síntomas, reconocer factores que pueden influir y dejar de tomar decisiones completamente a ciegas.</p>
+      <p>Se ofrece conocimiento, contexto y herramientas para relacionarte con ellos con más criterio y menos miedo.</p>
+      </div>
+    </details>
+    <details class="up">
+      <summary>¿Es una dieta? <span class="mas">+</span></summary>
+      <div class="resp">
+      <p>No. No encontrarás una lista universal de alimentos permitidos y prohibidos ni una pauta cerrada sobre qué debes comer.</p>
+      <p>Aprenderás a observar patrones y a tomar decisiones adaptadas a tu propia respuesta.</p>
+      </div>
+    </details>
+    <details class="up">
+      <summary>¿Tengo que registrar todo lo que como? <span class="mas">+</span></summary>
+      <div class="resp">
+      <p>No tendrás que completar un diario a diario durante meses.</p>
+      <p>El test de alimentos se realiza una vez, y las demás herramientas de seguimiento están pensadas para utilizarse en momentos concretos.</p>
+      </div>
+    </details>
+    <details class="up">
+      <summary>¿Incluye recomendaciones de suplementos? <span class="mas">+</span></summary>
+      <div class="resp">
+      <p>Se explican algunas familias de suplementos y productos herbáceos con finalidad educativa.</p>
+      </div>
+    </details>
+    <details class="up">
+      <summary>¿Sustituye una consulta médica? <span class="mas">+</span></summary>
+      <div class="resp">
+      <p>No. El programa no diagnostica, prescribe ni sustituye el trabajo de un profesional sanitario.</p>
+      <p>Está diseñado para ofrecerte la explicación y el contexto educativo que muchas veces no se pueden desarrollar con profundidad durante una consulta.</p>
+      </div>
+    </details>
+    <details class="up">
+      <summary>¿Puedo enviar preguntas? <span class="mas">+</span></summary>
+      <div class="resp">
+      <p>Sí. Podrás enviarlas mediante un formulario y responderé en vídeo las que puedan explicarse de manera general para todo el grupo.</p>
+      <p>No se realizarán valoraciones individuales.</p>
+      </div>
+    </details>
+        <details class="up">
+      <summary>¿Puedo hacerlo desde fuera de España? <span class="mas">+</span></summary>
+      <div class="resp">
+      <p>Sí. El programa es completamente online.</p>
+      </div>
+    </details>
+    <details class="up">
+      <summary>Ya compré la guía, ¿volveré a pagarla? <span class="mas">+</span></summary>
+      <div class="resp">
+      <p>No. Si ya tienes la guía de 48 €, recibirás un cupón para que ese importe no se cobre de nuevo al entrar en el programa.</p>
+      </div>
+    </details>
+  </div>
+ </div>
+</section>
+
+<section id="s8b">
+ <div class="env">
+  <h2 class="up">¿Te queda alguna duda?</h2>
+  <p class="pie-nota up">Escríbeme y te contesto tus dudas encantada.</p>
+
+  <form class="up" id="dudas">
+    <label for="d-nombre">Cómo te llamas</label>
+    <input id="d-nombre" name="nombre" type="text" required placeholder="Tu nombre">
+
+    <label for="d-correo">Tu correo</label>
+    <input id="d-correo" name="correo" type="email" required placeholder="donde quieres que te conteste">
+
+    <label for="d-mensaje">Tu pregunta</label>
+    <textarea id="d-mensaje" name="mensaje" required placeholder="Cuéntame qué quieres saber del programa"></textarea>
+
+
+    <label class="acepto"><input type="checkbox" name="acepto" required>
+      <span>He leído la <a href="legal/privacidad.html">política de privacidad</a> y acepto que uses mi correo para contestarme.</span></label>
+
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+    <button type="submit">Enviar la pregunta</button>
+    <p class="gracias" id="d-gracias" hidden>Recibida. Te contesto en cuanto pueda.</p>
+  </form>
+ </div>
+</section>
+
+<section id="s09">
+  <h2 class="up">Dejar de comer a ciegas y por fin entender qué te pasa.</h2>
+  <div class="plazas up">
+    <span class="n">25</span>
+    <span class="t">plazas<br>por edición</span>
+  </div>
+  <div class="cta oscuro up">
+    <a class="boton" href="#comprar">Accede a Soberanía Digestiva</a>
+    <p class="bajo">498 € · pago único · acceso de por vida</p>
+  </div>
+  <p class="firma up">Abby</p>
+</section>
+
+<footer id="pie">
+ <div class="env">
+  <p class="marca">Soberanía Digestiva</p>
+  <p class="nota">Programa educativo y de autoconocimiento. No es un servicio sanitario ni sustituye la consulta, el diagnóstico o el tratamiento de un profesional de la salud. Si tienes síntomas sin estudiar, tu primer paso es tu médico.</p>
+
+  <ul class="enlaces">
+    <li><a href="legal/aviso-legal.html">Aviso legal</a></li>
+    <li><a href="legal/privacidad.html">Privacidad</a></li>
+    <li><a href="legal/condiciones.html">Condiciones de venta</a></li>
+  </ul>
+
+  <div class="abajo">
+    <span>© 2026 Soberanía Digestiva</span>
+    <span>Abby</span>
+  </div>
+ </div>
+</footer>
+
+<script>
+// la primera pantalla entra sola al abrir, escalonada
+var portada = document.querySelectorAll('#s01 .up');
+portada.forEach(function(el,i){
+  setTimeout(function(){ el.classList.add('vista'); }, 200 + i*380);
+});
+
+// el resto aparece cuando sube desde abajo
+var obs = new IntersectionObserver(function(es){
+  var n = 0;
+  es.forEach(function(e){
+    if(!e.isIntersecting) return;
+    e.target.style.transitionDelay = (n * 0.16) + 's';
+    n++;
+    e.target.classList.add('vista');
+    obs.unobserve(e.target);
+  });
+}, { rootMargin: '0px 0px -22% 0px' });
+
+document.querySelectorAll('.up').forEach(function(el){
+  if (el.closest('#s01')) return;
+  obs.observe(el);
+});
+
+// la lámina: manda el paso más cercano a la línea de lectura
+var partes = {};
+document.querySelectorAll('#s03 .foco').forEach(function(el){ partes[el.dataset.p]=el; });
+var pasos = [].slice.call(document.querySelectorAll('#s03 .paso'));
+var marco = document.querySelector('#s03 .marco');
+var ultimo = null;
+
+function manda(){
+  var linea = innerHeight * 0.45, mejor = null, dist = Infinity;
+  pasos.forEach(function(x){
+    var r = x.querySelector('p').getBoundingClientRect();
+    var d = Math.abs((r.top + r.bottom)/2 - linea);
+    if (d < dist){ dist = d; mejor = x; }
+  });
+  if (!mejor || mejor === ultimo) return;
+  ultimo = mejor;
+  var cual = mejor.dataset.luz;
+  marco.classList.toggle('dentro',   cual === 'pared');
+  marco.classList.toggle('enterico', cual === 'enterico');
+  for (var k in partes){
+    partes[k].classList.toggle('on', k === cual && cual !== 'pared' && cual !== 'enterico');
+  }
+  pasos.forEach(function(x){ x.classList.toggle('activo', x === mejor); });
+}
+addEventListener('scroll', manda, {passive:true});
+addEventListener('resize', manda);
+manda();
+
+// los desplegables se abren y se cierran con suavidad
+(function(){
+  var suave = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var curva = 'cubic-bezier(.22,.61,.36,1)';
+  document.querySelectorAll('details').forEach(function(d){
+    var sum = d.querySelector('summary');
+    var caja = sum && sum.nextElementSibling;
+    if (!sum || !caja) return;
+
+    sum.addEventListener('click', function(e){
+      if (!suave) return;
+      e.preventDefault();
+      if (d.dataset.movida) return;
+      d.dataset.movida = '1';
+
+      var abrir = !d.open;
+      if (abrir) d.open = true;
+      var alto = caja.scrollHeight;
+      caja.style.overflow = 'hidden';
+
+      var anim = caja.animate(
+        abrir
+          ? [{height:'0px', opacity:0}, {height:alto+'px', opacity:1}]
+          : [{height:alto+'px', opacity:1}, {height:'0px', opacity:0}],
+        { duration: abrir ? 420 : 320, easing: curva }
+      );
+
+      anim.onfinish = function(){
+        caja.style.overflow = '';
+        if (!abrir) d.open = false;
+        delete d.dataset.movida;
+      };
+    });
+  });
+})();
+</script>
+<script>
+// el formulario de dudas: se envía sin recargar la página
+(function(){
+  var f = document.getElementById('dudas');
+  if (!f) return;
+  var boton = f.querySelector('button');
+  var gracias = document.getElementById('d-gracias');
+  var DESTINO = 'https://script.google.com/macros/s/AKfycbxnwYlI2sovyDz0Q1Le3DOAoTsJQh7VIXt08Z0_4lv3fobjikhi0vBs5i4p-R89rzeQwg/exec';
+
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (boton.disabled) return;
+    boton.disabled = true;
+    var textoBoton = boton.textContent;
+    boton.textContent = 'Enviando…';
+
+    var datos = new URLSearchParams({
+      nombre:  f.nombre.value.trim(),
+      correo:  f.correo.value.trim(),
+      mensaje: f.mensaje.value.trim(),
+      web:     f._honey.value.trim()
+    });
+
+    fetch(DESTINO, { method: 'POST', body: datos })
+      .then(function(r){ return r.json(); })
+      .then(function(res){
+        if (!res || res.ok !== true) throw new Error('no');
+        f.querySelectorAll('input, textarea').forEach(function(c){
+          if (c.type === 'checkbox') c.checked = false; else c.value = '';
+        });
+        gracias.hidden = false;
+        boton.textContent = 'Enviada';
+      })
+      .catch(function(){
+        gracias.textContent = 'No ha salido. Escríbeme a abigail@abigailpni.com y lo vemos.';
+        gracias.hidden = false;
+        boton.disabled = false;
+        boton.textContent = textoBoton;
+      });
+  });
+})();
+</script>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "344546c74ef64c6bbb0f69acd6ef84ef"}'>
+
+</script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
