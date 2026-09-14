@@ -522,11 +522,20 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;
   #s8b{padding:6svh 40px 14svh}
   #s8b form{padding:32px 30px}
 }
+
+/* acceso de alumnas, arriba a la derecha de la portada */
+#s01 > .acceso{position:absolute !important;top:18px;right:18px;left:auto;z-index:5 !important;width:auto;
+  font-family:var(--serif);font-size:14px;letter-spacing:.06em;color:var(--marfil);
+  text-decoration:none;padding:9px 16px;border:1px solid rgba(182,164,122,.7);border-radius:7px;
+  background:rgba(3,37,50,.35);transition:background .3s ease,color .3s ease}
+#s01 .acceso:hover{background:var(--dorado);color:var(--petroleo)}
+@media (min-width:900px){#s01 .acceso{top:26px;right:40px;font-size:15px}}
 </style>
 </head>
 <body>
 
 <section id="s01">
+  <a class="acceso" href="https://www.abigailpni.com/school/course/programa">Acceso a Soberanía Digestiva</a>
   <img class="foto ancha" src="img/granada_medio.jpg" alt="">
   <img class="foto alta" src="img/granada_movil.jpg" alt="">
   <div class="velo"></div>
@@ -892,7 +901,6 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;
     <li><a href="legal/aviso-legal.html">Aviso legal</a></li>
     <li><a href="legal/privacidad.html">Privacidad</a></li>
     <li><a href="legal/condiciones.html">Condiciones de venta</a></li>
-    <li><a href="https://www.abigailpni.com/school/course/programa">Acceso alumnas</a></li>
   </ul>
 
   <div class="abajo">
