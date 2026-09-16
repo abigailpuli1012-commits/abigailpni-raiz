@@ -553,6 +553,13 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;
   pointer-events:none;background:linear-gradient(180deg,rgba(3,37,50,1) 0%,rgba(3,37,50,0.972) 10%,rgba(3,37,50,0.896) 20%,rgba(3,37,50,0.784) 30%,rgba(3,37,50,0.648) 40%,rgba(3,37,50,0.5) 50%,rgba(3,37,50,0.352) 60%,rgba(3,37,50,0.216) 70%,rgba(3,37,50,0.104) 80%,rgba(3,37,50,0.028) 90%,rgba(3,37,50,0) 100%)}
 #s3b{position:relative}
 #s3b > *{position:relative;z-index:1}
+
+#s3a .lista{margin:26px 0 0;padding:0;list-style:none}
+#s3a .lista li{position:relative;padding-left:26px;margin-bottom:14px;
+  font-size:clamp(19px,5vw,23px);line-height:1.4;color:var(--marfil)}
+#s3a .lista li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;
+  border-radius:50%;background:var(--dorado)}
+#s3a .lista + p{margin-top:30px}
 </style>
 </head>
 <body>
@@ -619,9 +626,13 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;
 <section id="s3a">
  <div class="env">
   <p class="kick up">Al terminar</p>
-  <h2 class="up">Qué puedes esperar al terminar</h2>
-  <p class="up">El objetivo es que puedas interpretar mejor tus síntomas, reconocer factores que pueden influir y dejar de tomar decisiones completamente a ciegas.</p>
-  <p class="up">Se ofrece conocimiento, contexto y herramientas para relacionarte con ellos con más criterio y menos miedo.</p>
+  <h2 class="up">Al terminar vas a poder</h2>
+  <ul class="lista">
+    <li class="up">Reconocer factores que te pueden influir.</li>
+    <li class="up">Tomar decisiones desde el autoconocimiento y sin ir a ciegas.</li>
+    <li class="up">Dejar de tener miedo e incertidumbre.</li>
+  </ul>
+  <p class="up">Para todo ello se te va a ofrecer conocimiento, contexto y herramientas para relacionarte con ellos con más criterio. Y entender por fin qué te pasa y cómo actuar ante ello.</p>
  </div>
 </section>
 
