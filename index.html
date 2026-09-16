@@ -28,16 +28,16 @@ body{background:var(--petroleo);color:var(--marfil);font-family:var(--serif);
   padding:56px 26px 34px 30px;overflow:hidden}
 #s01 > *:not(.foto):not(.velo){position:relative;z-index:1}
 #s01 .foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  opacity:.42;pointer-events:none;
+  opacity:.38;pointer-events:none;
   animation:acerca 18s ease-in-out infinite alternate}
 #s01 .velo{position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg,rgba(3,37,50,.92) 0%,rgba(3,37,50,.55) 38%,rgba(3,37,50,.96) 82%,var(--petroleo) 100%)}
+  background:linear-gradient(180deg,rgba(3,37,50,.55) 0%,rgba(3,37,50,.42) 18%,rgba(3,37,50,.78) 40%,rgba(3,37,50,.72) 58%,rgba(3,37,50,.5) 75%,rgba(3,37,50,.82) 92%,var(--petroleo) 100%)}
 @keyframes acerca{from{transform:scale(1)}to{transform:scale(1.07)}}
 @media (min-width:900px){#s01 .foto.alta{display:none}}
 /* en móvil el recorte se va al centro y se pierde la fruta: la traemos y la alejamos */
 @media (max-width:899px){
   #s01 .foto.ancha{display:none}
-  #s01 .foto.alta{object-position:center 42%}
+  #s01 .foto.alta{object-position:center 55%}
 }
 #s01 .dicho{font-style:italic;font-size:17px;color:var(--dorado);margin:0 0 auto}
 #s01 .titular{font-weight:400;font-size:clamp(40px,11.5vw,62px);line-height:.98;
@@ -536,8 +536,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;
 
 <section id="s01">
   <a class="acceso" href="https://www.abigailpni.com/school/course/programa">Acceso a Soberanía Digestiva</a>
-  <img class="foto ancha" src="img/granada_medio.jpg" alt="">
-  <img class="foto alta" src="img/granada_movil.jpg" alt="">
+  <img class="foto ancha" src="img/miel.png" alt="">
+  <img class="foto alta" src="img/miel_movil.jpg" alt="">
   <div class="velo"></div>
   <p class="dicho up">«No tienes nada.»</p>
   <h1 class="titular up">
