@@ -530,6 +530,29 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;
   background:rgba(3,37,50,.35);transition:background .3s ease,color .3s ease}
 #s01 .acceso:hover{background:var(--dorado);color:var(--petroleo)}
 @media (min-width:900px){#s01 .acceso{top:26px;right:40px;font-size:15px}}
+
+#s05 .financia{margin:10px 0 0;font-size:15.5px;line-height:1.5;color:#5F7078}
+@media (min-width:900px){#s05 .financia{font-size:16.5px}}
+
+/* ============ 3b · LO QUE TE LLEVAS ============ */
+#s3a{position:relative;background:var(--petroleo);color:var(--marfil);
+  padding:46svh 26px 18svh}
+#s3a::before{content:"";position:absolute;top:-2px;left:0;right:0;height:calc(42svh + 2px);
+  pointer-events:none;background:linear-gradient(180deg,rgba(244,241,233,1) 0%,rgba(244,241,233,0.972) 10%,rgba(244,241,233,0.896) 20%,rgba(244,241,233,0.784) 30%,rgba(244,241,233,0.648) 40%,rgba(244,241,233,0.5) 50%,rgba(244,241,233,0.352) 60%,rgba(244,241,233,0.216) 70%,rgba(244,241,233,0.104) 80%,rgba(244,241,233,0.028) 90%,rgba(244,241,233,0) 100%)}
+#s3a > *{position:relative;z-index:1}
+#s3a .env{max-width:720px;margin:0 auto}
+#s3a .kick{font-size:13px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--dorado);margin:0}
+#s3a h2{font-weight:400;font-size:clamp(28px,7.4vw,38px);line-height:1.18;
+  letter-spacing:-.018em;margin:20px 0 0;max-width:20ch}
+#s3a p{margin:22px 0 0;font-size:clamp(18px,4.8vw,21px);line-height:1.55;
+  color:rgba(244,241,233,.76);max-width:46ch}
+@media (min-width:900px){#s3a{padding:46svh 40px 20svh}}
+/* la presentación vuelve a marfil */
+#s3b::before{content:"";position:absolute;top:-2px;left:0;right:0;height:calc(40svh + 2px);
+  pointer-events:none;background:linear-gradient(180deg,rgba(3,37,50,1) 0%,rgba(3,37,50,0.972) 10%,rgba(3,37,50,0.896) 20%,rgba(3,37,50,0.784) 30%,rgba(3,37,50,0.648) 40%,rgba(3,37,50,0.5) 50%,rgba(3,37,50,0.352) 60%,rgba(3,37,50,0.216) 70%,rgba(3,37,50,0.104) 80%,rgba(3,37,50,0.028) 90%,rgba(3,37,50,0) 100%)}
+#s3b{position:relative}
+#s3b > *{position:relative;z-index:1}
 </style>
 </head>
 <body>
@@ -592,6 +615,15 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;
 </section>
 
 
+
+<section id="s3a">
+ <div class="env">
+  <p class="kick up">Al terminar</p>
+  <h2 class="up">Qué puedes esperar al terminar</h2>
+  <p class="up">El objetivo es que puedas interpretar mejor tus síntomas, reconocer factores que pueden influir y dejar de tomar decisiones completamente a ciegas.</p>
+  <p class="up">Se ofrece conocimiento, contexto y herramientas para relacionarte con ellos con más criterio y menos miedo.</p>
+ </div>
+</section>
 
 <section id="s3b">
  <div class="env">
@@ -687,6 +719,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;
   
   
   <div class="precio up"><span>Precio de la primera edición</span><b>498 €</b></div>
+  <p class="financia up">Puedes pagarlo de una vez o a plazos: al pagar puedes elegir Klarna y repartirlo.</p>
   <div class="cta claro up">
     <a class="boton" href="https://www.abigailpni.com/acceso">Accede a Soberanía Digestiva</a>
     <p class="bajo">498 € · pago único · acceso de por vida</p>
@@ -796,14 +829,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;
       <p>No necesitas tener una combinación concreta de síntomas. El programa explica, de forma muy sencilla, mecanismos generales que pueden participar en la sensibilidad y la respuesta digestiva.</p>
       </div>
     </details>
-    <details class="up">
-      <summary>¿Qué puedo esperar al terminar? <span class="mas">+</span></summary>
-      <div class="resp">
-      <p>El objetivo es que puedas interpretar mejor tus síntomas, reconocer factores que pueden influir y dejar de tomar decisiones completamente a ciegas.</p>
-      <p>Se ofrece conocimiento, contexto y herramientas para relacionarte con ellos con más criterio y menos miedo.</p>
-      </div>
-    </details>
-    <details class="up">
+        <details class="up">
       <summary>¿Es una dieta? <span class="mas">+</span></summary>
       <div class="resp">
       <p>No. No encontrarás una lista universal de alimentos permitidos y prohibidos ni una pauta cerrada sobre qué debes comer.</p>
