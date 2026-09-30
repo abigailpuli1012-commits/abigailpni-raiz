@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>La guía — Soberanía Digestiva</title>
+<style>
+@font-face{font-family:'Cormorant Garamond';src:url('../fuentes/cormorant-garamond-400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('../fuentes/cormorant-garamond-500.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('../fuentes/cormorant-garamond-600.woff2') format('woff2');font-weight:600;font-display:swap}
+:root{
+  --petroleo:#032532; --medio:#123944; --marfil:#F4F1E9; --dorado:#B6A47A;
+  --serif:'Cormorant Garamond',Georgia,serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--petroleo);color:var(--marfil);font-family:var(--serif);
+  overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+.up{opacity:0;transform:translateY(20px);
+  transition:opacity .9s ease,transform .9s cubic-bezier(.22,.61,.36,1)}
+.up.vista{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.up{opacity:1;transform:none}}
+
+/* ============ 1 · APERTURA ============ */
+#s01{position:relative;min-height:100svh;display:flex;flex-direction:column;
+  justify-content:center;padding:56px 26px 34px 30px;overflow:hidden}
+#s01 > *:not(.foto):not(.velo){position:relative;z-index:1}
+#s01 .foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:.38;pointer-events:none;
+  animation:acerca 18s ease-in-out infinite alternate}
+@keyframes acerca{from{transform:scale(1)}to{transform:scale(1.07)}}
+@media (min-width:900px){#s01 .foto.alta{display:none}}
+@media (max-width:899px){#s01 .foto.ancha{display:none}
+  #s01 .foto.alta{object-position:center 55%}}
+#s01 .velo{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(3,37,50,.55) 0%,rgba(3,37,50,.42) 18%,rgba(3,37,50,.78) 40%,rgba(3,37,50,.72) 58%,rgba(3,37,50,.5) 75%,rgba(3,37,50,.82) 92%,var(--petroleo) 100%)}
+#s01 .dicho{font-style:italic;font-size:17px;color:var(--dorado);margin:0 0 26px}
+#s01 .titular{font-weight:400;font-size:clamp(38px,10.8vw,58px);line-height:1.04;
+  letter-spacing:-.022em;margin:0}
+#s01 .titular .b{display:block}
+#s01 .no{position:relative;white-space:nowrap}
+#s01 .no::after{content:"";position:absolute;left:0;right:0;bottom:.1em;height:3px;
+  background:var(--dorado);transform:scaleX(0);transform-origin:left;
+  transition:transform .7s cubic-bezier(.22,.61,.36,1) .5s}
+#s01 .titular.vista .no::after{transform:scaleX(1)}
+#s01 .marca{margin-top:30px;padding-top:20px;border-top:1px solid rgba(244,241,233,.14)}
+#s01 .nombre{font-size:15px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dorado);margin:0}
+#s01 .linea{font-size:16.5px;line-height:1.5;color:rgba(244,241,233,.74);margin:10px 0 0}
+
+@media (min-width:900px){
+  #s01{padding:0 80px}
+  #s01 .dicho{font-size:20px}
+  #s01 .titular{font-size:70px;max-width:16ch}
+  #s01 .marca{margin-top:44px;max-width:600px}
+  #s01 .linea{font-size:19px}
+}
+
+/* ============ 2 · EL LIBRO SE ABRE ============ */
+#s02{position:relative;background:var(--marfil)}
+#s02::before{content:"";position:absolute;top:-2px;left:0;right:0;height:calc(38svh + 2px);
+  pointer-events:none;z-index:2;
+  background:linear-gradient(180deg,rgba(3,37,50,1) 0%,rgba(3,37,50,0.972) 10%,rgba(3,37,50,0.896) 20%,rgba(3,37,50,0.784) 30%,rgba(3,37,50,0.648) 40%,rgba(3,37,50,0.5) 50%,rgba(3,37,50,0.352) 60%,rgba(3,37,50,0.216) 70%,rgba(3,37,50,0.104) 80%,rgba(3,37,50,0.028) 90%,rgba(3,37,50,0) 100%)}
+#s02 .escena{position:sticky;top:0;height:100svh;display:flex;
+  align-items:center;justify-content:center;pointer-events:none;z-index:0}
+#s02 .libro{position:relative;width:min(78vw,360px);height:min(117vw,540px);perspective:1400px;
+  transform-style:preserve-3d}
+#s02 .lomo{position:absolute;left:-1px;top:0;width:14px;height:100%;
+  background:linear-gradient(90deg,#021a26 0%,#04303f 60%,#032532 100%);
+  border-radius:3px 0 0 3px;transform:translateZ(-1px)}
+#s02 .pag{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:4px;
+  backface-visibility:hidden;overflow:hidden}
+#s02 .pag img{width:100%;height:100%;object-fit:cover;display:block}
+#s02 .pag-indice{z-index:1;box-shadow:2px 8px 28px rgba(0,0,0,.4);
+  background:var(--marfil);overflow:hidden;
+  font-size:clamp(7px, 2.3vw, 10.5px);padding:3.5% 6% 1%}
+#s02 .idx-pre{font-size:.55em;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:#6E5B32;text-align:center;margin:0}
+#s02 .idx-titulo{font-size:1.5em;font-weight:400;text-align:center;color:var(--petroleo);
+  margin:.08em 0 0;line-height:1.1}
+#s02 .idx-linea{display:block;width:1.4em;height:1.5px;background:var(--dorado);
+  margin:.2em auto .3em}
+#s02 .idx-intro{border-top:1px solid rgba(3,37,50,.22);padding-top:.25em;margin-bottom:.3em}
+#s02 .idx-cap{margin:.35em 0 .06em;display:flex;align-items:baseline;gap:.25em}
+#s02 .idx-cap .n{font-size:.95em;font-weight:400;font-style:italic;color:var(--dorado);flex:none}
+#s02 .idx-cap .t{font-size:.85em;font-weight:400;color:var(--petroleo);line-height:1.18}
+#s02 .idx-cap .p{margin-left:auto;font-size:.75em;color:var(--dorado);flex:none}
+#s02 .idx-sub{display:flex;align-items:baseline;gap:.2em;margin:.04em 0;padding-left:.8em}
+#s02 .idx-sub .sn{font-size:.7em;color:#2b4550;flex:none;min-width:1.6em}
+#s02 .idx-sub .st{font-size:.7em;color:#2b4550;line-height:1.3}
+#s02 .idx-sub .dots{flex:1;border-bottom:1px dotted rgba(3,37,50,.3);
+  margin:0 .12em;min-width:.4em;align-self:baseline;transform:translateY(-.12em)}
+#s02 .idx-sub .sp{font-size:.7em;color:#2b4550;flex:none}
+#s02 .idx-note{font-size:.6em;font-style:italic;color:#6E5B32;padding-left:1.2em;margin:.02em 0}
+/* sombra que barre el índice conforme se abre */
+#s02 .pag-indice::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,0) 60%);
+  opacity:1;transition:none}
+/* páginas intermedias que se abanican */
+#s02 .hoja{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:4px;
+  transform-origin:left center;background:var(--marfil);
+  box-shadow:1px 2px 8px rgba(0,0,0,.15)}
+#s02 .hoja-1{z-index:3}
+#s02 .hoja-2{z-index:4}
+#s02 .hoja-3{z-index:5}
+/* la portada va encima de las hojas */
+#s02 .pag-portada{z-index:6;transform-origin:left center;
+  box-shadow:4px 10px 34px rgba(0,0,0,.5)}
+
+#s02 .recorrido{position:relative;z-index:1;height:80svh}
+#s02 .velo-inferior{position:absolute;bottom:-2px;left:0;right:0;height:calc(38svh + 2px);
+  pointer-events:none;z-index:2;
+  background:linear-gradient(0deg,rgba(3,37,50,1) 0%,rgba(3,37,50,0.972) 10%,rgba(3,37,50,0.896) 20%,rgba(3,37,50,0.784) 30%,rgba(3,37,50,0.648) 40%,rgba(3,37,50,0.5) 50%,rgba(3,37,50,0.352) 60%,rgba(3,37,50,0.216) 70%,rgba(3,37,50,0.104) 80%,rgba(3,37,50,0.028) 90%,rgba(3,37,50,0) 100%)}
+
+@media (min-width:900px){
+  #s02 .libro{width:460px;height:690px}
+}
+
+/* ============ 3 · LO QUE TE PASA ============ */
+#s03{position:relative;padding:14svh 0 42svh;overflow:hidden}
+#s03 > *{position:relative;z-index:1}
+#s03 .rotulo{padding:76px 30px 0;font-size:12px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--dorado);opacity:.85;margin:0}
+#s03 .parada{padding:0 30px;margin:0 0 46px}
+#s03 .parada:first-of-type{margin-top:30px}
+#s03 .parada p{margin:0;font-size:clamp(20px,5.4vw,25px);line-height:1.3;
+  letter-spacing:-.012em}
+#s03 .parada:not(.yo):not(.pivote) p{position:relative;padding-left:22px}
+#s03 .parada:not(.yo):not(.pivote) p::before{content:"";position:absolute;left:0;
+  top:.62em;width:5px;height:5px;border-radius:50%;background:var(--dorado);opacity:.75}
+#s03 .entrada p{font-size:clamp(18px,4.6vw,21px);line-height:1.5;
+  color:rgba(244,241,233,.62);font-style:italic}
+#s03 .entrada{margin-bottom:40px}
+#s03 .grande p{font-size:clamp(22px,5.9vw,27px)}
+#s03 .yo{margin-top:56px}
+#s03 .yo p{font-size:clamp(30px,8.2vw,38px);line-height:1.18}
+#s03 .sub{text-decoration:underline;text-decoration-thickness:2px;
+  text-underline-offset:.2em;text-decoration-color:transparent;
+  transition:text-decoration-color .9s ease .5s}
+#s03 .yo.vista .sub{text-decoration-color:var(--dorado)}
+#s03 .pivote{margin-top:26px;margin-bottom:0}
+#s03 .pivote p{color:var(--dorado);font-size:clamp(26px,7vw,32px);line-height:1.2}
+#s03 .video{padding:0 30px;margin-top:64px}
+@media (max-width:899px){
+  #s03.con-video{padding-bottom:8svh}
+  #s03 .video{margin-top:42svh}
+}
+#s03 .video .kick{margin:0 0 16px;font-size:12.5px;font-weight:500;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--dorado)}
+#s03 .marco{position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;cursor:pointer;
+  border:1px solid rgba(182,164,122,.28);border-radius:8px;overflow:hidden;background:var(--medio);
+  box-shadow:0 22px 50px rgba(0,0,0,.35)}
+#s03 .marco img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;opacity:.5;
+  transition:opacity .4s ease}
+#s03 .marco:hover img{opacity:.62}
+#s03 .marco .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;
+  border-radius:50%;border:1.5px solid var(--dorado);background:rgba(3,37,50,.55);
+  display:flex;align-items:center;justify-content:center;transition:background .3s ease}
+#s03 .marco:hover .play{background:rgba(3,37,50,.75)}
+#s03 .marco .play::before{content:"";margin-left:5px;border-left:18px solid var(--marfil);
+  border-top:11px solid transparent;border-bottom:11px solid transparent}
+/* luz tenue */
+#s03::after{content:"";position:absolute;
+  left:0;right:0;top:46svh;bottom:12svh;pointer-events:none;z-index:0;
+  background:radial-gradient(56% 58% at 80% 42%, rgba(182,164,122,.075) 0%,
+    rgba(182,164,122,.03) 38%, rgba(182,164,122,0) 72%)}
+@media (min-width:900px){
+  #s03 .rotulo{max-width:860px;margin:0 auto;padding:120px 0 0;font-size:13px}
+  #s03 .parada{max-width:860px;margin-left:auto;margin-right:auto;padding:0;margin-bottom:60px}
+  #s03 .parada p{font-size:34px;max-width:30ch}
+  #s03 .parada:not(.yo):not(.pivote) p{padding-left:30px}
+  #s03 .parada:not(.yo):not(.pivote) p::before{width:6px;height:6px;top:.66em}
+  #s03 .entrada p{font-size:24px}
+  #s03 .grande p{font-size:38px}
+  #s03 .yo p{font-size:56px;max-width:22ch}
+  #s03 .pivote p{font-size:48px}
+  #s03 .video{max-width:860px;margin:90px auto 0;padding:0}
+  #s03 .marco .play{width:92px;height:92px}
+}
+
+/* ============ 4 · QUÉ ES ESTA GUÍA ============ */
+#s04{position:relative;background:var(--marfil);color:var(--petroleo);
+  padding:10svh 26px 16svh}
+#s04 > *{position:relative;z-index:3}
+#s04 .env{max-width:760px;margin:0 auto}
+#s04 .kick{font-size:13px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:#6E5B32;margin:0}
+#s04 h2{font-weight:400;font-size:clamp(29px,7.8vw,38px);line-height:1.14;
+  letter-spacing:-.018em;margin:16px 0 0;max-width:20ch}
+#s04 .intro{margin:28px 0 0;font-size:clamp(18px,4.8vw,21px);line-height:1.55;
+  color:#2b4550;max-width:55ch}
+#s04 .cajas{margin-top:38px;display:grid;gap:24px}
+#s04 .caja{padding:28px 24px;background:#EDE9DE;border-radius:10px}
+#s04 .caja h3{margin:0;font-weight:500;font-size:14px;letter-spacing:.18em;
+  text-transform:uppercase;color:#6E5B32}
+#s04 .caja ul{margin:18px 0 0;padding:0;list-style:none}
+#s04 .caja li{position:relative;padding-left:26px;margin-bottom:12px;font-size:16.5px;
+  line-height:1.5;color:#2b4550}
+#s04 .si li::before{content:"✓";position:absolute;left:0;top:0;color:#6E5B32;font-size:15px}
+#s04 .no li::before{content:"✕";position:absolute;left:0;top:0;color:#94A4AC;font-size:14px}
+#s04 .no li{color:#5F7078}
+#s04 .cierre{margin:34px 0 0;font-size:clamp(19px,5vw,23px);line-height:1.4;
+  font-style:italic;color:#2b4550;max-width:46ch}
+/* papel */
+#s04::after{content:"";position:absolute;inset:0;
+  pointer-events:none;z-index:1;opacity:.055;
+  -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,0) 0,#000 12svh);
+  mask-image:linear-gradient(180deg,rgba(0,0,0,0) 0,#000 12svh);
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='220' height='220' filter='url(%23p)'/></svg>");background-size:220px 220px}
+@media (min-width:900px){
+  #s04{padding:10svh 40px 18svh}
+  #s04 h2{font-size:50px}
+  #s04 .cajas{grid-template-columns:1fr 1fr;gap:28px}
+  #s04 .intro{font-size:22px}
+  #s04 .cierre{font-size:25px}
+}
+
+/* ============ 5 · QUIÉN ESTÁ DETRÁS ============ */
+#s05{background:var(--marfil);color:var(--petroleo);padding:44svh 26px 14svh}
+#s05::before{content:"";position:absolute;top:-2px;left:0;right:0;height:calc(38svh + 2px);
+  pointer-events:none;z-index:2;
+  background:linear-gradient(180deg,rgba(3,37,50,1) 0%,rgba(3,37,50,0.972) 10%,rgba(3,37,50,0.896) 20%,rgba(3,37,50,0.784) 30%,rgba(3,37,50,0.648) 40%,rgba(3,37,50,0.5) 50%,rgba(3,37,50,0.352) 60%,rgba(3,37,50,0.216) 70%,rgba(3,37,50,0.104) 80%,rgba(3,37,50,0.028) 90%,rgba(3,37,50,0) 100%)}
+#s05 > *{position:relative;z-index:3}
+#s05 .env{max-width:760px;margin:0 auto}
+#s05 h2{font-weight:400;font-size:clamp(27px,7.2vw,34px);line-height:1.16;
+  letter-spacing:-.016em;margin:0;max-width:20ch}
+#s05 .fila{margin-top:28px}
+#s05 .foto{display:block;width:100%;max-width:300px;aspect-ratio:4/5;border-radius:10px;
+  object-fit:cover;object-position:center 22%}
+#s05 .intro{margin:24px 0 0;font-size:clamp(20px,5.4vw,24px);line-height:1.34}
+#s05 details{margin-top:20px}
+#s05 summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;
+  font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:#6E5B32}
+#s05 summary::-webkit-details-marker{display:none}
+#s05 summary .mas{transition:transform .3s ease}
+#s05 details[open] summary .mas{transform:rotate(45deg)}
+#s05 .cuerpo p{margin:18px 0 0;font-size:17px;line-height:1.62;color:#2b4550;max-width:62ch}
+#s05 .firma{margin-top:26px;font-size:14px;letter-spacing:.2em;text-transform:uppercase;
+  color:#6E5B32}
+/* papel */
+#s05::after{content:"";position:absolute;inset:0;
+  pointer-events:none;z-index:8;opacity:.055;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='220' height='220' filter='url(%23p)'/></svg>");background-size:220px 220px}
+#s05{position:relative}
+@media (min-width:900px){
+  #s05{padding:16svh 40px}
+  #s05 h2{font-size:46px}
+  #s05 .fila{display:grid;grid-template-columns:300px 1fr;gap:44px;align-items:start}
+  #s05 .intro{margin-top:0;font-size:26px}
+  #s05 .cuerpo p{font-size:18px}
+}
+
+/* ============ 6 · QUÉ HAY DENTRO ============ */
+#s06{background:var(--marfil);color:var(--petroleo);padding:6svh 26px 16svh;position:relative}
+#s06 .env{max-width:760px;margin:0 auto}
+#s06 .kick{font-size:13px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:#6E5B32;margin:0}
+#s06 h2{font-weight:400;font-size:clamp(27px,7.2vw,34px);line-height:1.16;
+  letter-spacing:-.016em;margin:14px 0 0;max-width:24ch}
+#s06 .capitulos{margin-top:36px;display:flex;flex-direction:column;gap:0}
+#s06 details{border-top:1px solid rgba(3,37,50,.12);padding:22px 0}
+#s06 details:last-child{border-bottom:1px solid rgba(3,37,50,.12)}
+#s06 summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:16px;
+  font-size:clamp(20px,5.2vw,24px);line-height:1.28;font-weight:400;color:var(--petroleo)}
+#s06 summary::-webkit-details-marker{display:none}
+#s06 summary .num{font-size:14px;font-weight:500;letter-spacing:.14em;color:#6E5B32;flex:none}
+#s06 summary .flecha{margin-left:auto;font-size:18px;color:#94A4AC;
+  transition:transform .3s ease;flex:none}
+#s06 details[open] summary .flecha{transform:rotate(180deg)}
+#s06 .contenido{padding:12px 0 8px 42px}
+#s06 .contenido ul{margin:0;padding:0;list-style:none}
+#s06 .contenido li{position:relative;padding-left:20px;margin-bottom:10px;
+  font-size:16px;line-height:1.55;color:#2b4550}
+#s06 .contenido li::before{content:"·";position:absolute;left:0;top:0;color:#6E5B32;font-weight:600}
+#s06 .contenido p{margin:0 0 8px;font-size:16px;line-height:1.55;color:#2b4550}
+/* papel */
+#s06::after{content:"";position:absolute;inset:0;
+  pointer-events:none;z-index:1;opacity:.055;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='220' height='220' filter='url(%23p)'/></svg>");background-size:220px 220px}
+#s06 > *{position:relative;z-index:2}
+/* bonus */
+#s06 .bonus{margin-top:12svh}
+#s06 .bonus .intro{margin:16px 0 0;font-size:18px;line-height:1.6;color:#2b4550;max-width:36ch}
+#s06 .tarjetas{display:grid;gap:18px;margin-top:32px}
+#s06 .tarjeta{background:#fff;border:1px solid rgba(3,37,50,.1);border-radius:10px;padding:26px 24px 24px}
+#s06 .tarjeta .etq{display:flex;align-items:center;gap:12px;margin:0;font-size:12.5px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:#6E5B32}
+#s06 .tarjeta .etq i{display:block;width:9px;height:9px;border-radius:50%}
+#s06 .tarjeta .etq .sem{margin-left:auto;display:flex;gap:6px}
+#s06 .tarjeta h3{font-weight:500;font-size:clamp(24px,6.4vw,28px);line-height:1.15;letter-spacing:-.01em;
+  margin:14px 0 6px;color:var(--petroleo)}
+#s06 .tarjeta .meta{margin:0 0 16px;font-size:14.5px;letter-spacing:.03em;color:#4a5f69}
+#s06 .tarjeta p{margin:0 0 10px;font-size:17px;line-height:1.55;color:#2b4550}
+#s06 .tarjeta p:last-child{margin-bottom:0}
+#s06 .bonus .y{margin:26px 0 0;font-style:italic;font-size:18px;line-height:1.5;color:#6E5B32}
+@media (min-width:900px){
+  #s06{padding:6svh 40px 18svh}
+  #s06 h2{font-size:40px}
+  #s06 summary{font-size:26px}
+  #s06 .contenido{padding-left:48px}
+  #s06 .tarjetas{grid-template-columns:1fr 1fr}
+  #s06 .tarjeta{padding:30px 28px 28px}
+}
+
+/* ============ PIE ============ */
+#pie{background:#02202c;color:rgba(244,241,233,.62);padding:9svh 26px 7svh;font-family:var(--serif)}
+#pie .env{max-width:900px;margin:0 auto}
+#pie .marca{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--dorado);margin:0}
+#pie .nota{margin:16px 0 0;font-size:15px;line-height:1.6;max-width:58ch}
+#pie .enlaces{margin:30px 0 0;padding:24px 0 0;border-top:1px solid rgba(244,241,233,.13);
+  display:flex;flex-wrap:wrap;gap:14px 28px;list-style:none}
+#pie .enlaces a{color:rgba(244,241,233,.72);text-decoration:none;font-size:15px;
+  border-bottom:1px solid transparent;transition:color .3s ease,border-color .3s ease}
+#pie .enlaces a:hover{color:var(--marfil);border-bottom-color:var(--dorado)}
+#pie .abajo{margin:26px 0 0;font-size:13.5px;color:rgba(244,241,233,.45)}
+@media (min-width:900px){#pie{padding:11svh 40px 8svh} #pie .nota{font-size:16px}}
+
+/* ============ 7 · PRECIO ============ */
+#s07{position:relative;background:var(--petroleo);color:var(--marfil);
+  padding:44svh 26px 14svh;text-align:center}
+#s07::before{content:"";position:absolute;top:-2px;left:0;right:0;height:calc(38svh + 2px);
+  pointer-events:none;z-index:2;
+  background:linear-gradient(180deg,rgba(244,241,233,1) 0%,rgba(244,241,233,0.972) 10%,rgba(244,241,233,0.896) 20%,rgba(244,241,233,0.784) 30%,rgba(244,241,233,0.648) 40%,rgba(244,241,233,0.5) 50%,rgba(244,241,233,0.352) 60%,rgba(244,241,233,0.216) 70%,rgba(244,241,233,0.104) 80%,rgba(244,241,233,0.028) 90%,rgba(244,241,233,0) 100%)}
+#s07 > *{position:relative;z-index:3}
+#s07 .env{max-width:620px;margin:0 auto}
+#s07 .kick{font-size:13px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--dorado);margin:0}
+#s07 h2{font-weight:400;font-size:clamp(29px,7.8vw,40px);line-height:1.14;
+  letter-spacing:-.018em;margin:16px 0 0}
+#s07 .precio{margin:32px 0 0;font-size:clamp(52px,14vw,72px);font-weight:400;
+  letter-spacing:-.03em;color:var(--dorado)}
+#s07 .precio small{font-size:.45em;vertical-align:.18em;letter-spacing:0}
+#s07 .nota{margin:10px 0 0;font-size:16px;color:var(--gris,#94A4AC);line-height:1.5}
+#s07 .boton{display:inline-block;margin-top:36px;padding:18px 48px;
+  background:var(--dorado);color:var(--petroleo);font-family:var(--serif);
+  font-size:16px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  text-decoration:none;border-radius:6px;
+  transition:background .3s ease,transform .2s ease}
+#s07 .boton:hover{background:#c4b48e;transform:translateY(-2px)}
+#s07 .detalle{margin:20px 0 0;font-size:14px;color:var(--gris,#94A4AC);line-height:1.5}
+/* luz dorada */
+#s07::after{content:"";position:absolute;
+  left:0;right:0;top:46svh;bottom:12svh;pointer-events:none;z-index:0;
+  background:radial-gradient(56% 58% at 50% 40%, rgba(182,164,122,.075) 0%,
+    rgba(182,164,122,.03) 38%, rgba(182,164,122,0) 72%)}
+@media (min-width:900px){
+  #s07{padding:44svh 40px 16svh}
+  #s07 h2{font-size:46px}
+}
+
+/* ============ 8 · FAQ ============ */
+#s08{position:relative;background:var(--petroleo);color:var(--marfil);padding:10svh 26px 14svh}
+#s08 .env{max-width:700px;margin:0 auto}
+#s08 h2{font-weight:400;font-size:clamp(27px,7.2vw,34px);line-height:1.16;
+  letter-spacing:-.016em;margin:0;text-align:center}
+#s08 .preguntas{margin-top:40px;display:flex;flex-direction:column;gap:0}
+#s08 details{border-top:1px solid rgba(244,241,233,.12);padding:22px 0}
+#s08 details:last-child{border-bottom:1px solid rgba(244,241,233,.12)}
+#s08 summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:14px;
+  font-size:clamp(18px,4.8vw,21px);line-height:1.34;font-weight:400}
+#s08 summary::-webkit-details-marker{display:none}
+#s08 summary .flecha{margin-left:auto;font-size:16px;color:var(--dorado);
+  transition:transform .3s ease;flex:none}
+#s08 details[open] summary .flecha{transform:rotate(180deg)}
+#s08 .resp{padding:8px 0 6px;font-size:17px;line-height:1.6;color:var(--gris,#94A4AC);
+  max-width:58ch}
+@media (min-width:900px){
+  #s08{padding:10svh 40px 16svh}
+  #s08 h2{font-size:40px}
+  #s08 summary{font-size:22px}
+}
+
+/* grano */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;
+  opacity:.035;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='r'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23r)'/></svg>");
+  background-size:160px 160px}
+
+/* luz tenue en secciones petróleo */
+#s01::after{content:"";position:absolute;
+  left:0;right:0;top:46svh;bottom:12svh;pointer-events:none;z-index:0;
+  background:radial-gradient(56% 58% at 80% 42%, rgba(182,164,122,.075) 0%,
+    rgba(182,164,122,.03) 38%, rgba(182,164,122,0) 72%)}
+</style>
+</head>
+<body>
+
+<!-- ===== 1 · PORTADA ===== -->
+<section id="s01">
+  <img class="foto ancha" src="../img/miel-guia.jpg" alt="">
+  <img class="foto alta" src="../img/miel-guia-movil.jpg" alt="">
+  <div class="velo"></div>
+
+  <p class="dicho up">«No tienes nada.»</p>
+
+  <h1 class="titular up">
+    <span class="b">Todas las pruebas</span>
+    <span class="b">salen bien. Pero tú <span class="no">no</span> lo estás.</span>
+  </h1>
+
+  <div class="marca up">
+    <p class="nombre">La guía · Soberanía Digestiva</p>
+    <p class="linea">Todo lo que necesitas entender sobre tu sistema digestivo, ordenado y simplificado en 40 páginas.</p>
+  </div>
+</section>
+
+<!-- ===== 2 · EL LIBRO SE ABRE ===== -->
+<section id="s02">
+  <div class="escena">
+    <div class="libro">
+      <div class="lomo"></div>
+      <div class="pag pag-indice">
+        <p class="idx-pre">Guía</p>
+        <p class="idx-titulo">Índice</p>
+        <span class="idx-linea"></span>
+
+        <div class="idx-intro">
+          <div class="idx-sub"><span class="sn"></span><span class="st">Antes de nada: esto es lo que te está pasando</span><span class="dots"></span><span class="sp">3</span></div>
+          <div class="idx-sub"><span class="sn"></span><span class="st">Tu frustración tiene explicación</span><span class="dots"></span><span class="sp">4</span></div>
+          <div class="idx-sub"><span class="sn"></span><span class="st">Qué vas a encontrar en esta guía</span><span class="dots"></span><span class="sp">5</span></div>
+        </div>
+
+        <div class="idx-cap"><span class="n">1</span><span class="t">Tu intestino no está roto: qué es la sensibilización visceral</span><span class="p">6</span></div>
+        <div class="idx-sub"><span class="sn">1.1</span><span class="st">Qué es la hipersensibilidad visceral</span><span class="dots"></span><span class="sp">6</span></div>
+        <div class="idx-sub"><span class="sn">1.2</span><span class="st">Síntoma puntual vs. sistema sensibilizado</span><span class="dots"></span><span class="sp">7</span></div>
+        <div class="idx-sub"><span class="sn">1.3</span><span class="st">Por qué duele si «no hay nada roto»</span><span class="dots"></span><span class="sp">8</span></div>
+        <p class="idx-note">En una imagen: el dolor como alarma</p>
+        <div class="idx-sub"><span class="sn">1.4</span><span class="st">Cómo tu sistema amplifica las señales</span><span class="dots"></span><span class="sp">10</span></div>
+        <p class="idx-note">En una imagen: el camino de la señal</p>
+        <div class="idx-sub"><span class="sn">1.5</span><span class="st">La memoria del dolor</span><span class="dots"></span><span class="sp">12</span></div>
+        <div class="idx-sub"><span class="sn">1.6</span><span class="st">Cómo se instala esta sensibilización</span><span class="dots"></span><span class="sp">13</span></div>
+        <div class="idx-sub"><span class="sn">1.7</span><span class="st">Mitos vs. lo que dice la evidencia</span><span class="dots"></span><span class="sp">14</span></div>
+        <p class="idx-note">Recapitulación del capítulo 1</p>
+
+        <div class="idx-cap"><span class="n">2</span><span class="t">La conversación entre tu intestino y tu cabeza</span><span class="p">16</span></div>
+        <div class="idx-sub"><span class="sn">2.1</span><span class="st">Tu intestino también le habla a tu cabeza</span><span class="dots"></span><span class="sp">16</span></div>
+        <div class="idx-sub"><span class="sn">2.2</span><span class="st">Niebla mental: por qué también te cuesta pensar</span><span class="dots"></span><span class="sp">17</span></div>
+        <div class="idx-sub"><span class="sn">2.3</span><span class="st">El nervio vago: tu cable de calma</span><span class="dots"></span><span class="sp">18</span></div>
+        <div class="idx-sub"><span class="sn">2.4</span><span class="st">Cómo funciona esta conexión</span><span class="dots"></span><span class="sp">19</span></div>
+        <div class="idx-sub"><span class="sn">2.5</span><span class="st">Tu relación con el síntoma: hipervigilancia</span><span class="dots"></span><span class="sp">20</span></div>
+        <p class="idx-note">La jaula protectora</p>
+        <div class="idx-sub"><span class="sn">2.6</span><span class="st">Por qué esto no es «estar loca»</span><span class="dots"></span><span class="sp">22</span></div>
+        <div class="idx-sub"><span class="sn">2.7</span><span class="st">Por qué a ti te pasa distinto</span><span class="dots"></span><span class="sp">23</span></div>
+
+        <div class="idx-cap"><span class="n">3</span><span class="t">Por qué un día toleras algo y al siguiente no</span><span class="p">24</span></div>
+        <div class="idx-sub"><span class="sn">3.1</span><span class="st">El problema de la variabilidad</span><span class="dots"></span><span class="sp">24</span></div>
+        <div class="idx-sub"><span class="sn">3.2</span><span class="st">Cómo se suman los disparadores</span><span class="dots"></span><span class="sp">25</span></div>
+        <div class="idx-sub"><span class="sn">3.3</span><span class="st">Cómo tu mente baja el umbral</span><span class="dots"></span><span class="sp">26</span></div>
+        <div class="idx-sub"><span class="sn">3.4</span><span class="st">Los otros disparadores, en corto</span><span class="dots"></span><span class="sp">27</span></div>
+        <div class="idx-sub"><span class="sn">3.5</span><span class="st">Empieza a observar tus propios patrones</span><span class="dots"></span><span class="sp">28</span></div>
+
+        <div class="idx-cap"><span class="n">4</span><span class="t">Qué puedes hacer ya, hoy mismo</span><span class="p">29</span></div>
+        <div class="idx-sub"><span class="sn">4.1</span><span class="st">Lo primero: dejar de alimentar la alarma</span><span class="dots"></span><span class="sp">29</span></div>
+        <div class="idx-sub"><span class="sn">4.2</span><span class="st">De huir del síntoma a buscarlo</span><span class="dots"></span><span class="sp">30</span></div>
+        <div class="idx-sub"><span class="sn">4.3</span><span class="st">La reintroducción: la carrera de fondo</span><span class="dots"></span><span class="sp">31</span></div>
+        <div class="idx-sub"><span class="sn">4.4</span><span class="st">El semáforo de tus alimentos</span><span class="dots"></span><span class="sp">32</span></div>
+        <div class="idx-sub"><span class="sn">4.5</span><span class="st">Herramientas para el momento</span><span class="dots"></span><span class="sp">33</span></div>
+        <div class="idx-sub"><span class="sn">4.6</span><span class="st">Quítale el micrófono al síntoma</span><span class="dots"></span><span class="sp">34</span></div>
+        <div class="idx-sub"><span class="sn">4.7</span><span class="st">En un brote: durante y después</span><span class="dots"></span><span class="sp">35</span></div>
+        <div class="idx-sub"><span class="sn">4.8</span><span class="st">Esto es un proceso, no un interruptor</span><span class="dots"></span><span class="sp">36</span></div>
+
+        <div class="idx-cap"><span class="n">5</span><span class="t">Y ahora, ¿qué?</span><span class="p">37</span></div>
+        <div class="idx-sub"><span class="sn">5.1</span><span class="st">Tu mapa, resumido</span><span class="dots"></span><span class="sp">37</span></div>
+        <p class="idx-note">El mapa, de un vistazo</p>
+        <div class="idx-sub"><span class="sn">5.2</span><span class="st">Fuentes y referencias</span><span class="dots"></span><span class="sp">39</span></div>
+      </div>
+      <div class="hoja hoja-1"></div>
+      <div class="hoja hoja-2"></div>
+      <div class="hoja hoja-3"></div>
+      <div class="pag pag-portada">
+        <img src="../img/portada-guia.jpg" alt="Portada de la guía">
+      </div>
+    </div>
+  </div>
+  <div class="recorrido"></div>
+  <div class="velo-inferior"></div>
+</section>
+
+<!-- ===== 3 · LO QUE TE PASA ===== -->
+<section id="s03" style="position:relative">
+  <div class="parada up"><p>Miras dónde está el baño antes de aceptar un plan.</p></div>
+  <div class="parada up"><p>Te llevas ropa que no apriete.</p></div>
+  <div class="parada up"><p>Cancelas el sábado a las siete con una excusa que ya has usado otras veces.</p></div>
+  <div class="parada up"><p>Y la lista de lo que ya no comes es más larga que la de lo que comes.</p></div>
+
+  <div class="parada grande up"><p>Lo peor no es ninguno de los síntomas. Es no saber cuál va a ser el próximo, ni por qué.</p></div>
+
+  <div class="parada yo up"><p>Y sé que te pasa esto porque <span class="sub">yo lo viví durante ocho años</span>.</p></div>
+
+  <div class="parada pivote up"><p>Esta guía es el mapa que me habría gustado encontrar en ese entonces.</p></div>
+
+  <div class="video up" hidden>
+    <p class="kick">Te lo cuento en vídeo</p>
+    <button class="marco" type="button" aria-label="Ver el vídeo">
+      <img src="../img/abby.jpg" alt="">
+      <span class="play"></span>
+    </button>
+  </div>
+</section>
+
+<!-- ===== 4b · QUIÉN ESTÁ DETRÁS ===== -->
+<section id="s05">
+ <div class="env">
+  <h2 class="up">¿Quién está detrás de esta guía?</h2>
+  <div class="fila">
+    <img class="foto up" src="../img/abby.jpg" alt="Abby">
+    <div>
+      <p class="intro up">Soy Abby, y durante años mi barriga fue encogiendo mi vida sin que yo entendiera por qué.</p>
+      <details class="up">
+        <summary>Seguir leyendo <span class="mas">+</span></summary>
+        <div class="cuerpo">
+          <p>Vivía con dolor y reflujo. Había noches en las que las molestias no me dejaban dormir y días en los que comer fuera dejaba de ser un placer para convertirse en una preocupación. Tenía que pensar qué habría en el menú, cómo me sentaría y qué consecuencias tendría después. Nunca sabía cómo iba a reaccionar mi cuerpo.</p>
+          <p>Además, muchas personas de mi entorno me decían que era «muy rara» con la comida y con mi sistema digestivo. Me sentía observada y juzgada por tener que preguntar, evitar o pensármelo todo tanto. Llegué incluso a sentir envidia de quienes podían sentarse a comer cualquier cosa sin miedo, mientras yo veía cómo cada vez aparecían más problemas y mi mundo se hacía más pequeño.</p>
+          <p>Lo más difícil no era solo el síntoma. Era sentir que nadie terminaba de comprender cuánto estaba condicionando mi vida. Era acumular consejos, probar cosas y seguir sin una explicación que me permitiera unir todas las piezas.</p>
+          <p>Por eso empecé a estudiar. Necesitaba comprender qué había detrás de aquellas reacciones y cómo se relacionaban el intestino, el sistema nervioso, la inmunidad, el estrés y todo lo que ocurría alrededor. Durante años fui reuniendo piezas hasta conseguir ver un mapa donde antes solo había síntomas sueltos.</p>
+          <p>«El mapa de tu sistema digestivo imprevisible» nace de ese recorrido. Es el mapa que me habría gustado encontrar cuando mi vida giraba alrededor de una barriga imprevisible y yo solo quería volver a vivir sin tener que pensar en ella a todas horas.</p>
+        </div>
+      </details>
+      <p class="firma up">Abby</p>
+    </div>
+  </div>
+ </div>
+</section>
+
+<!-- ===== 4 · QUÉ ES ESTA GUÍA ===== -->
+<section id="s04">
+  <div class="env">
+    <p class="kick up">La guía</p>
+    <h2 class="up">Todo lo que necesitas entender, ordenado en 40 páginas</h2>
+
+    <p class="intro up">La información existe: en papers científicos, en artículos llenos de reacciones enzimáticas y en cientos de páginas escritas para quien ya domina el tema. El problema no es que falte: es que no está hecha para ti. Está suelta, desordenada, y explicada en un idioma que no te ayuda cuando lo que necesitas es entender qué te pasa.</p>
+
+    <p class="intro up">Esta guía es lo contrario: un temario denso convertido en algo que se entiende de una sentada. Sin jerga innecesaria, con un orden que tiene sentido y con un recorrido que va de «qué me pasa» a «qué puedo hacer hoy».</p>
+
+    <p class="intro up">En dos horas vas a entender algo que a mí me llevó años estudiar. Cuando la termines, habrás cambiado la forma en que te relacionas con tus síntomas. Les dejarás de tener miedo, empezarás a entender qué te pasa y podrás volver a sentir que tienes el control de tu vida.</p>
+  </div>
+</section>
+
+<!-- ===== 6 · QUÉ HAY DENTRO ===== -->
+<section id="s06">
+ <div class="env">
+  <p class="kick up">5 capítulos · 40 páginas</p>
+  <h2 class="up">Qué hay dentro de la guía</h2>
+
+  <div class="capitulos">
+
+    <details class="up">
+      <summary>
+        <span class="num">01</span>
+        Tu intestino no está roto: qué es la sensibilización visceral
+        <span class="flecha">▾</span>
+      </summary>
+      <div class="contenido">
+        <ul>
+          <li>Qué es la hipersensibilidad visceral y en qué se diferencia de un síntoma puntual</li>
+          <li>Por qué duele si «no hay nada roto»</li>
+          <li>Cómo tu sistema amplifica las señales y cómo se instala esa sensibilización</li>
+          <li>La memoria del dolor</li>
+          <li>Mitos vs. lo que dice la evidencia</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="up">
+      <summary>
+        <span class="num">02</span>
+        La conversación entre tu intestino y tu cabeza
+        <span class="flecha">▾</span>
+      </summary>
+      <div class="contenido">
+        <ul>
+          <li>Tu intestino también le habla a tu cabeza</li>
+          <li>Niebla mental: por qué también te cuesta pensar</li>
+          <li>El nervio vago: tu cable de calma</li>
+          <li>Tu relación con el síntoma: hipervigilancia y la jaula protectora</li>
+          <li>Por qué esto no es «estar loca»</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="up">
+      <summary>
+        <span class="num">03</span>
+        Por qué un día toleras algo y al siguiente no
+        <span class="flecha">▾</span>
+      </summary>
+      <div class="contenido">
+        <ul>
+          <li>El problema de la variabilidad</li>
+          <li>Cómo se suman los disparadores y cómo tu mente baja el umbral</li>
+          <li>Los otros disparadores, en corto</li>
+          <li>Empieza a observar tus propios patrones</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="up">
+      <summary>
+        <span class="num">04</span>
+        Qué puedes hacer ya, hoy mismo
+        <span class="flecha">▾</span>
+      </summary>
+      <div class="contenido">
+        <ul>
+          <li>Lo primero: dejar de alimentar la alarma</li>
+          <li>De huir del síntoma a buscarlo</li>
+          <li>La reintroducción: la carrera de fondo</li>
+          <li>El semáforo de tus alimentos</li>
+          <li>Herramientas para el momento</li>
+          <li>En un brote: durante y después</li>
+          <li>Esto es un proceso, no un interruptor</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="up">
+      <summary>
+        <span class="num">05</span>
+        Y ahora, ¿qué?
+        <span class="flecha">▾</span>
+      </summary>
+      <div class="contenido">
+        <ul>
+          <li>Tu mapa, resumido</li>
+          <li>Fuentes y referencias</li>
+        </ul>
+      </div>
+    </details>
+
+  </div>
+
+  <div class="bonus">
+    <p class="kick up">Incluido con la guía · 2 bonus</p>
+    <h2 class="up">Dos herramientas para aplicarlo a tu caso</h2>
+    <p class="intro up">La guía te da el porqué. Estas dos piezas te ayudan a empezar a leerte a ti.</p>
+
+    <div class="tarjetas">
+      <article class="tarjeta up">
+        <p class="etq">Bonus 1<span class="sem"><i style="background:#7E9B76"></i><i style="background:#CB9151"></i><i style="background:#A65A4A"></i></span></p>
+        <h3>El semáforo de tus alimentos</h3>
+        <p class="meta">Test online · 144 alimentos · diez minutos</p>
+        <p>Marcas cómo te sienta cada alimento y te sale tu mapa por colores. Es la foto de dónde partes: cuánto verde tienes para construir encima.</p>
+        <p>Repítelo al mes o dos y compáralo con el primero. Si algún alimento cambia de color, estás viendo tu vaso moverse.</p>
+      </article>
+      <article class="tarjeta up">
+        <p class="etq">Bonus 2</p>
+        <h3>El registro de tu vaso</h3>
+        <p class="meta">Hoja para imprimir · un minuto cada noche · cuatro semanas</p>
+        <p>Cada noche marcas lo que ha estado en alto: el sueño, el estrés, el ciclo, la comida y lo pendiente que has estado de tu barriga.</p>
+        <p>A las cuatro semanas, una segunda hoja te enseña a leerlo y te da pistas sobre qué llena tu vaso en tu día a día.</p>
+      </article>
+    </div>
+
+    <p class="y up">Y una hoja de bienvenida que te explica en qué orden usarlo todo.</p>
+  </div>
+ </div>
+</section>
+
+<!-- ===== 7 · PRECIO ===== -->
+<section id="s07">
+ <div class="env">
+  <p class="kick up">La guía</p>
+  <h2 class="up">El mapa de tu sistema digestivo imprevisible</h2>
+  <p class="precio up">48 <small>€</small></p>
+  <p class="nota up">Guía de 40 páginas + el semáforo de tus alimentos + el registro de tu vaso · acceso inmediato</p>
+  <a class="boton up" href="https://www.abigailpni.com/pago-guia">Quiero la guía</a>
+  <p class="detalle up">Pago seguro con tarjeta. Recibes la guía y los bonus en tu correo en menos de un minuto.</p>
+ </div>
+</section>
+
+<!-- ===== 8 · FAQ ===== -->
+<section id="s08">
+ <div class="env">
+  <h2 class="up">Preguntas frecuentes</h2>
+  <div class="preguntas">
+
+    <details class="up">
+      <summary>¿En qué formato recibo la guía? <span class="flecha">▾</span></summary>
+      <p class="resp">La guía y el registro de tu vaso, en PDF; el semáforo de tus alimentos es un test online que haces desde el móvil o el ordenador. Nada más completar el pago recibes un correo con todo.</p>
+    </details>
+
+    <details class="up">
+      <summary>¿Necesito conocimientos previos? <span class="flecha">▾</span></summary>
+      <p class="resp">No. La guía está escrita para que se entienda desde cero. Explica cada concepto con lenguaje claro y metáforas antes de usar cualquier término técnico.</p>
+    </details>
+
+  </div>
+ </div>
+</section>
+
+<footer id="pie">
+ <div class="env">
+  <p class="marca">El mapa de tu sistema digestivo imprevisible</p>
+  <p class="nota">Material educativo y de autoconocimiento. No es un servicio sanitario ni sustituye la consulta, el diagnóstico o el tratamiento de un profesional de la salud.</p>
+
+  <ul class="enlaces">
+    <li><a href="../legal/aviso-legal.html">Aviso legal</a></li>
+    <li><a href="../legal/privacidad.html">Privacidad</a></li>
+    <li><a href="../legal/condiciones-guia.html">Condiciones de venta</a></li>
+  </ul>
+
+  <div class="abajo">
+    <span>© 2026 Abby</span>
+  </div>
+ </div>
+</footer>
+
+<script>
+// portada: entrada escalonada
+var portada = document.querySelectorAll('#s01 .up');
+portada.forEach(function(el,i){
+  setTimeout(function(){ el.classList.add('vista'); }, 200 + i*380);
+});
+
+// el resto: aparición al subir
+var obs = new IntersectionObserver(function(es){
+  var n = 0;
+  es.forEach(function(e){
+    if(!e.isIntersecting) return;
+    e.target.style.transitionDelay = (n * 0.16) + 's';
+    n++;
+    e.target.classList.add('vista');
+    obs.unobserve(e.target);
+  });
+}, { rootMargin: '0px 0px -22% 0px' });
+document.querySelectorAll('.up').forEach(function(el){
+  if (el.closest('#s01')) return;
+  obs.observe(el);
+});
+
+// libro: la portada y las hojas se abanican controladas por scroll
+(function(){
+  var seccion = document.getElementById('s02');
+  var tapa = seccion.querySelector('.pag-portada');
+  var hojas = [].slice.call(seccion.querySelectorAll('.hoja'));
+  var sombraIndice = seccion.querySelector('.pag-indice::after') ||
+                     seccion.querySelector('.pag-indice');
+  var indiceAfter = seccion.querySelector('.pag-indice');
+  var ultimoFrame = -1;
+
+  // easing suave: arranca despacio, acelera en el medio, frena al final
+  function ease(t){
+    return t < 0.5
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function anima(){
+    var rect = seccion.getBoundingClientRect();
+    var recorrido = seccion.offsetHeight - innerHeight;
+    if (recorrido <= 0) return;
+    var raw = Math.max(0, Math.min(1, -rect.top / recorrido));
+    var t = ease(raw);
+
+    var frame = Math.round(t * 1000);
+    if (frame === ultimoFrame) return;
+    ultimoFrame = frame;
+
+    // la tapa gira hasta 155° (casi plana contra el lomo, pero no del todo)
+    var gradosTapa = t * 155;
+    // ligera curva: en el medio del giro la tapa se arquea un poco
+    var curva = Math.sin(t * Math.PI) * 6;
+    tapa.style.transform = 'rotateY(-' + gradosTapa + 'deg) skewY(' + curva + 'deg)';
+    // sombra de la tapa se reduce al abrirse
+    var st = Math.max(0, 1 - t * 1.4);
+    tapa.style.boxShadow = (4*st)+'px '+(10*st)+'px '+(34*st)+'px rgba(0,0,0,'+(.5*st)+')';
+
+    // las hojas intermedias siguen a la tapa con retraso (abanico)
+    hojas.forEach(function(h, i){
+      var retraso = (i + 1) * 0.12;
+      var th = Math.max(0, Math.min(1, (t - retraso) / (1 - retraso)));
+      var gh = th * 150;
+      var ch = Math.sin(th * Math.PI) * 3;
+      h.style.transform = 'rotateY(-' + gh + 'deg) skewY(' + ch + 'deg)';
+      h.style.opacity = t > 0.02 ? '1' : '0';
+    });
+
+    // sombra que barre el índice (se aclara conforme se abre)
+    indiceAfter.style.setProperty('--sombra-libro', 1 - t);
+  }
+
+  // aplicar la sombra via CSS custom property
+  var hoja = document.createElement('style');
+  hoja.textContent = '#s02 .pag-indice::after{opacity:var(--sombra-libro,1)}';
+  document.head.appendChild(hoja);
+
+  addEventListener('scroll', function(){ requestAnimationFrame(anima); }, {passive:true});
+  anima();
+})();
+
+// desplegables suaves
+(function(){
+  var suave = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var curva = 'cubic-bezier(.22,.61,.36,1)';
+  document.querySelectorAll('details').forEach(function(d){
+    var sum = d.querySelector('summary');
+    var caja = sum && sum.nextElementSibling;
+    if (!sum || !caja) return;
+    sum.addEventListener('click', function(e){
+      if (!suave) return;
+      e.preventDefault();
+      if (d.dataset.movida) return;
+      d.dataset.movida = '1';
+      var abrir = !d.open;
+      if (abrir) d.open = true;
+      var alto = caja.scrollHeight;
+      caja.style.overflow = 'hidden';
+      var anim = caja.animate(
+        abrir
+          ? [{height:'0px', opacity:0}, {height:alto+'px', opacity:1}]
+          : [{height:alto+'px', opacity:1}, {height:'0px', opacity:0}],
+        { duration: abrir ? 420 : 320, easing: curva }
+      );
+      anim.onfinish = function(){
+        caja.style.overflow = '';
+        if (!abrir) d.open = false;
+        delete d.dataset.movida;
+      };
+    });
+  });
+})();
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "344546c74ef64c6bbb0f69acd6ef84ef"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
