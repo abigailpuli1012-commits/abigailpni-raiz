@@ -37,7 +37,9 @@ h1{font-family:'Cormorant SD',Georgia,serif;font-weight:600;font-size:40px;line-
 
 h2{font-family:'Cormorant SD',Georgia,serif;font-weight:600;font-size:25px;margin:38px 0 14px}
 
-.rejilla{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.rejilla{display:grid;gap:12px;grid-template-columns:repeat(4,1fr)}
+@media (max-width:900px){.rejilla{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.rejilla{grid-template-columns:1fr}}
 .tarjeta{background:var(--petroleo2);border:1px solid var(--linea);border-radius:12px;padding:18px 18px 16px}
 .tarjeta .rotulo{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--gris);margin:0 0 8px}
 .tarjeta .cifra{font-family:'Cormorant SD',Georgia,serif;font-weight:600;font-size:38px;line-height:1;margin:0}
@@ -132,6 +134,17 @@ const NOMBRES = {
   recomendacion:'Se lo recomendaron', instagram:'Instagram',
   otro:'Otro sitio', 'sin respuesta':'No lo dijo'
 };
+
+// Las rutas, con el nombre que entiende cualquiera.
+function nombrePagina(sitio, ruta){
+  if(sitio === 'test') return 'El test de alimentos';
+  const r = ruta.replace(/\/$/,'') || '/';
+  if(r === '/')            return 'Portada · el programa';
+  if(r === '/guia')        return 'La guía';
+  if(r === '/panel')       return 'Este panel';
+  if(r.startsWith('/legal')) return 'Legal · ' + r.split('/').pop().replace(/\.html$/,'').replace(/-/g,' ');
+  return r;
+}
 
 function tarjeta(rotulo, valor, pista){
   const vacia = valor === '—' ? ' vacia' : '';
@@ -228,7 +241,7 @@ async function cargar(dias){
 
   document.getElementById('paginas').innerHTML = tabla(
     ['Página','Visitas'],
-    d.porPagina.map(f=>[(f.sitio === 'test' ? 'test · ' : '') + f.ruta, num(f.visitas)]),
+    d.porPagina.map(f=>[nombrePagina(f.sitio, f.ruta), num(f.visitas)]),
     'Aún no hay visitas en este periodo.'
   );
 
