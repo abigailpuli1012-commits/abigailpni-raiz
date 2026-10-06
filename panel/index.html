@@ -111,7 +111,7 @@ footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--linea);font-s
 <body>
 <div class="envoltura">
 
-  <p class="kicker">Soberanía Biológica</p>
+  <p class="kicker">Soberanía Biológica · la guía</p>
   <h1>Los números</h1>
   <p class="sub" id="sub">Cargando…</p>
 
@@ -124,8 +124,9 @@ footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--linea);font-s
   </div>
 
   <h2>El camino</h2>
-  <p class="h2nota">De cuánta gente te ve a cuánta compra. En cada escalón se pierde gente:
-    lo interesante es ver <em>dónde</em> se pierde más.</p>
+  <p class="h2nota">De cuánta gente te ve a cuánta compra la guía. En cada escalón se pierde
+    gente: lo interesante es ver <em>dónde</em> se pierde más. La página del programa no entra
+    aquí: es otro negocio y mezclarlo daría porcentajes falsos.</p>
   <div class="embudo" id="embudo"></div>
 
   <h2>Lo que entra</h2>
@@ -137,6 +138,11 @@ footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--linea);font-s
     de saber si conseguir una clienta te sale a cuenta.</p>
   <div class="rejilla" id="cuesta"></div>
   <div class="rejilla tres" id="cuesta2" style="margin-top:12px"></div>
+
+  <h2>La publicidad</h2>
+  <p class="h2nota">Salen de lo que apuntes en campañas, abajo del todo. Son los tres números
+    que Google Ads te da en su primera pantalla.</p>
+  <div class="rejilla tres" id="publicidad"></div>
 
   <h2>Por el camino</h2>
   <p class="h2nota">Los porcentajes que convierten a unas visitantes en otra cosa.</p>
@@ -167,12 +173,25 @@ footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--linea);font-s
   <h2>Los vídeos en YouTube</h2>
   <div class="caja" id="youtube"></div>
 
-  <h2>Tus gastos</h2>
-  <p class="h2nota">Apunta aquí lo que te gastas cada mes: publicidad, herramientas, lo que sea.
-    En cuanto haya algo, se encienden el coste por clienta, el ROAS y el ROI.</p>
+  <h2>Tus campañas de pago</h2>
+  <p class="h2nota">Una vez al mes, copia de Google Ads lo gastado, las veces que se mostró el
+    anuncio (impresiones) y los clics. Con eso salen el coste por mil, el coste por clic y el CTR.</p>
+  <form class="gastos" id="formCampana" autocomplete="off">
+    <input name="mes" type="month" required aria-label="Mes">
+    <input name="nombre" type="text" placeholder="Nombre de la campaña" required maxlength="80">
+    <input name="gasto" type="number" step="0.01" min="0" placeholder="Gastado €" required aria-label="Gastado">
+    <input name="impresiones" type="number" step="1" min="0" placeholder="Impresiones" aria-label="Impresiones">
+    <input name="clics" type="number" step="1" min="0" placeholder="Clics" aria-label="Clics">
+    <button type="submit">Apuntar</button>
+  </form>
+  <div class="caja" id="campanas"></div>
+
+  <h2>Tus gastos fijos</h2>
+  <p class="h2nota">Lo que pagas cada mes aunque no hagas publicidad: Systeme, el dominio,
+    herramientas. Cuenta igual, porque también cuesta dinero tener el negocio en pie.</p>
   <form class="gastos" id="formGasto" autocomplete="off">
     <input name="mes" type="month" required aria-label="Mes">
-    <input name="concepto" type="text" placeholder="En qué (publicidad, Systeme…)" required maxlength="80">
+    <input name="concepto" type="text" placeholder="En qué (Systeme, dominio…)" required maxlength="80">
     <input name="importe" type="number" step="0.01" min="0" placeholder="€" required aria-label="Importe">
     <button type="submit">Apuntar</button>
   </form>
@@ -237,11 +256,11 @@ function conBarra(valor, maximo){
 /* ---------- embudo ---------- */
 function embudo(c){
   const pasos = [
-    {quien:'Ven tus vídeos en YouTube', n:c.visualizaciones, falta:'cuando conectemos YouTube'},
-    {quien:'Entran en tu web',          n:c.visitas,         falta:null},
-    {quien:'Llegan a la página de la guía', n:c.visitasGuia, falta:null},
-    {quien:'Te dejan el correo',        n:c.leads,           falta:'cuando Systeme avise de cada correo nuevo'},
-    {quien:'Compran',                   n:c.ventas,          falta:null},
+    {quien:'Ven tus vídeos en YouTube',     n:c.visualizaciones, falta:'cuando conectemos YouTube'},
+    {quien:'Pinchan tu enlace',             n:c.visitasConMarca, falta:'cuando uses enlaces con marca'},
+    {quien:'Llegan a la página de la guía', n:c.visitasGuia,     falta:null},
+    {quien:'Te dejan el correo',            n:c.leads,           falta:'cuando Systeme avise de cada correo nuevo'},
+    {quien:'Compran la guía',               n:c.ventas,          falta:null},
   ];
   const tope = Math.max(1, ...pasos.map(p=>p.n||0));
 
@@ -326,7 +345,7 @@ async function cargar(dias){
 
   document.getElementById('cuesta').innerHTML =
     tarjeta({rotulo:'Gastos', valor:euro(m.gastos),
-      pista:'Lo que has apuntado para este periodo.'}) +
+      pista:`Fijos ${euro(c.gastosFijos)} + campañas ${euro(c.gastoCampanas)}.`}) +
     tarjeta({rotulo:'Coste por clienta', sigla:'CAC', valor:euro(m.costePorClienta),
       pista:'Lo que te cuesta conseguir una clienta. Es la cifra que hay que comparar con el valor por clienta: si cuesta más de lo que deja, pierdes dinero.',
       falta:'Hacen falta gastos apuntados y alguna venta.'}) +
@@ -341,19 +360,30 @@ async function cargar(dias){
     tarjeta({rotulo:'Beneficio sobre lo gastado', sigla:'ROI', valor:pct(m.roi),
       pista:'Lo mismo que el retorno pero en porcentaje de ganancia: 0 % es quedarse igual.',
       falta:'Hacen falta gastos apuntados.'}) +
-    tarjeta({rotulo:'Recuperación', valor:veces(m.payback),
+    tarjeta({rotulo:'Recuperación', valor:veces(m.recuperacion),
       pista:'Cuántas compras hacen falta para recuperar lo que costó traer a esa clienta. Menos de 1 es recuperarlo en la primera.',
       falta:'Hacen falta gastos apuntados y alguna venta.'}) +
     tarjeta({rotulo:'Repiten', valor:pct(m.repeticion),
       pista:'De las que compran, cuántas vuelven a comprar otra cosa.',
       falta:'Saldrá cuando haya compradoras.'});
 
+  document.getElementById('publicidad').innerHTML =
+    tarjeta({rotulo:'Coste por mil', sigla:'CPM', valor:euro(m.cpm),
+      pista:'Lo que cuesta que el anuncio se muestre mil veces.',
+      falta:'Apunta una campaña con sus impresiones.'}) +
+    tarjeta({rotulo:'Coste por clic', sigla:'CPC', valor:euro(m.cpc),
+      pista:'Lo que cuesta cada persona que pincha el anuncio y llega a tu web.',
+      falta:'Apunta una campaña con sus clics.'}) +
+    tarjeta({rotulo:'Clics del anuncio', sigla:'CTR', valor:pct(m.ctrAnuncio),
+      pista:'De los que ven el anuncio, cuántos pinchan. Dice si el anuncio engancha.',
+      falta:'Apunta una campaña con impresiones y clics.'});
+
   document.getElementById('camino').innerHTML =
     tarjeta({rotulo:'Conversión', valor:pct(m.conversion),
       pista:'De las que ven la página de la guía, cuántas compran. Es el número que más mueve el negocio.',
       falta:'Hacen falta visitas a la página de la guía.'}) +
     tarjeta({rotulo:'Dejan el correo', valor:pct(m.conversionLead),
-      pista:'De las que entran en la web, cuántas acaban dando su correo.',
+      pista:'De las que llegan a la página de la guía, cuántas acaban dando su correo.',
       falta:'Saldrá cuando Systeme avise de cada correo nuevo.'}) +
     tarjeta({rotulo:'Clics desde el vídeo', sigla:'CTR', valor:pct(m.clicDesdeVideo),
       pista:'De las que ven un vídeo, cuántas pinchan tu enlace. Dice si la llamada del vídeo funciona.',
@@ -390,19 +420,28 @@ async function cargar(dias){
     'Todavía no se han traído los datos de YouTube.'
   );
 
-  pintarGastos(d.listaGastos);
-}
-
-function pintarGastos(lista){
   document.getElementById('gastos').innerHTML = tabla(
     ['Mes','En qué','Importe',''],
-    lista.map(g=>[
+    d.listaGastos.map(g=>[
       g.mes.split('-').reverse().join('/'),
       g.concepto,
       euro(g.importe),
       `<button class="borrar" data-id="${g.id}" title="Borrar">quitar</button>`
     ]),
-    'Todavía no has apuntado ningún gasto.'
+    'Todavía no has apuntado ningún gasto fijo. Por ejemplo: Systeme y el dominio.'
+  );
+
+  document.getElementById('campanas').innerHTML = tabla(
+    ['Mes','Campaña','Gastado','Impresiones','Clics',''],
+    d.listaCampanas.map(g=>[
+      g.mes.split('-').reverse().join('/'),
+      g.nombre,
+      euro(g.gasto),
+      num(g.impresiones),
+      num(g.clics),
+      `<button class="borrar" data-id="${g.id}" title="Borrar">quitar</button>`
+    ]),
+    'Todavía no has apuntado ninguna campaña. Cuando lances la de YouTube, copia aquí lo gastado, las impresiones y los clics.'
   );
 }
 
@@ -432,6 +471,21 @@ document.getElementById('formGasto').addEventListener('submit', async (e) => {
   cargar(diasActuales);
 });
 
+document.getElementById('formCampana').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const f = e.target;
+  const r = await fetch('/api/panel/campana', {
+    method:'POST', headers:{'content-type':'application/json'},
+    body: JSON.stringify({
+      mes: f.mes.value, nombre: f.nombre.value, gasto: Number(f.gasto.value),
+      impresiones: Number(f.impresiones.value || 0), clics: Number(f.clics.value || 0),
+    })
+  });
+  if(!r.ok){ alert('No he podido apuntarla. Revisa los datos.'); return; }
+  f.nombre.value = ''; f.gasto.value = ''; f.impresiones.value = ''; f.clics.value = '';
+  cargar(diasActuales);
+});
+
 document.getElementById('gastos').addEventListener('click', async (e) => {
   const b = e.target.closest('.borrar');
   if(!b) return;
@@ -439,8 +493,17 @@ document.getElementById('gastos').addEventListener('click', async (e) => {
   cargar(diasActuales);
 });
 
-// Mes de hoy por defecto en el formulario de gastos.
-document.querySelector('input[name="mes"]').value = new Date().toISOString().slice(0,7);
+document.getElementById('campanas').addEventListener('click', async (e) => {
+  const b = e.target.closest('.borrar');
+  if(!b) return;
+  await fetch('/api/panel/campana?id=' + b.dataset.id, {method:'DELETE'});
+  cargar(diasActuales);
+});
+
+// Mes de hoy por defecto en los dos formularios.
+document.querySelectorAll('input[name="mes"]').forEach(i => {
+  i.value = new Date().toISOString().slice(0,7);
+});
 
 cargar(29);
 </script>
