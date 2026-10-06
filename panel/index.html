@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Panel · Soberanía Biológica</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+@font-face{font-family:'Cormorant SD';src:url('/fuentes/cormorant-garamond-400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Cormorant SD';src:url('/fuentes/cormorant-garamond-600.woff2') format('woff2');font-weight:600;font-display:swap}
+
+:root{
+  --petroleo:#032532; --petroleo2:#123944; --marfil:#F4F1E9;
+  --dorado:#B6A47A; --gris:#94A4AC; --linea:rgba(244,241,233,.14);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--petroleo); color:var(--marfil);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.envoltura{max-width:1080px;margin:0 auto;padding:40px 16px 80px}
+
+header{margin-bottom:28px}
+.kicker{margin:0 0 6px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--dorado)}
+h1{font-family:'Cormorant SD',Georgia,serif;font-weight:600;font-size:40px;line-height:1.05;margin:0 0 4px}
+.sub{margin:0;color:var(--gris);font-size:14px}
+
+.periodos{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 30px}
+.periodos button{
+  padding:8px 15px;border-radius:999px;cursor:pointer;font:inherit;font-size:13px;
+  background:transparent;color:var(--marfil);border:1px solid var(--linea);
+}
+.periodos button:hover{border-color:var(--dorado)}
+.periodos button[aria-pressed="true"]{background:var(--dorado);border-color:var(--dorado);color:var(--petroleo);font-weight:600}
+
+h2{font-family:'Cormorant SD',Georgia,serif;font-weight:600;font-size:25px;margin:38px 0 14px}
+
+.rejilla{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.tarjeta{background:var(--petroleo2);border:1px solid var(--linea);border-radius:12px;padding:18px 18px 16px}
+.tarjeta .rotulo{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--gris);margin:0 0 8px}
+.tarjeta .cifra{font-family:'Cormorant SD',Georgia,serif;font-weight:600;font-size:38px;line-height:1;margin:0}
+.tarjeta .cifra.vacia{color:var(--gris)}
+.tarjeta .pista{margin:9px 0 0;font-size:12.5px;line-height:1.45;color:var(--gris)}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--linea)}
+th{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--gris);font-weight:600}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.caja{background:var(--petroleo2);border:1px solid var(--linea);border-radius:12px;overflow:hidden}
+tbody tr:last-child td{border-bottom:none}
+
+.grafico{background:var(--petroleo2);border:1px solid var(--linea);border-radius:12px;padding:18px}
+svg{display:block;width:100%;height:190px;overflow:visible}
+.leyenda{display:flex;gap:18px;margin:12px 0 0;font-size:12.5px;color:var(--gris)}
+.punto{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
+
+.vacio{padding:22px;color:var(--gris);font-size:14px;line-height:1.5}
+.nota{margin:14px 0 0;font-size:12.5px;line-height:1.6;color:var(--gris)}
+.nota b{color:var(--marfil);font-weight:600}
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--linea);font-size:12.5px;color:var(--gris);line-height:1.6}
+
+@media (max-width:620px){
+  h1{font-size:31px}
+  .envoltura{padding:28px 16px 60px}
+  .tarjeta .cifra{font-size:31px}
+  th,td{padding:9px 10px}
+}
+</style>
+</head>
+<body>
+<div class="envoltura">
+
+  <header>
+    <p class="kicker">Soberanía Biológica</p>
+    <h1>Los números</h1>
+    <p class="sub" id="sub">Cargando…</p>
+  </header>
+
+  <div class="periodos" id="periodos">
+    <button data-dias="6" aria-pressed="false">7 días</button>
+    <button data-dias="29" aria-pressed="true">30 días</button>
+    <button data-dias="89" aria-pressed="false">3 meses</button>
+    <button data-dias="364" aria-pressed="false">Un año</button>
+    <button data-dias="3650" aria-pressed="false">Todo</button>
+  </div>
+
+  <div class="rejilla" id="principales"></div>
+
+  <h2>Cada día</h2>
+  <div class="grafico">
+    <svg id="grafico" viewBox="0 0 720 190" preserveAspectRatio="none" role="img" aria-label="Visitas y ventas por día"></svg>
+    <p class="leyenda">
+      <span><span class="punto" style="background:#B6A47A"></span>Visitas</span>
+      <span><span class="punto" style="background:#F4F1E9"></span>Ventas</span>
+    </p>
+  </div>
+
+  <h2>Qué vídeo trae gente</h2>
+  <div class="caja" id="videos"></div>
+  <p class="nota">Cuenta las visitas que llegan por un enlace con marca, del tipo
+    <b>abigailpni.com/guia?v=sibo</b>. Si un vídeo no aparece, es que su enlace no lleva marca.</p>
+
+  <h2>De dónde salen las ventas</h2>
+  <div class="caja" id="canales"></div>
+  <p class="nota">Lo que contesta cada compradora en «¿Cómo me conociste?» al pagar.
+    Es opcional, así que algunas saldrán como <b>sin respuesta</b>.</p>
+
+  <h2>Las páginas</h2>
+  <div class="caja" id="paginas"></div>
+
+  <h2>Los vídeos en YouTube</h2>
+  <div class="caja" id="youtube"></div>
+
+  <div class="rejilla" id="secundarias" style="margin-top:34px"></div>
+
+  <footer>
+    Esta página es solo tuya. Las visitas se cuentan sin cookies, sin guardar la IP
+    y sin identificar a nadie; de quien compra se guarda una huella irreversible del
+    correo, nunca el correo.
+  </footer>
+</div>
+
+<script>
+const euro = (n) => n == null ? '—' : n.toLocaleString('es-ES',{style:'currency',currency:'EUR',maximumFractionDigits:n % 1 ? 2 : 0});
+const pct  = (n) => n == null ? '—' : (n*100).toLocaleString('es-ES',{maximumFractionDigits:1}) + ' %';
+const num  = (n) => n == null ? '—' : n.toLocaleString('es-ES');
+
+const NOMBRES = {
+  youtube:'Un vídeo de YouTube', busqueda:'Buscando en internet',
+  recomendacion:'Se lo recomendaron', instagram:'Instagram',
+  otro:'Otro sitio', 'sin respuesta':'No lo dijo'
+};
+
+function tarjeta(rotulo, valor, pista){
+  const vacia = valor === '—' ? ' vacia' : '';
+  return `<div class="tarjeta"><p class="rotulo">${rotulo}</p>
+    <p class="cifra${vacia}">${valor}</p><p class="pista">${pista}</p></div>`;
+}
+
+function tabla(cabeceras, filas, vacioTexto){
+  if(!filas.length) return `<p class="vacio">${vacioTexto}</p>`;
+  return `<table><thead><tr>${
+    cabeceras.map((c,i)=>`<th${i?' class="num"':''}>${c}</th>`).join('')
+  }</tr></thead><tbody>${
+    filas.map(f=>`<tr>${f.map((c,i)=>`<td${i?' class="num"':''}>${c}</td>`).join('')}</tr>`).join('')
+  }</tbody></table>`;
+}
+
+function dibujar(visitasDia, ventasDia){
+  const svg = document.getElementById('grafico');
+  const dias = [...new Set([...visitasDia.map(d=>d.dia), ...ventasDia.map(d=>d.dia)])].sort();
+  if(!dias.length){ svg.innerHTML = ''; return; }
+
+  const v = Object.fromEntries(visitasDia.map(d=>[d.dia,d.visitas]));
+  const s = Object.fromEntries(ventasDia.map(d=>[d.dia,d.ventas]));
+  const maxV = Math.max(1, ...dias.map(d=>v[d]||0));
+  const maxS = Math.max(1, ...dias.map(d=>s[d]||0));
+  const An = 720, Al = 170, paso = dias.length > 1 ? An/(dias.length-1) : 0;
+
+  const linea = (datos, max) => dias.map((d,i)=>{
+    const x = dias.length > 1 ? i*paso : An/2;
+    const y = Al - (datos[d]||0)/max*Al;
+    return `${i?'L':'M'}${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(' ');
+
+  const puntos = (datos, max, color) => dias.map((d,i)=>{
+    if(!datos[d]) return '';
+    const x = dias.length > 1 ? i*paso : An/2;
+    const y = Al - datos[d]/max*Al;
+    return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="${color}"/>`;
+  }).join('');
+
+  svg.innerHTML =
+    `<path d="${linea(v,maxV)}" fill="none" stroke="#B6A47A" stroke-width="2" stroke-linejoin="round"/>` +
+    `<path d="${linea(s,maxS)}" fill="none" stroke="#F4F1E9" stroke-width="2" stroke-dasharray="4 4" stroke-linejoin="round"/>` +
+    puntos(v,maxV,'#B6A47A') + puntos(s,maxS,'#F4F1E9');
+}
+
+async function cargar(dias){
+  const hasta = new Date();
+  const desde = new Date(Date.now() - dias*86400000);
+  const f = (d) => d.toISOString().slice(0,10);
+
+  document.getElementById('sub').textContent = 'Cargando…';
+
+  let d;
+  try{
+    const r = await fetch(`/api/panel/datos?desde=${f(desde)}&hasta=${f(hasta)}`, {cache:'no-store'});
+    if(!r.ok) throw new Error(r.status);
+    d = await r.json();
+  }catch(e){
+    document.getElementById('sub').textContent = 'No he podido leer los datos. Vuelve a cargar la página.';
+    return;
+  }
+
+  const R = d.resumen;
+  document.getElementById('sub').textContent =
+    `Del ${d.periodo.desde.split('-').reverse().join('/')} al ${d.periodo.hasta.split('-').reverse().join('/')}`;
+
+  document.getElementById('principales').innerHTML =
+    tarjeta('Ingresos', euro(R.ingresos), 'Lo que ha entrado en el periodo.') +
+    tarjeta('Ventas', num(R.ventas), `De ${num(R.compradoras)} personas distintas.`) +
+    tarjeta('Ticket medio', euro(R.ticketMedio), 'Lo que se gasta de media cada compra.') +
+    tarjeta('Conversión', pct(R.conversion), 'De las que ven la página de la guía, cuántas compran.');
+
+  document.getElementById('secundarias').innerHTML =
+    tarjeta('Visitas', num(R.visitas), `${num(R.visitasGuia)} a la página de la guía.`) +
+    tarjeta('Valor por visita', euro(R.valorPorVisita), 'Lo que deja de media cada visita a la página de venta.') +
+    tarjeta('Valor por clienta', euro(R.valorPorClienta), 'Todo lo que deja de media una clienta. Sube cuando repiten.') +
+    tarjeta('Coste por clienta', euro(R.costePorClienta),
+      R.gastos ? 'Lo que cuesta conseguir una clienta.' : 'Saldrá cuando haya gastos apuntados.');
+
+  dibujar(d.visitasDia, d.ventasDia);
+
+  document.getElementById('videos').innerHTML = tabla(
+    ['Marca del enlace','Visitas'],
+    d.porVideo.map(f=>[f.marca, num(f.visitas)]),
+    'Todavía no ha llegado nadie por un enlace con marca. En cuanto publiques un vídeo con su enlace propio, aparecerá aquí.'
+  );
+
+  document.getElementById('canales').innerHTML = tabla(
+    ['Cómo te conoció','Ventas','Ingresos'],
+    d.porCanal.map(f=>[NOMBRES[f.canal] || f.canal, num(f.ventas), euro(f.ingresos)]),
+    'Aún no hay ventas en este periodo.'
+  );
+
+  document.getElementById('paginas').innerHTML = tabla(
+    ['Página','Visitas'],
+    d.porPagina.map(f=>[(f.sitio === 'test' ? 'test · ' : '') + f.ruta, num(f.visitas)]),
+    'Aún no hay visitas en este periodo.'
+  );
+
+  document.getElementById('youtube').innerHTML = tabla(
+    ['Vídeo','Visualizaciones'],
+    d.videos.map(f=>[f.titulo || f.video, num(f.visualizaciones)]),
+    'Todavía no se han traído los datos de YouTube.'
+  );
+}
+
+document.getElementById('periodos').addEventListener('click', (e) => {
+  const b = e.target.closest('button');
+  if(!b) return;
+  [...e.currentTarget.querySelectorAll('button')].forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  cargar(Number(b.dataset.dias));
+});
+
+cargar(29);
+</script>
+</body>
+</html>
