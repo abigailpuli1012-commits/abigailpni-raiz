@@ -356,8 +356,10 @@ function embudo(c){
 
   return pasos.map((p,i)=>{
     const previo = i > 0 ? pasos[i-1].n : null;
+    // El porcentaje se topa en el 100 %: si un escalón tuviera más gente que el
+    // anterior sería que falta medir algo, no que haya pasado más del total.
     const salto = (i > 0 && previo > 0 && p.n != null)
-      ? `<div class="salto">↓ pasa el <b>${pct(p.n/previo)}</b></div>` : '';
+      ? `<div class="salto">↓ pasa el <b>${pct(Math.min(1, p.n/previo))}</b></div>` : '';
     const ancho = p.n ? Math.max(2, p.n/tope*100) : 0;
     const hay = !!p.n;
     return salto + `<div class="paso">
