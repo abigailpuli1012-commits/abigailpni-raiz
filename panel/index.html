@@ -10,89 +10,141 @@
 @font-face{font-family:'Cormorant SD';src:url('/fuentes/cormorant-garamond-600.woff2') format('woff2');font-weight:600;font-display:swap}
 
 :root{
-  --petroleo:#032532; --petroleo2:#123944; --marfil:#F4F1E9;
-  --dorado:#B6A47A; --gris:#94A4AC; --linea:rgba(244,241,233,.14);
+  --petroleo:#032532; --petroleo2:#0E3341; --petroleo3:#123944;
+  --marfil:#F4F1E9; --dorado:#B6A47A; --gris:#94A4AC;
+  --linea:rgba(244,241,233,.13);
 }
 *{box-sizing:border-box}
-html,body{margin:0}
+html,body{margin:0;overflow-x:hidden}
 body{
   background:var(--petroleo); color:var(--marfil);
   font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-  -webkit-font-smoothing:antialiased;
+  -webkit-font-smoothing:antialiased; line-height:1.5;
 }
-.envoltura{max-width:1080px;margin:0 auto;padding:40px 16px 80px}
+.envoltura{max-width:1060px;margin:0 auto;padding:40px 16px 90px}
 
-header{margin-bottom:28px}
 .kicker{margin:0 0 6px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--dorado)}
-h1{font-family:'Cormorant SD',Georgia,serif;font-weight:600;font-size:40px;line-height:1.05;margin:0 0 4px}
+h1{font-family:'Cormorant SD',Georgia,serif;font-weight:600;font-size:42px;line-height:1.02;margin:0 0 4px}
 .sub{margin:0;color:var(--gris);font-size:14px}
 
-.periodos{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 30px}
+.periodos{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 10px}
 .periodos button{
   padding:8px 15px;border-radius:999px;cursor:pointer;font:inherit;font-size:13px;
-  background:transparent;color:var(--marfil);border:1px solid var(--linea);
+  background:transparent;color:var(--marfil);border:1px solid var(--linea);transition:.15s;
 }
 .periodos button:hover{border-color:var(--dorado)}
 .periodos button[aria-pressed="true"]{background:var(--dorado);border-color:var(--dorado);color:var(--petroleo);font-weight:600}
 
-h2{font-family:'Cormorant SD',Georgia,serif;font-weight:600;font-size:25px;margin:38px 0 14px}
+h2{font-family:'Cormorant SD',Georgia,serif;font-weight:600;font-size:27px;margin:44px 0 4px}
+.h2nota{margin:0 0 16px;color:var(--gris);font-size:13.5px;max-width:70ch}
 
+/* ---- embudo ---- */
+.embudo{background:var(--petroleo3);border:1px solid var(--linea);border-radius:14px;padding:22px 20px 14px}
+.paso{margin:0 0 4px}
+.paso .fila{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin:0 0 6px}
+.paso .quien{font-size:14px}
+.paso .cuanto{font-family:'Cormorant SD',Georgia,serif;font-weight:600;font-size:26px;font-variant-numeric:tabular-nums}
+.barra{height:12px;border-radius:999px;background:rgba(244,241,233,.07);overflow:hidden}
+.barra span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--dorado),#D8C89B)}
+.salto{display:flex;align-items:center;gap:8px;margin:9px 0 13px;padding-left:2px;color:var(--gris);font-size:12.5px}
+.salto b{color:var(--marfil);font-weight:600;font-variant-numeric:tabular-nums}
+
+/* ---- tarjetas de métricas ---- */
 .rejilla{display:grid;gap:12px;grid-template-columns:repeat(4,1fr)}
-@media (max-width:900px){.rejilla{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:480px){.rejilla{grid-template-columns:1fr}}
-.tarjeta{background:var(--petroleo2);border:1px solid var(--linea);border-radius:12px;padding:18px 18px 16px}
-.tarjeta .rotulo{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--gris);margin:0 0 8px}
-.tarjeta .cifra{font-family:'Cormorant SD',Georgia,serif;font-weight:600;font-size:38px;line-height:1;margin:0}
-.tarjeta .cifra.vacia{color:var(--gris)}
-.tarjeta .pista{margin:9px 0 0;font-size:12.5px;line-height:1.45;color:var(--gris)}
+.rejilla.tres{grid-template-columns:repeat(3,1fr)}
+.tarjeta{background:var(--petroleo3);border:1px solid var(--linea);border-radius:12px;padding:17px 17px 15px;display:flex;flex-direction:column}
+.tarjeta .rotulo{font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--gris);margin:0 0 7px}
+.tarjeta .sigla{color:var(--dorado);font-weight:600}
+.tarjeta .cifra{font-family:'Cormorant SD',Georgia,serif;font-weight:600;font-size:36px;line-height:1;margin:0 0 9px}
+.tarjeta .cifra.vacia{color:#4E6977}
+.tarjeta .pista{margin:0;font-size:12.5px;line-height:1.5;color:var(--gris)}
+.tarjeta .falta{margin:8px 0 0;font-size:12px;line-height:1.5;color:var(--dorado);opacity:.85}
 
+/* ---- tablas ---- */
+.caja{background:var(--petroleo3);border:1px solid var(--linea);border-radius:12px;overflow:hidden}
 table{width:100%;border-collapse:collapse;font-size:14px}
-th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--linea)}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--linea);vertical-align:middle}
 th{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--gris);font-weight:600}
-td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
-.caja{background:var(--petroleo2);border:1px solid var(--linea);border-radius:12px;overflow:hidden}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 tbody tr:last-child td{border-bottom:none}
+.minibarra{height:6px;border-radius:999px;background:var(--dorado);min-width:3px;opacity:.75}
 
-.grafico{background:var(--petroleo2);border:1px solid var(--linea);border-radius:12px;padding:18px}
-svg{display:block;width:100%;height:190px;overflow:visible}
+/* ---- gráfico ---- */
+.grafico{background:var(--petroleo3);border:1px solid var(--linea);border-radius:12px;padding:20px}
+svg{display:block;width:100%;height:200px}
 .leyenda{display:flex;gap:18px;margin:12px 0 0;font-size:12.5px;color:var(--gris)}
 .punto{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
 
-.vacio{padding:22px;color:var(--gris);font-size:14px;line-height:1.5}
-.nota{margin:14px 0 0;font-size:12.5px;line-height:1.6;color:var(--gris)}
-.nota b{color:var(--marfil);font-weight:600}
-footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--linea);font-size:12.5px;color:var(--gris);line-height:1.6}
+/* ---- gastos ---- */
+form.gastos{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 14px}
+form.gastos input{
+  padding:10px 12px;border-radius:8px;border:1px solid var(--linea);
+  background:var(--petroleo3);color:var(--marfil);font:inherit;font-size:14px;
+}
+form.gastos input::placeholder{color:#5F7A88}
+form.gastos input[name="concepto"]{flex:1 1 230px;min-width:0}
+form.gastos input[name="mes"]{width:130px}
+form.gastos input[name="importe"]{width:110px}
+form.gastos button{
+  padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font:inherit;font-size:14px;
+  font-weight:600;background:var(--dorado);color:var(--petroleo);
+}
+.borrar{background:none;border:none;color:var(--gris);cursor:pointer;font:inherit;font-size:13px;padding:2px 6px}
+.borrar:hover{color:#E3A9A9}
 
-@media (max-width:620px){
-  h1{font-size:31px}
-  .envoltura{padding:28px 16px 60px}
-  .tarjeta .cifra{font-size:31px}
-  th,td{padding:9px 10px}
+.vacio{padding:22px;color:var(--gris);font-size:14px;line-height:1.55}
+.aviso{
+  margin:18px 0 0;padding:14px 16px;border-radius:10px;font-size:13px;line-height:1.55;
+  background:rgba(182,164,122,.10);border:1px solid rgba(182,164,122,.35);color:#E4D6B0;
+}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--linea);font-size:12.5px;color:var(--gris);line-height:1.65}
+
+@media (max-width:900px){.rejilla,.rejilla.tres{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){
+  h1{font-size:33px}
+  .envoltura{padding:28px 16px 70px}
+  .rejilla,.rejilla.tres{grid-template-columns:1fr}
+  th,td{padding:10px}
 }
 </style>
 </head>
 <body>
 <div class="envoltura">
 
-  <header>
-    <p class="kicker">Soberanía Biológica</p>
-    <h1>Los números</h1>
-    <p class="sub" id="sub">Cargando…</p>
-  </header>
+  <p class="kicker">Soberanía Biológica</p>
+  <h1>Los números</h1>
+  <p class="sub" id="sub">Cargando…</p>
 
   <div class="periodos" id="periodos">
-    <button data-dias="6" aria-pressed="false">7 días</button>
+    <button data-dias="6">7 días</button>
     <button data-dias="29" aria-pressed="true">30 días</button>
-    <button data-dias="89" aria-pressed="false">3 meses</button>
-    <button data-dias="364" aria-pressed="false">Un año</button>
-    <button data-dias="3650" aria-pressed="false">Todo</button>
+    <button data-dias="89">3 meses</button>
+    <button data-dias="364">Un año</button>
+    <button data-dias="3650">Todo</button>
   </div>
 
-  <div class="rejilla" id="principales"></div>
+  <h2>El camino</h2>
+  <p class="h2nota">De cuánta gente te ve a cuánta compra. En cada escalón se pierde gente:
+    lo interesante es ver <em>dónde</em> se pierde más.</p>
+  <div class="embudo" id="embudo"></div>
+
+  <h2>Lo que entra</h2>
+  <p class="h2nota">El dinero que genera el negocio.</p>
+  <div class="rejilla" id="entra"></div>
+
+  <h2>Lo que cuesta</h2>
+  <p class="h2nota">Solo salen si apuntas tus gastos abajo del todo. Sin eso, no hay forma
+    de saber si conseguir una clienta te sale a cuenta.</p>
+  <div class="rejilla" id="cuesta"></div>
+  <div class="rejilla tres" id="cuesta2" style="margin-top:12px"></div>
+
+  <h2>Por el camino</h2>
+  <p class="h2nota">Los porcentajes que convierten a unas visitantes en otra cosa.</p>
+  <div class="rejilla" id="camino"></div>
 
   <h2>Cada día</h2>
   <div class="grafico">
-    <svg id="grafico" viewBox="0 0 720 190" preserveAspectRatio="none" role="img" aria-label="Visitas y ventas por día"></svg>
+    <svg id="grafico" viewBox="0 0 720 200" role="img" aria-label="Visitas y ventas por día"></svg>
     <p class="leyenda">
       <span><span class="punto" style="background:#B6A47A"></span>Visitas</span>
       <span><span class="punto" style="background:#F4F1E9"></span>Ventas</span>
@@ -100,14 +152,14 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--linea);font-s
   </div>
 
   <h2>Qué vídeo trae gente</h2>
+  <p class="h2nota">Las visitas que llegan por un enlace con marca, del tipo
+    <b>abigailpni.com/guia?v=sibo</b>. Si un vídeo no aparece, su enlace no lleva marca.</p>
   <div class="caja" id="videos"></div>
-  <p class="nota">Cuenta las visitas que llegan por un enlace con marca, del tipo
-    <b>abigailpni.com/guia?v=sibo</b>. Si un vídeo no aparece, es que su enlace no lleva marca.</p>
 
   <h2>De dónde salen las ventas</h2>
+  <p class="h2nota">Lo que contesta cada compradora en «¿Cómo me conociste?» al pagar.
+    Es opcional, así que habrá quien no conteste.</p>
   <div class="caja" id="canales"></div>
-  <p class="nota">Lo que contesta cada compradora en «¿Cómo me conociste?» al pagar.
-    Es opcional, así que algunas saldrán como <b>sin respuesta</b>.</p>
 
   <h2>Las páginas</h2>
   <div class="caja" id="paginas"></div>
@@ -115,19 +167,30 @@ footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--linea);font-s
   <h2>Los vídeos en YouTube</h2>
   <div class="caja" id="youtube"></div>
 
-  <div class="rejilla" id="secundarias" style="margin-top:34px"></div>
+  <h2>Tus gastos</h2>
+  <p class="h2nota">Apunta aquí lo que te gastas cada mes: publicidad, herramientas, lo que sea.
+    En cuanto haya algo, se encienden el coste por clienta, el ROAS y el ROI.</p>
+  <form class="gastos" id="formGasto" autocomplete="off">
+    <input name="mes" type="month" required aria-label="Mes">
+    <input name="concepto" type="text" placeholder="En qué (publicidad, Systeme…)" required maxlength="80">
+    <input name="importe" type="number" step="0.01" min="0" placeholder="€" required aria-label="Importe">
+    <button type="submit">Apuntar</button>
+  </form>
+  <div class="caja" id="gastos"></div>
 
   <footer>
-    Esta página es solo tuya. Las visitas se cuentan sin cookies, sin guardar la IP
-    y sin identificar a nadie; de quien compra se guarda una huella irreversible del
-    correo, nunca el correo.
+    Esta página es solo tuya. Las visitas se cuentan sin cookies, sin guardar la IP y sin
+    identificar a nadie; de quien compra se guarda una huella irreversible del correo,
+    nunca el correo.
   </footer>
 </div>
 
 <script>
-const euro = (n) => n == null ? '—' : n.toLocaleString('es-ES',{style:'currency',currency:'EUR',maximumFractionDigits:n % 1 ? 2 : 0});
-const pct  = (n) => n == null ? '—' : (n*100).toLocaleString('es-ES',{maximumFractionDigits:1}) + ' %';
+/* ---------- formatos ---------- */
+const euro = (n) => n == null ? '—' : n.toLocaleString('es-ES',{style:'currency',currency:'EUR',maximumFractionDigits: Math.abs(n) < 100 ? 2 : 0});
+const pct  = (n) => n == null ? '—' : (n*100).toLocaleString('es-ES',{maximumFractionDigits: n < 0.1 ? 2 : 1}) + ' %';
 const num  = (n) => n == null ? '—' : n.toLocaleString('es-ES');
+const veces= (n) => n == null ? '—' : n.toLocaleString('es-ES',{maximumFractionDigits:2}) + '×';
 
 const NOMBRES = {
   youtube:'Un vídeo de YouTube', busqueda:'Buscando en internet',
@@ -135,72 +198,106 @@ const NOMBRES = {
   otro:'Otro sitio', 'sin respuesta':'No lo dijo'
 };
 
-// Las rutas, con el nombre que entiende cualquiera.
 function nombrePagina(sitio, ruta){
-  if(sitio === 'test') return 'El test de alimentos';
+  if(sitio === 'test') return ruta.startsWith('/fin') ? 'El test · terminado' : 'El test de alimentos';
   const r = ruta.replace(/\/$/,'') || '/';
-  if(r === '/')            return 'Portada · el programa';
-  if(r === '/guia')        return 'La guía';
-  if(r === '/panel')       return 'Este panel';
+  if(r === '/')      return 'Portada · el programa';
+  if(r === '/guia')  return 'La guía';
+  if(r === '/panel') return 'Este panel';
   if(r.startsWith('/legal')) return 'Legal · ' + r.split('/').pop().replace(/\.html$/,'').replace(/-/g,' ');
   return r;
 }
 
-function tarjeta(rotulo, valor, pista){
-  const vacia = valor === '—' ? ' vacia' : '';
-  return `<div class="tarjeta"><p class="rotulo">${rotulo}</p>
-    <p class="cifra${vacia}">${valor}</p><p class="pista">${pista}</p></div>`;
+/* ---------- piezas ---------- */
+function tarjeta(o){
+  const vacia = o.valor === '—';
+  return `<div class="tarjeta">
+    <p class="rotulo">${o.rotulo}${o.sigla ? ' · <span class="sigla">'+o.sigla+'</span>' : ''}</p>
+    <p class="cifra${vacia ? ' vacia' : ''}">${o.valor}</p>
+    <p class="pista">${o.pista}</p>
+    ${vacia && o.falta ? `<p class="falta">${o.falta}</p>` : ''}
+  </div>`;
 }
 
 function tabla(cabeceras, filas, vacioTexto){
   if(!filas.length) return `<p class="vacio">${vacioTexto}</p>`;
   return `<table><thead><tr>${
-    cabeceras.map((c,i)=>`<th${i?' class="num"':''}>${c}</th>`).join('')
+    cabeceras.map((c,i)=>`<th${i ? ' class="num"' : ''}>${c}</th>`).join('')
   }</tr></thead><tbody>${
-    filas.map(f=>`<tr>${f.map((c,i)=>`<td${i?' class="num"':''}>${c}</td>`).join('')}</tr>`).join('')
+    filas.map(f=>`<tr>${f.map((c,i)=>`<td${i ? ' class="num"' : ''}>${c}</td>`).join('')}</tr>`).join('')
   }</tbody></table>`;
 }
 
+function conBarra(valor, maximo){
+  const ancho = maximo > 0 ? Math.max(3, Math.round(valor/maximo*110)) : 3;
+  return `<div style="display:flex;align-items:center;gap:10px;justify-content:flex-end">
+    <div class="minibarra" style="width:${ancho}px"></div><span>${num(valor)}</span></div>`;
+}
+
+/* ---------- embudo ---------- */
+function embudo(c){
+  const pasos = [
+    {quien:'Ven tus vídeos en YouTube', n:c.visualizaciones, falta:'cuando conectemos YouTube'},
+    {quien:'Entran en tu web',          n:c.visitas,         falta:null},
+    {quien:'Llegan a la página de la guía', n:c.visitasGuia, falta:null},
+    {quien:'Te dejan el correo',        n:c.leads,           falta:'cuando Systeme avise de cada correo nuevo'},
+    {quien:'Compran',                   n:c.ventas,          falta:null},
+  ];
+  const tope = Math.max(1, ...pasos.map(p=>p.n||0));
+
+  return pasos.map((p,i)=>{
+    const previo = i > 0 ? pasos[i-1].n : null;
+    const salto = (i > 0 && previo > 0 && p.n != null)
+      ? `<div class="salto">↓ pasa el <b>${pct(p.n/previo)}</b></div>` : '';
+    const ancho = p.n ? Math.max(2, p.n/tope*100) : 0;
+    const cifra = p.n ? num(p.n) : (p.falta ? '—' : '0');
+    return salto + `<div class="paso">
+      <div class="fila"><span class="quien">${p.quien}</span><span class="cuanto">${cifra}</span></div>
+      <div class="barra"><span style="width:${ancho}%"></span></div>
+      ${!p.n && p.falta ? `<div class="salto" style="margin:7px 0 0">Saldrá ${p.falta}.</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+/* ---------- gráfico ---------- */
 function dibujar(visitasDia, ventasDia){
   const svg = document.getElementById('grafico');
   const dias = [...new Set([...visitasDia.map(d=>d.dia), ...ventasDia.map(d=>d.dia)])].sort();
-  if(!dias.length){ svg.innerHTML = ''; return; }
+  if(!dias.length){ svg.innerHTML = '<text x="360" y="100" fill="#94A4AC" font-size="14" text-anchor="middle">Todavía no hay nada que dibujar</text>'; return; }
 
   const v = Object.fromEntries(visitasDia.map(d=>[d.dia,d.visitas]));
   const s = Object.fromEntries(ventasDia.map(d=>[d.dia,d.ventas]));
   const maxV = Math.max(1, ...dias.map(d=>v[d]||0));
   const maxS = Math.max(1, ...dias.map(d=>s[d]||0));
-  const An = 720, Al = 170, paso = dias.length > 1 ? An/(dias.length-1) : 0;
+  const M = 10, An = 720 - M*2, Al = 200 - M*2;
+  const paso = dias.length > 1 ? An/(dias.length-1) : 0;
+  const px = (i) => M + (dias.length > 1 ? i*paso : An/2);
+  const py = (val, max) => M + Al - (val||0)/max*Al;
 
-  const linea = (datos, max) => dias.map((d,i)=>{
-    const x = dias.length > 1 ? i*paso : An/2;
-    const y = Al - (datos[d]||0)/max*Al;
-    return `${i?'L':'M'}${x.toFixed(1)},${y.toFixed(1)}`;
-  }).join(' ');
-
-  const puntos = (datos, max, color) => dias.map((d,i)=>{
-    if(!datos[d]) return '';
-    const x = dias.length > 1 ? i*paso : An/2;
-    const y = Al - datos[d]/max*Al;
-    return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="${color}"/>`;
-  }).join('');
+  const linea = (datos,max) => dias.map((d,i)=>`${i?'L':'M'}${px(i).toFixed(1)},${py(datos[d],max).toFixed(1)}`).join(' ');
+  const puntos = (datos,max,color) => dias.map((d,i)=>datos[d]
+    ? `<circle cx="${px(i).toFixed(1)}" cy="${py(datos[d],max).toFixed(1)}" r="3.5" fill="${color}"/>` : '').join('');
 
   svg.innerHTML =
-    `<path d="${linea(v,maxV)}" fill="none" stroke="#B6A47A" stroke-width="2" stroke-linejoin="round"/>` +
-    `<path d="${linea(s,maxS)}" fill="none" stroke="#F4F1E9" stroke-width="2" stroke-dasharray="4 4" stroke-linejoin="round"/>` +
+    `<path d="${linea(v,maxV)}" fill="none" stroke="#B6A47A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>` +
+    `<path d="${linea(s,maxS)}" fill="none" stroke="#F4F1E9" stroke-width="2" stroke-dasharray="4 4" stroke-linejoin="round" stroke-linecap="round"/>` +
     puntos(v,maxV,'#B6A47A') + puntos(s,maxS,'#F4F1E9');
 }
 
+/* ---------- carga ---------- */
+let diasActuales = 29;
+
 async function cargar(dias){
-  const hasta = new Date();
-  const desde = new Date(Date.now() - dias*86400000);
+  diasActuales = dias;
   const f = (d) => d.toISOString().slice(0,10);
+  const desde = f(new Date(Date.now() - dias*86400000));
+  const hasta = f(new Date());
 
   document.getElementById('sub').textContent = 'Cargando…';
 
   let d;
   try{
-    const r = await fetch(`/api/panel/datos?desde=${f(desde)}&hasta=${f(hasta)}`, {cache:'no-store'});
+    const r = await fetch(`/api/panel/datos?desde=${desde}&hasta=${hasta}`, {cache:'no-store'});
     if(!r.ok) throw new Error(r.status);
     d = await r.json();
   }catch(e){
@@ -208,28 +305,69 @@ async function cargar(dias){
     return;
   }
 
-  const R = d.resumen;
-  document.getElementById('sub').textContent =
-    `Del ${d.periodo.desde.split('-').reverse().join('/')} al ${d.periodo.hasta.split('-').reverse().join('/')}`;
+  const m = d.metricas, c = d.crudos;
+  const fmt = (s) => s.split('-').reverse().join('/');
+  document.getElementById('sub').textContent = `Del ${fmt(d.periodo.desde)} al ${fmt(d.periodo.hasta)}`;
 
-  document.getElementById('principales').innerHTML =
-    tarjeta('Ingresos', euro(R.ingresos), 'Lo que ha entrado en el periodo.') +
-    tarjeta('Ventas', num(R.ventas), `De ${num(R.compradoras)} personas distintas.`) +
-    tarjeta('Ticket medio', euro(R.ticketMedio), 'Lo que se gasta de media cada compra.') +
-    tarjeta('Conversión', pct(R.conversion), 'De las que ven la página de la guía, cuántas compran.');
+  document.getElementById('embudo').innerHTML = embudo(c);
 
-  document.getElementById('secundarias').innerHTML =
-    tarjeta('Visitas', num(R.visitas), `${num(R.visitasGuia)} a la página de la guía.`) +
-    tarjeta('Valor por visita', euro(R.valorPorVisita), 'Lo que deja de media cada visita a la página de venta.') +
-    tarjeta('Valor por clienta', euro(R.valorPorClienta), 'Todo lo que deja de media una clienta. Sube cuando repiten.') +
-    tarjeta('Coste por clienta', euro(R.costePorClienta),
-      R.gastos ? 'Lo que cuesta conseguir una clienta.' : 'Saldrá cuando haya gastos apuntados.');
+  document.getElementById('entra').innerHTML =
+    tarjeta({rotulo:'Ingresos', valor:euro(m.ingresos),
+      pista:'Todo lo que ha entrado en el periodo.'}) +
+    tarjeta({rotulo:'Ticket medio', sigla:'AOV', valor:euro(m.ticketMedio),
+      pista:'Lo que se gasta de media cada compra.',
+      falta:'Saldrá con la primera venta.'}) +
+    tarjeta({rotulo:'Valor por clienta', sigla:'LTV', valor:euro(m.valorPorClienta),
+      pista:'Todo lo que te deja de media una clienta a lo largo del tiempo. Sube cuando repiten.',
+      falta:'Saldrá con la primera venta.'}) +
+    tarjeta({rotulo:'Valor por visita', sigla:'EPC', valor:euro(m.valorPorVisita),
+      pista:'Lo que deja de media cada visita a la página de la guía. Dice cuánto vale traer una persona más.',
+      falta:'Hacen falta visitas a la página de la guía.'});
+
+  document.getElementById('cuesta').innerHTML =
+    tarjeta({rotulo:'Gastos', valor:euro(m.gastos),
+      pista:'Lo que has apuntado para este periodo.'}) +
+    tarjeta({rotulo:'Coste por clienta', sigla:'CAC', valor:euro(m.costePorClienta),
+      pista:'Lo que te cuesta conseguir una clienta. Es la cifra que hay que comparar con el valor por clienta: si cuesta más de lo que deja, pierdes dinero.',
+      falta:'Hacen falta gastos apuntados y alguna venta.'}) +
+    tarjeta({rotulo:'Coste por correo', sigla:'CPL', valor:euro(m.costePorLead),
+      pista:'Lo que cuesta conseguir que alguien te deje su correo.',
+      falta:'Hacen falta gastos apuntados y correos nuevos.'}) +
+    tarjeta({rotulo:'Retorno', sigla:'ROAS', valor:veces(m.roas),
+      pista:'Por cada euro gastado, cuántos vuelven en ventas. Por debajo de 1× estás perdiendo.',
+      falta:'Hacen falta gastos apuntados.'});
+
+  document.getElementById('cuesta2').innerHTML =
+    tarjeta({rotulo:'Beneficio sobre lo gastado', sigla:'ROI', valor:pct(m.roi),
+      pista:'Lo mismo que el retorno pero en porcentaje de ganancia: 0 % es quedarse igual.',
+      falta:'Hacen falta gastos apuntados.'}) +
+    tarjeta({rotulo:'Recuperación', valor:veces(m.payback),
+      pista:'Cuántas compras hacen falta para recuperar lo que costó traer a esa clienta. Menos de 1 es recuperarlo en la primera.',
+      falta:'Hacen falta gastos apuntados y alguna venta.'}) +
+    tarjeta({rotulo:'Repiten', valor:pct(m.repeticion),
+      pista:'De las que compran, cuántas vuelven a comprar otra cosa.',
+      falta:'Saldrá cuando haya compradoras.'});
+
+  document.getElementById('camino').innerHTML =
+    tarjeta({rotulo:'Conversión', valor:pct(m.conversion),
+      pista:'De las que ven la página de la guía, cuántas compran. Es el número que más mueve el negocio.',
+      falta:'Hacen falta visitas a la página de la guía.'}) +
+    tarjeta({rotulo:'Dejan el correo', valor:pct(m.conversionLead),
+      pista:'De las que entran en la web, cuántas acaban dando su correo.',
+      falta:'Saldrá cuando Systeme avise de cada correo nuevo.'}) +
+    tarjeta({rotulo:'Clics desde el vídeo', sigla:'CTR', valor:pct(m.clicDesdeVideo),
+      pista:'De las que ven un vídeo, cuántas pinchan tu enlace. Dice si la llamada del vídeo funciona.',
+      falta:'Hacen falta los datos de YouTube y enlaces con marca.'}) +
+    tarjeta({rotulo:'Acaban el test', valor:pct(m.finalizacionTest),
+      pista:'De las que empiezan el test de alimentos, cuántas llegan al final.',
+      falta:'Saldrá cuando el test esté medido.'});
 
   dibujar(d.visitasDia, d.ventasDia);
 
+  const topeV = Math.max(0, ...d.porVideo.map(f=>f.visitas));
   document.getElementById('videos').innerHTML = tabla(
     ['Marca del enlace','Visitas'],
-    d.porVideo.map(f=>[f.marca, num(f.visitas)]),
+    d.porVideo.map(f=>[f.marca, conBarra(f.visitas, topeV)]),
     'Todavía no ha llegado nadie por un enlace con marca. En cuanto publiques un vídeo con su enlace propio, aparecerá aquí.'
   );
 
@@ -239,9 +377,10 @@ async function cargar(dias){
     'Aún no hay ventas en este periodo.'
   );
 
+  const topeP = Math.max(0, ...d.porPagina.map(f=>f.visitas));
   document.getElementById('paginas').innerHTML = tabla(
     ['Página','Visitas'],
-    d.porPagina.map(f=>[nombrePagina(f.sitio, f.ruta), num(f.visitas)]),
+    d.porPagina.map(f=>[nombrePagina(f.sitio, f.ruta), conBarra(f.visitas, topeP)]),
     'Aún no hay visitas en este periodo.'
   );
 
@@ -250,14 +389,58 @@ async function cargar(dias){
     d.videos.map(f=>[f.titulo || f.video, num(f.visualizaciones)]),
     'Todavía no se han traído los datos de YouTube.'
   );
+
+  pintarGastos(d.listaGastos);
 }
 
+function pintarGastos(lista){
+  document.getElementById('gastos').innerHTML = tabla(
+    ['Mes','En qué','Importe',''],
+    lista.map(g=>[
+      g.mes.split('-').reverse().join('/'),
+      g.concepto,
+      euro(g.importe),
+      `<button class="borrar" data-id="${g.id}" title="Borrar">quitar</button>`
+    ]),
+    'Todavía no has apuntado ningún gasto.'
+  );
+}
+
+/* ---------- interacción ---------- */
 document.getElementById('periodos').addEventListener('click', (e) => {
   const b = e.target.closest('button');
   if(!b) return;
-  [...e.currentTarget.querySelectorAll('button')].forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  [...e.currentTarget.querySelectorAll('button')].forEach(x => {
+    if(x === b) x.setAttribute('aria-pressed','true'); else x.removeAttribute('aria-pressed');
+  });
   cargar(Number(b.dataset.dias));
 });
+
+document.getElementById('formGasto').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const f = e.target;
+  const cuerpo = {
+    mes: f.mes.value,
+    concepto: f.concepto.value,
+    importe: Number(f.importe.value),
+  };
+  const r = await fetch('/api/panel/gasto', {
+    method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(cuerpo)
+  });
+  if(!r.ok){ alert('No he podido apuntarlo. Revisa los datos.'); return; }
+  f.concepto.value = ''; f.importe.value = '';
+  cargar(diasActuales);
+});
+
+document.getElementById('gastos').addEventListener('click', async (e) => {
+  const b = e.target.closest('.borrar');
+  if(!b) return;
+  await fetch('/api/panel/gasto?id=' + b.dataset.id, {method:'DELETE'});
+  cargar(diasActuales);
+});
+
+// Mes de hoy por defecto en el formulario de gastos.
+document.querySelector('input[name="mes"]').value = new Date().toISOString().slice(0,7);
 
 cargar(29);
 </script>
