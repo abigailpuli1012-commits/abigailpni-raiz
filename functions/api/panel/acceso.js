@@ -3,6 +3,10 @@ import { hayClave, crearClave, comprobarClave, nuevaGalleta, galletaFuera } from
 
 const JSON_ = { 'content-type': 'application/json', 'cache-control': 'no-store' };
 
+// Mientras la contraseña no esté creada, cualquiera que diera con la dirección
+// podría adelantarse y crearla él. Por eso solo estos correos pueden crearla.
+const CORREOS = ['abigailpuli1012@gmail.com', 'abigail@abigailpni.com'];
+
 // Cuántos intentos fallidos seguidos se permiten antes de hacer esperar.
 const espera = new Map();
 
@@ -34,6 +38,9 @@ export async function onRequestPost({ request, env }) {
   const clave = String(c.clave || '');
 
   if (c.accion === 'crear') {
+    if (!CORREOS.includes(correo.toLowerCase())) {
+      return new Response(JSON.stringify({ error: 'Ese correo no puede crear el acceso.' }), { status: 403, headers: JSON_ });
+    }
     if (clave.length < 8) {
       return new Response(JSON.stringify({ error: 'La contraseña tiene que tener al menos 8 caracteres.' }), { status: 400, headers: JSON_ });
     }
