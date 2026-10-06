@@ -4,6 +4,16 @@
 
 const CORS = { 'cache-control': 'no-store' };
 
+// La columna «recurrente» se añadió después. Si ya existe, SQLite se queja y
+// no pasa nada: se ignora.
+async function alDia(env) {
+  try {
+    await env.PANEL.prepare('ALTER TABLE gastos ADD COLUMN recurrente INTEGER NOT NULL DEFAULT 0').run();
+  } catch {
+    /* la columna ya estaba */
+  }
+}
+
 function mal(texto) {
   return new Response(JSON.stringify({ error: texto }), {
     status: 400,
@@ -12,13 +22,15 @@ function mal(texto) {
 }
 
 export async function onRequestGet({ env }) {
+  await alDia(env);
   const { results } = await env.PANEL.prepare(
-    'SELECT id, mes, concepto, importe FROM gastos ORDER BY mes DESC, id DESC LIMIT 60'
+    'SELECT id, mes, concepto, importe, recurrente FROM gastos ORDER BY mes DESC, id DESC LIMIT 60'
   ).all();
   return Response.json(results, { headers: CORS });
 }
 
 export async function onRequestPost({ request, env }) {
+  await alDia(env);
   let c;
   try {
     c = await request.json();
@@ -34,8 +46,10 @@ export async function onRequestPost({ request, env }) {
   if (!concepto) return mal('Falta decir en qué se ha gastado.');
   if (!Number.isFinite(importe) || importe < 0) return mal('El importe no es válido.');
 
-  await env.PANEL.prepare('INSERT INTO gastos (mes, concepto, importe) VALUES (?, ?, ?)')
-    .bind(mes, concepto, importe)
+  await env.PANEL.prepare(
+    'INSERT INTO gastos (mes, concepto, importe, recurrente) VALUES (?, ?, ?, ?)'
+  )
+    .bind(mes, concepto, importe, c.recurrente ? 1 : 0)
     .run();
 
   return Response.json({ ok: true }, { headers: CORS });

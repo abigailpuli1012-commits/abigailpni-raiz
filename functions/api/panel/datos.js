@@ -10,6 +10,22 @@
 
 const SOLO_GUIA = `(sitio = 'test' OR ruta LIKE '/guia%')`;
 
+// Precio de la guía. Solo se usa para calcular el punto de equilibrio mientras
+// todavía no hay ventas de las que sacar el ticket medio real.
+const PRECIO_GUIA = 48;
+
+// Lista de meses («2026-09», «2026-10»…) que caen dentro del periodo.
+function mesesEntre(desde, hasta) {
+  const meses = [];
+  let [a, m] = desde.slice(0, 7).split('-').map(Number);
+  const [aF, mF] = hasta.slice(0, 7).split('-').map(Number);
+  while (a < aF || (a === aF && m <= mF)) {
+    meses.push(`${a}-${String(m).padStart(2, '0')}`);
+    if (++m > 12) { m = 1; a++; }
+  }
+  return meses;
+}
+
 function hoy() {
   return new Date().toISOString().slice(0, 10);
 }
@@ -79,8 +95,10 @@ export async function onRequestGet({ request, env }) {
         WHERE v.dia BETWEEN ? AND ? GROUP BY canal ORDER BY ventas DESC`, desde, hasta),
     q(`SELECT COUNT(*) AS n FROM (SELECT contacto FROM ventas
          WHERE contacto IS NOT NULL GROUP BY contacto HAVING COUNT(*) > 1)`),
-    q(`SELECT COALESCE(SUM(importe),0) AS total FROM gastos WHERE mes BETWEEN ? AND ?`, mesDesde, mesHasta),
-    q(`SELECT id, mes, concepto, importe FROM gastos ORDER BY mes DESC, id DESC LIMIT 40`),
+    q(`SELECT 0 AS total`),
+    q(`SELECT id, mes, concepto, importe,
+              COALESCE(recurrente, 0) AS recurrente
+         FROM gastos ORDER BY recurrente DESC, mes DESC, id DESC LIMIT 60`),
     q(`SELECT video, titulo, MAX(visualizaciones) AS visualizaciones FROM videos
         WHERE dia BETWEEN ? AND ? GROUP BY video, titulo
         ORDER BY visualizaciones DESC LIMIT 25`, desde, hasta),
@@ -100,8 +118,18 @@ export async function onRequestGet({ request, env }) {
   const visitasConMarca = porVideo.results.reduce((s, f) => s + f.visitas, 0);
   const visualizaciones = videos.results.reduce((s, f) => s + (f.visualizaciones || 0), 0);
 
-  // Gastos = los fijos (Systeme, dominio…) más lo invertido en campañas.
-  const gastosFijos = fijos.results[0] ? fijos.results[0].total : 0;
+  // Gastos fijos: los que se repiten cada mes cuentan una vez por cada mes del
+  // periodo (desde el mes en que se dieron de alta); los sueltos, solo en el suyo.
+  const meses = mesesEntre(desde, hasta);
+  const gastosFijos = listaGastos.results.reduce((s, g) => {
+    if (g.recurrente) return s + g.importe * meses.filter((m) => m >= g.mes).length;
+    return meses.includes(g.mes) ? s + g.importe : s;
+  }, 0);
+  // Lo que cuesta tener el negocio en pie un mes cualquiera.
+  const gastosFijosMes = listaGastos.results
+    .filter((g) => g.recurrente)
+    .reduce((s, g) => s + g.importe, 0);
+
   const gastoCampanas = campanas.results.reduce((s, c) => s + (c.gasto || 0), 0);
   const impresiones = campanas.results.reduce((s, c) => s + (c.impresiones || 0), 0);
   const clics = campanas.results.reduce((s, c) => s + (c.clics || 0), 0);
@@ -119,7 +147,7 @@ export async function onRequestGet({ request, env }) {
         ingresos, ventas: r.ventas, compradoras: r.compradoras,
         visitasGuia, visitasConMarca, testEmpezados, testAcabados,
         visualizaciones, leads: nLeads,
-        gastos, gastosFijos, gastoCampanas, impresiones, clics,
+        gastos, gastosFijos, gastosFijosMes, gastoCampanas, impresiones, clics,
         repetidoras: nRepetidoras,
       },
       metricas: {
@@ -130,11 +158,17 @@ export async function onRequestGet({ request, env }) {
         valorPorVisita: dividir(ingresos, visitasGuia),
         // Lo que cuesta
         gastos,
-        costePorClienta: dividir(gastos, r.compradoras),
-        costePorLead: dividir(gastos, nLeads),
-        roas: dividir(ingresos, gastos),
+        // El coste de captar: solo publicidad. Es el que manda para decidir si
+        // merece la pena gastar más en anuncios.
+        costePorClienta: dividir(gastoCampanas, r.compradoras),
+        // El coste contándolo todo, incluidos los gastos que pagas vendas o no.
+        costeTotalPorClienta: dividir(gastos, r.compradoras),
+        costePorLead: dividir(gastoCampanas, nLeads),
+        roas: dividir(ingresos, gastoCampanas),
         roi: gastos > 0 ? (ingresos - gastos) / gastos : null,
-        recuperacion: dividir(dividir(gastos, r.compradoras), ticketMedio),
+        recuperacion: dividir(dividir(gastoCampanas, r.compradoras), ticketMedio),
+        // Cuántas guías hay que vender al mes para cubrir los gastos fijos.
+        puntoEquilibrio: dividir(gastosFijosMes, ticketMedio || PRECIO_GUIA),
         // La publicidad
         cpm: dividir(gastoCampanas * 1000, impresiones),
         cpc: dividir(gastoCampanas, clics),
