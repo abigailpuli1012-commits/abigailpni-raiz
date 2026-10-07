@@ -53,6 +53,13 @@ async function prepararTablas(db) {
        gasto REAL NOT NULL DEFAULT 0, impresiones INTEGER NOT NULL DEFAULT 0,
        clics INTEGER NOT NULL DEFAULT 0)`
   ).run();
+  // «recurrente» se añadió después a los gastos. Si ya está, SQLite protesta y
+  // se ignora; si no, queda creada antes de que nadie la consulte.
+  try {
+    await db.prepare('ALTER TABLE gastos ADD COLUMN recurrente INTEGER NOT NULL DEFAULT 0').run();
+  } catch {
+    /* ya existía */
+  }
 }
 
 export async function reunirDatos(env, desdePedido, hastaPedido) {
