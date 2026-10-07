@@ -48,6 +48,11 @@ async function prepararTablas(db) {
        origen TEXT, bruto TEXT)`
   ).run();
   await db.prepare(
+    `CREATE TABLE IF NOT EXISTS devoluciones (
+       id INTEGER PRIMARY KEY AUTOINCREMENT, recibida TEXT NOT NULL, dia TEXT NOT NULL,
+       contacto TEXT, bruto TEXT)`
+  ).run();
+  await db.prepare(
     `CREATE TABLE IF NOT EXISTS campanas (
        id INTEGER PRIMARY KEY AUTOINCREMENT, mes TEXT NOT NULL, nombre TEXT,
        gasto REAL NOT NULL DEFAULT 0, impresiones INTEGER NOT NULL DEFAULT 0,
@@ -74,7 +79,7 @@ export async function reunirDatos(env, desdePedido, hastaPedido) {
 
   const [
     resumen, ventasDia, visitasDia, porPagina, porVideo, porCanal,
-    repetidoras, fijos, listaGastos, videos, leads, trafico, campanas,
+    repetidoras, fijos, listaGastos, videos, leads, trafico, campanas, devueltas,
   ] = await Promise.all([
     q(`SELECT COUNT(*) AS ventas, COALESCE(SUM(importe),0) AS ingresos,
               COUNT(DISTINCT contacto) AS compradoras
@@ -111,6 +116,7 @@ export async function reunirDatos(env, desdePedido, hastaPedido) {
         WHERE dia BETWEEN ? AND ? AND ${SOLO_GUIA} GROUP BY sitio, ruta`, desde, hasta),
     q(`SELECT id, mes, nombre, gasto, impresiones, clics FROM campanas
         WHERE mes BETWEEN ? AND ? ORDER BY mes DESC, id DESC`, mesDesde, mesHasta),
+    q(`SELECT COUNT(*) AS n FROM devoluciones WHERE dia BETWEEN ? AND ?`, desde, hasta),
   ]);
 
   const r = resumen.results[0] || { ventas: 0, ingresos: 0, compradoras: 0 };
@@ -141,6 +147,7 @@ export async function reunirDatos(env, desdePedido, hastaPedido) {
 
   const nLeads = leads.results[0] ? leads.results[0].n : 0;
   const nRepetidoras = repetidoras.results[0] ? repetidoras.results[0].n : 0;
+  const nDevueltas = devueltas.results[0] ? devueltas.results[0].n : 0;
   const ingresos = r.ingresos;
   const ticketMedio = dividir(ingresos, r.ventas);
 
@@ -152,6 +159,7 @@ export async function reunirDatos(env, desdePedido, hastaPedido) {
         visualizaciones, leads: nLeads,
         gastos, gastosFijos, gastosFijosMes, gastoCampanas, impresiones, clics,
         repetidoras: nRepetidoras,
+        devoluciones: nDevueltas,
       },
       metricas: {
         // Lo que entra
@@ -183,6 +191,8 @@ export async function reunirDatos(env, desdePedido, hastaPedido) {
         finalizacionTest: dividir(testAcabados, testEmpezados),
         // Lo que se queda
         repeticion: dividir(nRepetidoras, r.compradoras),
+        // Lo que se devuelve: si sube, algo promete más de lo que da.
+        tasaDevolucion: dividir(nDevueltas, r.ventas),
       },
       ventasDia: ventasDia.results,
       visitasDia: visitasDia.results,

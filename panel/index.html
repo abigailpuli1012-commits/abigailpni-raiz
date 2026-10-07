@@ -637,6 +637,9 @@ async function cargar(dias){
       falta:'Hacen falta visitas a la página de la guía.'}) +
     metrica({emoji:'🔁', nombre:'Repiten', valor:pct(m.repeticion),
       expl:'De las que compran, cuántas vuelven a comprar.', falta:'Saldrá cuando haya compradoras.'}) +
+    metrica({emoji:'↩️', nombre:'Devoluciones', valor:pct(m.tasaDevolucion),
+      expl:'De las que compran, cuántas piden el dinero de vuelta. Si sube, algo está prometiendo más de lo que da.',
+      falta:'Saldrá con la primera venta.'}) +
     metrica({emoji:'💸', nombre:'Gastos del periodo', valor:euro(m.gastos),
       expl:`Fijos ${euro(c.gastosFijos)} + campañas ${euro(c.gastoCampanas)}.`}) +
     metrica({emoji:'📊', nombre:'Beneficio sobre lo gastado', sigla:'ROI', valor:pct(m.roi),
