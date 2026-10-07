@@ -39,7 +39,10 @@ function cortesia(p, d) {
       : `Vas por ${c.ventas} guías.`;
     return `¡Hola! ${estado} Puedes preguntarme cómo vas, qué vídeo trae más gente o si la publicidad sale a cuenta.`;
   }
-  if (tiene('gracias', 'genial', 'perfecto', 'vale', 'ok', 'guay')) {
+  // «vale» y «ok» solo cuentan si es lo único que se ha escrito: si no,
+  // «cuánto vale mi casa» se tomaría por un «vale, gracias».
+  const soloEso = ['vale', 'ok', 'okey', 'genial', 'perfecto', 'guay'].includes(limpio);
+  if (soloEso || tiene('gracias', 'muchas gracias')) {
     return 'A mandar. Aquí sigo.';
   }
   if (tiene('quien eres', 'que eres', 'como te llamas', 'tu nombre')) {
