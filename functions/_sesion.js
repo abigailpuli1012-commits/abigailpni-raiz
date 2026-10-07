@@ -17,6 +17,12 @@ export async function tabla(db) {
        id INTEGER PRIMARY KEY CHECK (id = 1),
        correo TEXT, sal TEXT, resumen TEXT, secreto TEXT, creada TEXT)`
   ).run();
+  // «codigo» se añadió después, para poder recuperar la contraseña.
+  try {
+    await db.prepare('ALTER TABLE acceso ADD COLUMN codigo TEXT').run();
+  } catch {
+    /* ya existía */
+  }
 }
 
 export async function hayClave(db) {
@@ -46,25 +52,63 @@ function igual(a, b) {
   return d === 0;
 }
 
-export async function crearClave(db, correo, clave) {
-  await tabla(db);
-  if (await hayClave(db)) return false;
-  const sal = aHex(crypto.getRandomValues(new Uint8Array(16)));
-  const secreto = aHex(crypto.getRandomValues(new Uint8Array(32)));
-  await db.prepare(
-    'INSERT OR REPLACE INTO acceso (id, correo, sal, resumen, secreto, creada) VALUES (1, ?, ?, ?, ?, ?)'
-  )
-    .bind(String(correo || '').trim().toLowerCase(), sal, await resumir(clave, sal), secreto, new Date().toISOString())
-    .run();
-  return true;
+// Código de recuperación: lo único que permite poner una contraseña nueva si
+// se te olvida. Se enseña una sola vez, al crear la contraseña, y de él se
+// guarda solo un resumen, igual que de la contraseña.
+function nuevoCodigo() {
+  const letras = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // sin I, O, 0 ni 1
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  const c = [...bytes].map((b) => letras[b % letras.length]).join('');
+  return `${c.slice(0, 4)}-${c.slice(4, 8)}-${c.slice(8, 12)}-${c.slice(12, 16)}`;
 }
 
-export async function comprobarClave(db, correo, clave) {
+export async function crearClave(db, correo, clave) {
   await tabla(db);
-  const r = await db.prepare('SELECT correo, sal, resumen FROM acceso WHERE id = 1').first();
+  if (await hayClave(db)) return null;
+
+  const sal = aHex(crypto.getRandomValues(new Uint8Array(16)));
+  const secreto = aHex(crypto.getRandomValues(new Uint8Array(32)));
+  const codigo = nuevoCodigo();
+
+  await db.prepare(
+    'INSERT OR REPLACE INTO acceso (id, correo, sal, resumen, secreto, creada, codigo) VALUES (1, ?, ?, ?, ?, ?, ?)'
+  )
+    .bind(
+      String(correo || '').trim().toLowerCase(), sal,
+      await resumir(clave, sal), secreto, new Date().toISOString(),
+      await resumir(codigo, sal)
+    )
+    .run();
+
+  return codigo;
+}
+
+// El correo no se comprueba: la contraseña es lo que manda. Comprobarlo solo
+// servía para dejarla fuera por una mayúscula o un espacio de más.
+export async function comprobarClave(db, clave) {
+  await tabla(db);
+  const r = await db.prepare('SELECT sal, resumen FROM acceso WHERE id = 1').first();
   if (!r || !r.resumen) return false;
-  if (r.correo && String(correo || '').trim().toLowerCase() !== r.correo) return false;
   return igual(await resumir(clave, r.sal), r.resumen);
+}
+
+// Cambiar la contraseña con el código de recuperación.
+export async function recuperar(db, codigo, claveNueva) {
+  await tabla(db);
+  const r = await db.prepare('SELECT sal, codigo FROM acceso WHERE id = 1').first();
+  if (!r || !r.codigo) return false;
+
+  const limpio = String(codigo || '').trim().toUpperCase().replace(/\s/g, '');
+  if (!igual(await resumir(limpio, r.sal), r.codigo)) return false;
+
+  // Contraseña nueva, sal nueva y código nuevo: el viejo deja de valer.
+  const sal = aHex(crypto.getRandomValues(new Uint8Array(16)));
+  const nuevo = nuevoCodigo();
+  await db.prepare('UPDATE acceso SET sal = ?, resumen = ?, codigo = ? WHERE id = 1')
+    .bind(sal, await resumir(claveNueva, sal), await resumir(nuevo, sal))
+    .run();
+
+  return nuevo;
 }
 
 async function clavePara(db) {

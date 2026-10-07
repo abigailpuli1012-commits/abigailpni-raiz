@@ -1,5 +1,5 @@
 // Crear la contraseña la primera vez, entrar, y salir.
-import { hayClave, crearClave, comprobarClave, nuevaGalleta, galletaFuera } from '../../_sesion.js';
+import { hayClave, crearClave, comprobarClave, recuperar, nuevaGalleta, galletaFuera } from '../../_sesion.js';
 
 const JSON_ = { 'content-type': 'application/json', 'cache-control': 'no-store' };
 
@@ -53,19 +53,35 @@ async function atender({ request, env }) {
     if (clave.length < 8) {
       return new Response(JSON.stringify({ error: 'La contraseña tiene que tener al menos 8 caracteres.' }), { status: 400, headers: JSON_ });
     }
-    if (!(await crearClave(db, correo, clave))) {
+    const codigo = await crearClave(db, correo, clave);
+    if (!codigo) {
       return new Response(JSON.stringify({ error: 'La contraseña ya estaba creada.' }), { status: 409, headers: JSON_ });
     }
     const galleta = await nuevaGalleta(db);
-    return new Response(JSON.stringify({ ok: true }), { headers: { ...JSON_, 'set-cookie': galleta } });
+    return new Response(JSON.stringify({ ok: true, codigo }), { headers: { ...JSON_, 'set-cookie': galleta } });
+  }
+
+  if (c.accion === 'recuperar') {
+    await new Promise((r) => setTimeout(r, tardanza(ip)));
+    if (clave.length < 8) {
+      return new Response(JSON.stringify({ error: 'La contraseña nueva tiene que tener al menos 8 caracteres.' }), { status: 400, headers: JSON_ });
+    }
+    const nuevo = await recuperar(db, c.codigo, clave);
+    if (!nuevo) {
+      espera.set(ip, (espera.get(ip) || 0) + 1);
+      return new Response(JSON.stringify({ error: 'Ese código de recuperación no vale.' }), { status: 401, headers: JSON_ });
+    }
+    espera.delete(ip);
+    const galleta = await nuevaGalleta(db);
+    return new Response(JSON.stringify({ ok: true, codigo: nuevo }), { headers: { ...JSON_, 'set-cookie': galleta } });
   }
 
   // Entrar.
   await new Promise((r) => setTimeout(r, tardanza(ip)));
 
-  if (!(await comprobarClave(db, correo, clave))) {
+  if (!(await comprobarClave(db, clave))) {
     espera.set(ip, (espera.get(ip) || 0) + 1);
-    return new Response(JSON.stringify({ error: 'El correo o la contraseña no son correctos.' }), { status: 401, headers: JSON_ });
+    return new Response(JSON.stringify({ error: 'Esa contraseña no es la que tienes puesta.' }), { status: 401, headers: JSON_ });
   }
 
   espera.delete(ip);
