@@ -93,8 +93,12 @@ export async function reunirDatos(env, desdePedido, hastaPedido) {
               COALESCE(SUM(v.importe),0) AS ingresos
          FROM ventas v LEFT JOIN origenes o ON o.huella = v.contacto
         WHERE v.dia BETWEEN ? AND ? GROUP BY canal ORDER BY ventas DESC`, desde, hasta),
+    // Las que repiten, contadas DENTRO del periodo. Si se contaran de siempre,
+    // al mirar un periodo corto podrían salir más repetidoras que compradoras y
+    // el porcentaje se iría por encima del 100 %.
     q(`SELECT COUNT(*) AS n FROM (SELECT contacto FROM ventas
-         WHERE contacto IS NOT NULL GROUP BY contacto HAVING COUNT(*) > 1)`),
+         WHERE contacto IS NOT NULL AND dia BETWEEN ? AND ?
+         GROUP BY contacto HAVING COUNT(*) > 1)`, desde, hasta),
     q(`SELECT 0 AS total`),
     q(`SELECT id, mes, concepto, importe,
               COALESCE(recurrente, 0) AS recurrente
