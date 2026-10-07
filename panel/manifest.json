@@ -1,0 +1,12 @@
+{
+  "name": "Tu panel · Soberanía Biológica",
+  "short_name": "Tu panel",
+  "start_url": "/panel/",
+  "scope": "/panel/",
+  "display": "standalone",
+  "background_color": "#FDF6F7",
+  "theme_color": "#E79BB0",
+  "icons": [
+    { "src": "/panel/icono.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tu panel</title>
 <meta name="robots" content="noindex, nofollow">
+<link rel="manifest" href="/panel/manifest.json">
+<link rel="icon" href="/panel/icono.svg" type="image/svg+xml">
+<meta name="theme-color" content="#E79BB0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Tu panel">
 <style>
 :root{
   --fondo:#FDF6F7;
@@ -749,6 +754,11 @@ document.getElementById('salir').addEventListener('click', async () => {
 document.querySelectorAll('input[name="mes"]').forEach(i => {
   i.value = new Date().toISOString().slice(0,7);
 });
+
+// Se refresca solo: cada minuto mientras lo tengas delante, y al volver a la
+// pestaña. Si está en segundo plano no gasta nada.
+setInterval(() => { if(!document.hidden) cargar(diasActuales); }, 60000);
+document.addEventListener('visibilitychange', () => { if(!document.hidden) cargar(diasActuales); });
 
 cargar(29);
 </script>
