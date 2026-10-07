@@ -104,8 +104,11 @@ export async function recuperar(db, codigo, claveNueva) {
   // Contraseña nueva, sal nueva y código nuevo: el viejo deja de valer.
   const sal = aHex(crypto.getRandomValues(new Uint8Array(16)));
   const nuevo = nuevoCodigo();
-  await db.prepare('UPDATE acceso SET sal = ?, resumen = ?, codigo = ? WHERE id = 1')
-    .bind(sal, await resumir(claveNueva, sal), await resumir(nuevo, sal))
+  // El secreto que firma las sesiones cambia también: si alguien te hubiera
+  // robado la sesión, al cambiar la contraseña se queda fuera.
+  const secreto = aHex(crypto.getRandomValues(new Uint8Array(32)));
+  await db.prepare('UPDATE acceso SET sal = ?, resumen = ?, codigo = ?, secreto = ? WHERE id = 1')
+    .bind(sal, await resumir(claveNueva, sal), await resumir(nuevo, sal), secreto)
     .run();
 
   return nuevo;

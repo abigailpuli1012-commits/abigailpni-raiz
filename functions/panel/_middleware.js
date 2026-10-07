@@ -190,11 +190,29 @@ fRec.addEventListener('submit', async (e) => {
 </html>`;
 }
 
+const BLINDAJE = {
+  // Nada de guiones ni estilos que no vengan de la propia página.
+  'content-security-policy':
+    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; " +
+    "img-src 'self' data:; font-src 'self'; connect-src 'self'; " +
+    "base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
+  'x-frame-options': 'DENY',
+  'x-content-type-options': 'nosniff',
+  'referrer-policy': 'no-referrer',
+  'permissions-policy': 'geolocation=(), microphone=(), camera=(), interest-cohort=()',
+  'cache-control': 'no-store',
+};
+
 export async function onRequest({ request, env, next }) {
-  if (await sesionValida(request, env.PANEL)) return next();
+  if (await sesionValida(request, env.PANEL)) {
+    const r = await next();
+    const cab = new Headers(r.headers);
+    for (const [k, v] of Object.entries(BLINDAJE)) cab.set(k, v);
+    return new Response(r.body, { status: r.status, headers: cab });
+  }
 
   return new Response(pantalla(await hayClave(env.PANEL)), {
     status: 401,
-    headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' },
+    headers: { 'content-type': 'text/html; charset=utf-8', ...BLINDAJE },
   });
 }

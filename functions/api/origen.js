@@ -15,7 +15,17 @@ const CORS = {
   'access-control-allow-headers': 'content-type',
 };
 
+// Solo se admite desde la página de pago de Systeme o desde la web de Abby.
+const CASA = /^https?:\/\/((www|test)\.)?abigailpni\.com(\/|$)/;
+
+function deCasa(request) {
+  const procede = request.headers.get('origin') || request.headers.get('referer') || '';
+  return CASA.test(procede);
+}
+
 export async function onRequestPost({ request, env }) {
+  if (!deCasa(request)) return new Response('no', { status: 403, headers: CORS });
+
   let cuerpo = {};
   try {
     cuerpo = await request.json();
@@ -29,6 +39,12 @@ export async function onRequestPost({ request, env }) {
   if (!/^[0-9a-f]{16}$/.test(huella) || !RESPUESTAS.includes(respuesta)) {
     return new Response('mal', { status: 400, headers: CORS });
   }
+
+  // Una respuesta por persona y nada más: el ON CONFLICT ya lo garantiza, pero
+  // además se limita cuántas distintas pueden entrar en un día.
+  const hoy = new Date().toISOString().slice(0, 10);
+  const cuantas = await env.PANEL.prepare('SELECT COUNT(*) AS n FROM origenes WHERE dia = ?').bind(hoy).first();
+  if (cuantas && cuantas.n >= 200) return new Response(null, { status: 204, headers: CORS });
 
   const ahora = new Date();
   await env.PANEL.prepare(

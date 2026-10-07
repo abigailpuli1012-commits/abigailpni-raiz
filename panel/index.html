@@ -472,6 +472,14 @@ const pct  = (n) => n == null ? '—' : (n*100).toLocaleString('es-ES',{maximumF
 const num  = (n) => n == null ? '—' : n.toLocaleString('es-ES');
 const veces= (n) => n == null ? '—' : n.toLocaleString('es-ES',{maximumFractionDigits:2}) + '×';
 
+// Todo lo que venga de fuera se escapa antes de pintarlo: si alguien colase
+// una etiqueta en una marca o en un concepto, aqui se queda en texto.
+function esc(v){
+  return String(v == null ? '' : v)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
 const CANALES = {
   youtube:'📺 Un vídeo de YouTube', busqueda:'🔍 Buscando en internet',
   recomendacion:'💬 Se lo recomendaron', instagram:'📸 Instagram',
@@ -673,32 +681,32 @@ async function cargar(dias){
 
   const topeV = Math.max(0, ...d.porVideo.map(f=>f.visitas));
   document.getElementById('videos').innerHTML = tabla(['Marca','Visitas'],
-    d.porVideo.map(f=>[f.marca, conBarra(f.visitas, topeV)]),
+    d.porVideo.map(f=>[esc(f.marca), conBarra(f.visitas, topeV)]),
     'Todavía no ha llegado nadie por un enlace con marca.');
 
   document.getElementById('canales').innerHTML = tabla(['Cómo te conoció','Ventas','Ingresos'],
-    d.porCanal.map(f=>[CANALES[f.canal] || f.canal, num(f.ventas), euro(f.ingresos)]),
+    d.porCanal.map(f=>[CANALES[f.canal] || esc(f.canal), num(f.ventas), euro(f.ingresos)]),
     'Aún no hay ventas en este periodo.');
 
   const topeP = Math.max(0, ...d.porPagina.map(f=>f.visitas));
   document.getElementById('paginas').innerHTML = tabla(['Página','Visitas'],
-    d.porPagina.map(f=>[nombrePagina(f.sitio, f.ruta), conBarra(f.visitas, topeP)]),
+    d.porPagina.map(f=>[esc(nombrePagina(f.sitio, f.ruta)), conBarra(f.visitas, topeP)]),
     'Aún no hay visitas en este periodo.');
 
   document.getElementById('youtube').innerHTML = tabla(['Vídeo','Visualizaciones'],
-    d.videos.map(f=>[f.titulo || f.video, num(f.visualizaciones)]),
+    d.videos.map(f=>[esc(f.titulo || f.video), num(f.visualizaciones)]),
     'Todavía no se han traído los datos de YouTube.');
 
   document.getElementById('gastos').innerHTML = tabla(['Mes','En qué','Importe',''],
     d.listaGastos.map(g=>[
       g.recurrente ? '🔁 cada mes' : g.mes.split('-').reverse().join('/'),
-      g.concepto, euro(g.importe),
+      esc(g.concepto), euro(g.importe),
       `<button class="quitar" data-id="${g.id}">quitar</button>`]),
     'Todavía no has apuntado ningún gasto fijo.');
 
   document.getElementById('campanas').innerHTML = tabla(['Mes','Campaña','Gastado','Impres.','Clics',''],
     d.listaCampanas.map(g=>[
-      g.mes.split('-').reverse().join('/'), g.nombre, euro(g.gasto),
+      g.mes.split('-').reverse().join('/'), esc(g.nombre), euro(g.gasto),
       num(g.impresiones), num(g.clics),
       `<button class="quitar" data-id="${g.id}">quitar</button>`]),
     'Todavía no has apuntado ninguna campaña.');
