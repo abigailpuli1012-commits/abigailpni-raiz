@@ -25,8 +25,12 @@ function sinTildes(t) {
 // Saludos y cortesías: no son preguntas sobre datos, pero quedar mudo ante un
 // «hola» es lo que peor sienta.
 function cortesia(p, d) {
-  const t = ' ' + sinTildes(p).trim() + ' ';
-  const tiene = (...xs) => xs.some((x) => t.includes(' ' + x + ' ') || t.trim() === x);
+  const limpio = sinTildes(p).trim().replace(/\s+/g, ' ');
+  // Solo se toma como saludo un mensaje corto: en "cuanto vale mi casa" la
+  // palabra "vale" no es un "vale, gracias".
+  if (limpio.split(' ').length > 5) return null;
+  const t = ' ' + limpio + ' ';
+  const tiene = (...xs) => xs.some((x) => t.includes(' ' + x + ' ') || limpio === x);
 
   if (tiene('hola', 'buenas', 'hey', 'holi', 'buenos dias', 'buenas tardes', 'buenas noches')) {
     const c = d.crudos;
@@ -41,7 +45,7 @@ function cortesia(p, d) {
   if (tiene('quien eres', 'que eres', 'como te llamas', 'tu nombre')) {
     return 'Soy Trufa. Vivo en tu panel y me sé tus números: ventas, visitas, gastos y lo que sale de cruzarlos.';
   }
-  if (tiene('que sabes', 'que puedes hacer', 'ayuda', 'que te puedo preguntar', 'opciones')) {
+  if (tiene('que sabes', 'que puedes hacer', 'ayuda', 'opciones') || /puedes preguntar|puedo preguntar|que sabes hacer/.test(limpio)) {
     return 'Puedo decirte cuánto has ingresado, cuántas guías llevas, cuántas te faltan para cubrir gastos, ' +
       'tu conversión, qué vídeo trae más gente, de dónde salen las ventas y si la publicidad sale a cuenta.';
   }
@@ -75,7 +79,9 @@ function respuestasConocidas(d) {
       claves: ['cubrir gastos', 'equilibrio', 'faltan', 'rentable', 'cubro'],
       texto: () => faltan == null
         ? 'Para eso necesito que apuntes tus gastos fijos en el panel. Sin saber lo que pagas al mes no puedo decirte cuántas guías te hacen falta.'
-        : faltan === 0
+        : !c.gastosFijosMes
+          ? 'No tienes gastos fijos apuntados todavía, así que no puedo decirte cuántas guías necesitas. Apúntalos en el panel, abajo del todo.'
+          : faltan === 0
           ? `Ya los cubres. Con ${euro(c.gastosFijosMes)} al mes de gastos y ${num(c.ventas)} guías vendidas, lo que venga de más es tuyo.`
           : `Te faltan ${num(faltan)} guías. Tus gastos fijos son ${euro(c.gastosFijosMes)} al mes y con la guía a ${euro(m.ticketMedio || 48)} necesitas vender ${num(Math.ceil(m.puntoEquilibrio))} al mes para cubrirlos.`,
     },
@@ -125,7 +131,7 @@ function respuestasConocidas(d) {
         (m.valorPorVisita ? `Cada una vale de media ${euro(m.valorPorVisita)}.` : 'Todavía no puedo decirte cuánto vale cada una.'),
     },
     {
-      claves: ['resumen', 'como voy', 'que tal', 'como va', 'negocio', 'balance'],
+      claves: ['resumen', 'como voy', 'como va', 'balance', 'que tal va', 'que tal todo'],
       texto: () => {
         const trozos = [];
         trozos.push(c.ventas === 0
@@ -133,7 +139,8 @@ function respuestasConocidas(d) {
           : `Llevas ${num(c.ventas)} guías y ${euro(m.ingresos)}.`);
         if (c.visitasGuia) trozos.push(`${num(c.visitasGuia)} visitas a la página de la guía.`);
         if (m.conversion != null) trozos.push(`Compra el ${pct(m.conversion)} de las que entran.`);
-        if (faltan != null) trozos.push(faltan === 0 ? 'Ya cubres gastos.' : `Te faltan ${num(faltan)} guías para cubrir gastos.`);
+        if (!c.gastosFijosMes) trozos.push('Te faltan tus gastos fijos por apuntar para saber si cubres.');
+        else if (faltan != null) trozos.push(faltan === 0 ? 'Ya cubres gastos.' : `Te faltan ${num(faltan)} guías para cubrir gastos.`);
         return trozos.join(' ');
       },
     },
