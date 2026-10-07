@@ -19,7 +19,16 @@ export async function onRequestGet({ env }) {
   return new Response(JSON.stringify({ configurado: await hayClave(env.PANEL) }), { headers: JSON_ });
 }
 
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost(contexto) {
+  try {
+    return await atender(contexto);
+  } catch (e) {
+    // Si algo revienta, que al menos se vea el motivo en vez de un 500 mudo.
+    return new Response(JSON.stringify({ error: 'Ha fallado el servidor: ' + e.message }), { status: 500, headers: JSON_ });
+  }
+}
+
+async function atender({ request, env }) {
   let c;
   try {
     c = await request.json();

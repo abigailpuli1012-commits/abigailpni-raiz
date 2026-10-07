@@ -8,7 +8,8 @@
 // HttpOnly y Secure, así que ningún guion de la página puede leerla.
 
 const DIAS = 30;
-const VUELTAS = 150000;
+// Cloudflare no admite más de 100.000 vueltas de PBKDF2: por encima, revienta.
+const VUELTAS = 100000;
 
 export async function tabla(db) {
   await db.prepare(
