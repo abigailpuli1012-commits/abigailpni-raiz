@@ -194,7 +194,7 @@ const BLINDAJE = {
   // Nada de guiones ni estilos que no vengan de la propia página.
   'content-security-policy':
     "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; " +
-    "img-src 'self' data:; font-src 'self'; connect-src 'self'; " +
+    "img-src 'self' data: https://i.ytimg.com; font-src 'self'; connect-src 'self'; " +
     "base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
   'x-frame-options': 'DENY',
   'x-content-type-options': 'nosniff',

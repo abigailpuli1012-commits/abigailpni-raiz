@@ -10,6 +10,7 @@
 <meta name="theme-color" content="#E79BB0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Tu panel">
+<link rel="stylesheet" href="/panel/youtube.css">
 <style>
 :root{
   --fondo:#FDF6F7;
@@ -193,6 +194,14 @@ footer{margin:34px 0 0;font-size:12px;color:var(--tenue);line-height:1.6;text-al
     <button class="salir" id="salir">Salir</button>
   </div>
 
+  <nav class="vistas" id="vistas" aria-label="Secciones del panel">
+    <button type="button" data-vista="guia" aria-pressed="true">💗 La guía</button>
+    <button type="button" data-vista="youtube" aria-pressed="false">🎬 YouTube · largos</button>
+    <button type="button" class="pronto" disabled>📱 Shorts · pronto</button>
+  </nav>
+
+  <div id="vistaGuia">
+
   <div class="periodos" id="periodos">
     <button data-dias="6">7 días</button>
     <button data-dias="29" aria-pressed="true">30 días</button>
@@ -295,6 +304,11 @@ footer{margin:34px 0 0;font-size:12px;color:var(--tenue);line-height:1.6;text-al
     </div>
   </details>
 
+  </div><!-- /vistaGuia -->
+
+  <div id="vistaYoutube" hidden></div>
+  <script src="/panel/youtube.js"></script>
+
   <footer>
     Solo tú ves esto. Las visitas se cuentan sin cookies y sin identificar a nadie.
   </footer>
@@ -396,13 +410,25 @@ footer{margin:34px 0 0;font-size:12px;color:var(--tenue);line-height:1.6;text-al
 </style>
 
 <script>
-const SUGERENCIAS = [
-  '¿Cómo voy?',
-  '¿Cuántas me faltan para cubrir gastos?',
-  '¿Qué vídeo trae más gente?',
-  '¿Cuál es mi conversión?',
-  '¿Sale a cuenta la publicidad?',
-];
+// Qué pestaña se está viendo: la guía o YouTube. Trufa contesta según cuál sea.
+let vistaActual = 'guia';
+
+const SUGERENCIAS = {
+  guia: [
+    '¿Cómo voy?',
+    '¿Cuántas me faltan para cubrir gastos?',
+    '¿Qué vídeo trae más gente?',
+    '¿Cuál es mi conversión?',
+    '¿Sale a cuenta la publicidad?',
+  ],
+  youtube: [
+    '¿Qué hago esta semana?',
+    '¿Dónde pierdo más gente?',
+    '¿Qué miniatura funciona mejor?',
+    '¿Es bueno mi CTR?',
+    '¿Cuándo se actualizan los datos?',
+  ],
+};
 
 const globo = document.getElementById('globo');
 const charla = document.getElementById('charla');
@@ -416,8 +442,11 @@ function dice(quien, texto){
   return p;
 }
 
-document.getElementById('sugerencias').innerHTML =
-  SUGERENCIAS.map(s => `<button type="button">${s}</button>`).join('');
+function pintarSugerencias(){
+  document.getElementById('sugerencias').innerHTML =
+    SUGERENCIAS[vistaActual].map(s => `<button type="button">${s}</button>`).join('');
+}
+pintarSugerencias();
 
 document.getElementById('conejo').addEventListener('click', () => {
   globo.hidden = !globo.hidden;
@@ -451,6 +480,8 @@ async function preguntar(texto){
       method:'POST', headers:{'content-type':'application/json'},
       body: JSON.stringify({
         pregunta: texto,
+        vista: vistaActual,
+        panel: vistaActual === 'youtube' ? window.panelYoutube : undefined,
         desde: f(new Date(Date.now() - diasActuales*86400000)),
         hasta: f(new Date()),
       })
@@ -768,10 +799,36 @@ document.querySelectorAll('input[name="mes"]').forEach(i => {
 
 // Se refresca solo: cada minuto mientras lo tengas delante, y al volver a la
 // pestaña. Si está en segundo plano no gasta nada.
-setInterval(() => { if(!document.hidden) cargar(diasActuales); }, 60000);
-document.addEventListener('visibilitychange', () => { if(!document.hidden) cargar(diasActuales); });
+setInterval(() => { if(!document.hidden && vistaActual === 'guia') cargar(diasActuales); }, 60000);
+document.addEventListener('visibilitychange', () => { if(!document.hidden && vistaActual === 'guia') cargar(diasActuales); });
 
-cargar(29);
+/* ---------- las pestañas: la guía y YouTube ---------- */
+function mostrarVista(v){
+  vistaActual = v;
+  document.getElementById('vistaGuia').hidden = v !== 'guia';
+  document.getElementById('vistaYoutube').hidden = v !== 'youtube';
+  document.getElementById('sub').hidden = v !== 'guia';
+  document.querySelectorAll('#vistas button[data-vista]').forEach(b =>
+    b.setAttribute('aria-pressed', b.dataset.vista === v ? 'true' : 'false'));
+  pintarSugerencias();
+  document.dispatchEvent(new CustomEvent('vista-panel', { detail: v }));
+  if(v === 'guia') cargar(diasActuales);
+  try{ localStorage.setItem('panelVista', v); }catch{}
+  try{ history.replaceState(null, '', v === 'youtube' ? '#youtube' : location.pathname + location.search); }catch{}
+}
+
+document.getElementById('vistas').addEventListener('click', (e) => {
+  const b = e.target.closest('button[data-vista]');
+  if(b && b.dataset.vista !== vistaActual) mostrarVista(b.dataset.vista);
+});
+
+(function(){
+  let inicial = 'guia';
+  try{ if(localStorage.getItem('panelVista') === 'youtube') inicial = 'youtube'; }catch{}
+  if(location.hash === '#youtube') inicial = 'youtube';
+  if(location.hash === '#guia') inicial = 'guia';
+  mostrarVista(inicial);
+})();
 </script>
 </body>
 </html>
