@@ -365,11 +365,15 @@ export function construirPanel(e) {
     const clicsT = conAl.reduce((s, v) => s + v._al.clics, 0);
     if (imprT >= 500) {
       const x = (clicsT / imprT) * 100;
+      // Con todos los largos que tienen impresiones (los antiguos salen de la copia de Studio), para no dar por «tus largos» solo los recientes.
+      const imprTodos = listaPaq.reduce((s, p) => s + p.impr, 0);
+      const ctrTodos = imprTodos ? (listaPaq.reduce((s, p) => s + (p.impr * p.ctr) / 100, 0) / imprTodos) * 100 : null;
+      const pieTodos = ctrTodos != null && listaPaq.length > conAl.length ? ` Con los ${listaPaq.length} largos que tienen datos, desde mayo: ${dec(ctrTodos)} %.` : '';
       vistazo.push({
-        icono: '🖱️', rotulo: 'CTR de tus largos', cifra: `${dec(x)} %`,
-        pie: x < 2 ? 'YouTube dice que lo normal va del 2 al 10 %: estás por debajo.'
+        icono: '🖱️', rotulo: `CTR de tus últimos ${conAl.length} largos`, cifra: `${dec(x)} %`,
+        pie: (x < 2 ? 'YouTube dice que lo normal va del 2 al 10 %: estás por debajo.'
           : x < 3.5 ? 'YouTube dice que lo normal va del 2 al 10 %: estás en la parte baja.'
-            : x < 6 ? 'YouTube dice que lo normal va del 2 al 10 %: estás dentro.' : 'YouTube dice que lo normal va del 2 al 10 %: estás en la parte alta.',
+            : x < 6 ? 'YouTube dice que lo normal va del 2 al 10 %: estás dentro.' : 'YouTube dice que lo normal va del 2 al 10 %: estás en la parte alta.') + pieTodos,
       });
     } else {
       vistazo.push({ icono: '🖱️', rotulo: 'CTR de tus largos', cifra: '—', pie: 'Llegará con los informes de impresiones de YouTube.' });
