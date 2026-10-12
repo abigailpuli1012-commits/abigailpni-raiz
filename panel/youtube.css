@@ -238,3 +238,31 @@
   .yt-paq .yt-mini{width:72px;height:40px}
   .yt-paq-ctr{grid-column:1/-1}
 }
+
+/* ---------- la pestaña «Shorts» (prefijo ys-) ---------- */
+#vistaShorts{margin-top:22px}
+.ys-fila{display:grid;grid-template-columns:48px 1fr 130px;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid #F7EDF1}
+.ys-fila:last-child{border-bottom:none}
+.ys-mini{width:48px;height:85px;border-radius:9px;overflow:hidden;background:linear-gradient(135deg,var(--rosa-claro),var(--malva-claro))}
+.ys-mini img{width:100%;height:100%;object-fit:cover;display:block}
+.ys-fila .yt-tit{font-size:13.5px}
+.ys-fila .yt-meta{margin:3px 0 0}
+.ys-num{text-align:right}
+.ys-num b{display:block;font-size:20px;letter-spacing:-.02em;margin:0 0 3px}
+.ys-num small{display:block;font-size:11px;color:var(--tenue);margin-top:2px}
+.ys-num .yt-pista{height:8px;border-radius:999px;background:#F7EDF1;overflow:hidden}
+.ys-num .yt-pista span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--rosa),var(--malva))}
+.ys-mas{margin:12px 0 0}
+.ys-tabla{width:100%;border-collapse:separate;border-spacing:0 5px;font-size:13px}
+.ys-tabla th{padding:0 8px 4px;text-align:center;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--tenue);font-weight:700;border:none}
+.ys-tabla th:first-child{text-align:left}
+.ys-tabla td{padding:9px 8px;border:none;text-align:center;background:#FFFBFC;font-variant-numeric:tabular-nums}
+.ys-tabla td:first-child{text-align:left;font-weight:700;border-radius:12px 0 0 12px}
+.ys-tabla td:last-child{border-radius:0 12px 12px 0}
+.ys-tabla td small{color:var(--tenue);font-size:10.5px}
+.ys-tabla tr.ys-poco td{color:var(--tenue)}
+@media (max-width:640px){
+  .ys-fila{grid-template-columns:40px 1fr}
+  .ys-mini{width:40px;height:71px}
+  .ys-num{grid-column:1/-1;text-align:left}
+}

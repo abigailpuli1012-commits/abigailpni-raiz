@@ -15,7 +15,7 @@ const CTR_REGULAR = 1.5;
 const REL_BIEN = 0.5; // retención frente a vídeos de su duración: 0,5 = mediana
 const REL_REGULAR = 0.35;
 const MIN_IMPR_CTR = 150; // por debajo, el CTR no dice nada
-const PALABRAS_VETADAS = [
+export const PALABRAS_VETADAS = [
   ['ayuno', /\bayun(o|os|ar|ando)\b/, 'es un tema que no se toca; di «espacio entre comidas»'],
   ['glucosa', /\bglucosa\b/, 'es un tema que no se toca'],
   ['metabolismo', /\bmetabolismo\b/, 'es un tema que no se toca'],

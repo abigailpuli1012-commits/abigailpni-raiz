@@ -451,6 +451,138 @@ async function atenderYoutube(env, pregunta, panel) {
   return salida('Esa no la sé contestar todavía. Prueba con «¿qué hago esta semana?», «¿dónde pierdo más gente?», «¿qué miniatura funciona mejor?» o «¿es bueno mi CTR?».', 'ninguna');
 }
 
+/* ---------- la pestaña de Shorts ---------- */
+function respuestasShorts(P) {
+  const F = P.filas || [];
+  const aj = (s) => `«${s.corto}»`;
+  const n0 = (x) => Math.round(x).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // 2.650, también con cuatro cifras
+  const hasta = P.meta && P.meta.datosHasta ? P.meta.datosHasta.split('-').reverse().join('/') : null;
+  const grupo = (clase) => (P.veredicto || []).find((x) => x.clase === clase);
+  const lectura = (g, vacio, intro) => (g && g.items.length ? intro + g.items.slice(0, 3).map((i, k) => `${k + 1}. ${i.t}`).join(' ') : vacio);
+
+  return [
+    {
+      claves: ['que hago', 'esta semana', 'que hacer', 'prioridad', 'prioridades', 'consejo', 'consejos', 'por donde empiezo'],
+      texto: () => {
+        const a = (P.acciones || []).slice(0, 3);
+        if (!a.length) return 'Ahora mismo no hay nada urgente que tocar en los Shorts.';
+        return 'Esta semana, por este orden: ' + a.map((x, i) => `${i + 1}. ${x.titulo}. ${i === 0 ? x.que + ' ' : ''}`).join(' ').trim() + ' Tienes el detalle y el porqué en «Qué hacer esta semana».';
+      },
+    },
+    {
+      claves: ['como van', 'como voy', 'resumen', 'vistas', 'cifras', 'como me va'],
+      texto: () => {
+        const v = (P.vistazo || [])[0];
+        return v ? `Vistas de tus Shorts en 28 días: ${v.cifra}. ${v.pie}` : 'Todavía no tengo cifras de tus Shorts.';
+      },
+    },
+    {
+      claves: ['mejor short', 'short funciona mejor', 'cual funciona', 'cual short', 'que short', 'mas vistas', 'mas visto'],
+      texto: () => {
+        const mas = F[0];
+        const ret = (P.porRet || []).map((id) => F.find((s) => s.id === id)).filter(Boolean)[0];
+        if (!mas) return 'Todavía no hay Shorts con datos.';
+        return `El más visto es ${aj(mas)}, con ${n0(mas.vistas)} vistas.` + (ret ? ` El que más retiene desde el giro es ${aj(ret)}: lo ve el ${ret.pct} % de media, con ${n0(ret.vistas)} vistas y ${ret.durS} s.` : '');
+      },
+    },
+    {
+      claves: ['duracion', 'duran', 'cuanto debe durar', 'cuanto duran', 'largo', 'segundos'],
+      texto: () => {
+        const c = ((P.duracion && P.duracion.cubos) || []).filter((x) => x.n >= 2);
+        if (!c.length) return 'Todavía no hay Shorts suficientes con datos completos para comparar duraciones.';
+        return 'Por duración, desde el giro: ' + c.map((x) => `${x.nombre.toLowerCase()}: ${x.n} Shorts, mediana de ${n0(x.vistasMed)} vistas y ${n0(x.pct)} % visto`).join('; ') + '. Son pocos Shorts por grupo: es una pista, no una ley. Tu manual de reels apunta a 38-45 s.';
+      },
+    },
+    {
+      claves: ['que falla', 'va mal', 'hago mal', 'problema', 'problemas'],
+      texto: () => lectura(grupo('mal'), 'Ahora mismo no veo nada que falle con claridad en los Shorts.', 'Lo que más falla: '),
+    },
+    {
+      claves: ['va bien', 'hago bien', 'que funciona bien'],
+      texto: () => lectura(grupo('bien'), 'Todavía no veo nada claramente bien en los Shorts.', 'Lo que va bien: '),
+    },
+    {
+      claves: ['suscriptores', 'seguidores', 'suscriben', 'me siguen'],
+      texto: () => {
+        const v = (P.vistazo || [])[2];
+        return v ? `Suscriptores por cada 1.000 vistas de Short: ${v.cifra}. ${v.pie}` : 'Todavía no tengo ese dato.';
+      },
+    },
+    {
+      claves: ['donde llega', 'de donde', 'origen', 'feed', 'busqueda'],
+      texto: () => (P.trad && P.trad.origen ? P.trad.origen.sig : 'Todavía no tengo el origen de las vistas.'),
+    },
+    {
+      claves: ['publicar', 'publico', 'cada dia', 'constancia', 'ritmo', 'frecuencia', 'cola', 'dias sin'],
+      texto: () => (P.trad && P.trad.dias ? P.trad.dias.sig + ' ' + P.trad.dias.hago : 'Todavía no tengo la serie de vistas por día.'),
+    },
+    {
+      claves: ['audiencia', 'quien me ve', 'gente fria', 'fria'],
+      texto: () => (P.trad && P.trad.aud ? P.trad.aud.sig : 'Todavía no tengo datos suficientes de quién ve tus Shorts.'),
+    },
+    {
+      claves: ['actualiza', 'actualizan', 'cuando se', 'retraso', 'datos hasta', 'frescos', 'tiempo real', 'en directo', 'hasta cuando'],
+      texto: () => `Mis datos de Shorts llegan hasta el ${hasta || 'último día disponible'}. YouTube los entrega con 2-3 días de retraso, así que lo de hoy y ayer todavía no está. El panel se actualiza solo cuando lo abres, como mucho cada 6 horas.`,
+    },
+    {
+      claves: ['impresiones', 'deslizar', 'deslizan', 'swipe', 'ctr'],
+      texto: () => 'De los Shorts YouTube no da las impresiones ni cuánta gente desliza al segundo: eso solo se ve en Studio, Short a Short.',
+    },
+  ];
+}
+
+async function conIAShorts(env, pregunta, P) {
+  if (!env.AI) return null;
+  const resumen = {
+    datosHasta: P.meta && P.meta.datosHasta,
+    cifras: (P.vistazo || []).map((v) => ({ [v.rotulo]: v.cifra, nota: v.pie })),
+    shorts: (P.filas || []).slice(0, 40).map((s) => ({ titulo: s.titulo, fecha: s.fecha, segundos: s.durS, vistas: s.vistas, porcentajeVisto: s.pct, suscriptores: s.subs })),
+    queHacer: (P.acciones || []).slice(0, 5).map((a) => ({ accion: a.titulo, porque: a.porque })),
+    veredicto: (P.veredicto || []).map((g) => ({ [g.titulo]: g.items.map((i) => i.t) })),
+  };
+  const sistema =
+    'Eres Trufa, un conejo que ayuda a Abby a entender las analíticas de los Shorts de su canal de YouTube de divulgación sobre salud digestiva. ' +
+    'Contestas en español de España, de tú, en tres frases como mucho, directo y sin rodeos ni tecnicismos. ' +
+    'Usas SOLO los datos que te doy: si algo no está, dices que todavía no se puede saber. Nunca te inventas cifras. ' +
+    'Nunca prometes resultados ni hablas de curar. La única llamada a la acción del canal es el test; no sugieras pedir suscripciones. Nada de emojis.';
+  try {
+    const r = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
+      messages: [
+        { role: 'system', content: sistema + '\n\nDatos de los Shorts:\n' + JSON.stringify(resumen) },
+        { role: 'user', content: pregunta },
+      ],
+      max_tokens: 260,
+    });
+    return (r && (r.response || r.result)) || null;
+  } catch {
+    return null;
+  }
+}
+
+async function atenderShorts(env, pregunta, panel) {
+  const salida = (respuesta, fuente) => new Response(JSON.stringify({ respuesta, fuente }), { headers: JSON_ });
+  const limpio = sinTildes(pregunta).trim().replace(/\s+/g, ' ');
+  if (limpio.split(' ').length <= 5) {
+    const t = ' ' + limpio + ' ';
+    const tiene = (...xs) => xs.some((x) => t.includes(' ' + x + ' ') || limpio === x);
+    if (tiene('hola', 'buenas', 'hey', 'holi')) return salida('¡Hola! Puedo decirte cómo van tus Shorts, cuál funciona mejor, qué duración rinde, qué hacer esta semana o de dónde llega la gente.', 'trufa');
+    if (tiene('gracias', 'muchas gracias') || ['vale', 'ok', 'genial', 'perfecto', 'guay'].includes(limpio)) return salida('A mandar. Aquí sigo.', 'trufa');
+    if (tiene('quien eres', 'que eres', 'como te llamas')) return salida('Soy Trufa. En esta pestaña me sé tus números de Shorts y lo que significan.', 'trufa');
+  }
+
+  // Las conclusiones las calcula el navegador (panel/analisis-shorts.js) y me las manda con la pregunta.
+  const P = panel && typeof panel === 'object' && Array.isArray(panel.filas) ? panel : null;
+  if (!P) return salida('Todavía no tengo tus datos de Shorts. Se cargan solos al abrir la pestaña: espera un momento y vuelve a preguntarme.', 'datos');
+
+  const conocida = buscar(pregunta, respuestasShorts(P));
+  if (conocida) return salida(conocida.texto(), 'datos');
+
+  const ia = await conIAShorts(env, pregunta, P);
+  if (ia) return salida(ia, 'ia');
+
+  return salida('Esa no la sé contestar todavía. Prueba con «¿cómo van mis Shorts?», «¿cuál es mi mejor Short?», «¿qué duración funciona?» o «¿qué hago esta semana?».', 'ninguna');
+}
+
 export async function onRequestPost(contexto) {
   try {
     return await atender(contexto);
@@ -473,6 +605,7 @@ async function atender({ request, env }) {
   if (!pregunta) return new Response(JSON.stringify({ error: 'Pregúntame algo.' }), { status: 400, headers: JSON_ });
 
   if (c.vista === 'youtube') return atenderYoutube(env, pregunta, c.panel);
+  if (c.vista === 'shorts') return atenderShorts(env, pregunta, c.panel);
 
   const datos = await reunirDatos(env, c.desde, c.hasta);
 

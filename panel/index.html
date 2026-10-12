@@ -197,7 +197,7 @@ footer{margin:34px 0 0;font-size:12px;color:var(--tenue);line-height:1.6;text-al
   <nav class="vistas" id="vistas" aria-label="Secciones del panel">
     <button type="button" data-vista="guia" aria-pressed="true">💗 La guía</button>
     <button type="button" data-vista="youtube" aria-pressed="false">🎬 YouTube · largos</button>
-    <button type="button" class="pronto" disabled>📱 Shorts · pronto</button>
+    <button type="button" data-vista="shorts" aria-pressed="false">📱 Shorts</button>
   </nav>
 
   <div id="vistaGuia">
@@ -307,7 +307,9 @@ footer{margin:34px 0 0;font-size:12px;color:var(--tenue);line-height:1.6;text-al
   </div><!-- /vistaGuia -->
 
   <div id="vistaYoutube" hidden></div>
+  <div id="vistaShorts" hidden></div>
   <script src="/panel/youtube.js"></script>
+  <script src="/panel/shorts.js"></script>
 
   <footer>
     Solo tú ves esto. Las visitas se cuentan sin cookies y sin identificar a nadie.
@@ -410,7 +412,7 @@ footer{margin:34px 0 0;font-size:12px;color:var(--tenue);line-height:1.6;text-al
 </style>
 
 <script>
-// Qué pestaña se está viendo: la guía o YouTube. Trufa contesta según cuál sea.
+// Qué pestaña se está viendo: la guía, YouTube (largos) o Shorts. Trufa contesta según cuál sea.
 let vistaActual = 'guia';
 
 const SUGERENCIAS = {
@@ -426,6 +428,13 @@ const SUGERENCIAS = {
     '¿Dónde pierdo más gente?',
     '¿Qué miniatura funciona mejor?',
     '¿Es bueno mi CTR?',
+    '¿Cuándo se actualizan los datos?',
+  ],
+  shorts: [
+    '¿Cómo van mis Shorts?',
+    '¿Cuál es mi mejor Short?',
+    '¿Qué duración funciona?',
+    '¿Qué hago esta semana?',
     '¿Cuándo se actualizan los datos?',
   ],
 };
@@ -481,7 +490,7 @@ async function preguntar(texto){
       body: JSON.stringify({
         pregunta: texto,
         vista: vistaActual,
-        panel: vistaActual === 'youtube' ? window.panelYoutube : undefined,
+        panel: vistaActual === 'youtube' ? window.panelYoutube : vistaActual === 'shorts' ? window.panelShorts : undefined,
         desde: f(new Date(Date.now() - diasActuales*86400000)),
         hasta: f(new Date()),
       })
@@ -807,6 +816,7 @@ function mostrarVista(v){
   vistaActual = v;
   document.getElementById('vistaGuia').hidden = v !== 'guia';
   document.getElementById('vistaYoutube').hidden = v !== 'youtube';
+  document.getElementById('vistaShorts').hidden = v !== 'shorts';
   document.getElementById('sub').hidden = v !== 'guia';
   document.querySelectorAll('#vistas button[data-vista]').forEach(b =>
     b.setAttribute('aria-pressed', b.dataset.vista === v ? 'true' : 'false'));
@@ -814,7 +824,7 @@ function mostrarVista(v){
   document.dispatchEvent(new CustomEvent('vista-panel', { detail: v }));
   if(v === 'guia') cargar(diasActuales);
   try{ localStorage.setItem('panelVista', v); }catch{}
-  try{ history.replaceState(null, '', v === 'youtube' ? '#youtube' : location.pathname + location.search); }catch{}
+  try{ history.replaceState(null, '', v === 'youtube' || v === 'shorts' ? '#' + v : location.pathname + location.search); }catch{}
 }
 
 document.getElementById('vistas').addEventListener('click', (e) => {
@@ -824,8 +834,9 @@ document.getElementById('vistas').addEventListener('click', (e) => {
 
 (function(){
   let inicial = 'guia';
-  try{ if(localStorage.getItem('panelVista') === 'youtube') inicial = 'youtube'; }catch{}
+  try{ const g = localStorage.getItem('panelVista'); if(g === 'youtube' || g === 'shorts') inicial = g; }catch{}
   if(location.hash === '#youtube') inicial = 'youtube';
+  if(location.hash === '#shorts') inicial = 'shorts';
   if(location.hash === '#guia') inicial = 'guia';
   mostrarVista(inicial);
 })();

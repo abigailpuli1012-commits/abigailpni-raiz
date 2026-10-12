@@ -28,7 +28,8 @@ const PERMISO_CADUCADO = 'El permiso de Google ha caducado: hay que volver a dar
 
 // Cuánto cuesta cada tarea en llamadas (a Google y a la base de datos), para no pasarse en una visita.
 // «inf» (un informe de alcance) pesa más porque hay que trocear su CSV: así caben dos por visita.
-const COSTE = { lista: 10, totales: 3, v: 5, canal: 4, informes: 12, inf: 18 };
+const COSTE = { lista: 10, totales: 3, v: 5, canal: 4, cortos: 9, informes: 12, inf: 18 };
+const INICIO_CORTOS = '2026-01-01'; // los Shorts se miran desde aquí (los largos, desde el giro)
 
 /* ---------- utilidades ---------- */
 const ayer = () => new Date(Date.now() - 86400000).toISOString().slice(0, 10);
@@ -313,6 +314,41 @@ async function tareaCanal(c) {
   await guardar(c, 'canal', { tipos: tipos.rows || [], hasta: conDatos.length ? conDatos[conDatos.length - 1] : null });
 }
 
+// Los Shorts: una fila por Short (cifras de toda su vida), más lo que pasa por días, de dónde llegan y quién los ve
+// en los últimos 90 días. YouTube no da de ellos las impresiones ni «vistos frente a deslizados».
+async function tareaCortos(c) {
+  const fin = ayer();
+  const desde90 = masDias(fin, -89);
+  const filtro = 'creatorContentType==shorts';
+  const base = { ids: 'channel==MINE', endDate: fin, filters: filtro };
+  const [filas, dias, fuentes, sus] = await Promise.all([
+    json(c, A, {
+      ...base, startDate: INICIO_CORTOS, dimensions: 'video', sort: '-views', maxResults: '200',
+      metrics: 'views,estimatedMinutesWatched,averageViewDuration,averageViewPercentage,subscribersGained,likes,shares,comments',
+    }),
+    json(c, A, { ...base, startDate: desde90, dimensions: 'day', metrics: 'views,subscribersGained', sort: 'day' }),
+    json(c, A, { ...base, startDate: desde90, dimensions: 'insightTrafficSourceType', metrics: 'views,estimatedMinutesWatched', sort: '-views' }),
+    json(c, A, { ...base, startDate: desde90, dimensions: 'subscribedStatus', metrics: 'views,averageViewDuration' }),
+  ]);
+  const rows = (filas.rows || []).map((f) => [f[0], f[1], f[2], f[3], Math.round(f[4] * 10) / 10, f[5], f[6], f[7], f[8]]);
+  const ids = rows.map((f) => f[0]);
+  const lista = [];
+  for (let k = 0; k < ids.length; k += 50) {
+    const r = await json(c, V3 + '/videos', { part: 'snippet,contentDetails,status', id: ids.slice(k, k + 50).join(',') });
+    for (const x of r.items || []) {
+      lista.push({ id: x.id, titulo: x.snippet.title, publicado: x.snippet.publishedAt, dur: segundos(x.contentDetails.duration), privacidad: x.status.privacyStatus });
+    }
+  }
+  const conDatos = (dias.rows || []).filter((f) => f[1] > 0).map((f) => f[0]);
+  await guardar(c, 'cortos', {
+    desde: INICIO_CORTOS, hasta: conDatos.length ? conDatos[conDatos.length - 1] : fin, lista, filas: rows,
+    dias: (dias.rows || []).map((f) => [f[0], f[1], f[2]]),
+    fuentes: (fuentes.rows || []).map((f) => [f[0], f[1], f[2]]),
+    sus: (sus.rows || []).map((f) => [f[0], f[1], f[2]]),
+  });
+  hayCortos = true;
+}
+
 async function tareaInformes(c) {
   const j = await json(c, R + '/jobs');
   const trabajos = j.jobs || [];
@@ -358,6 +394,7 @@ async function ejecutar(t, c) {
     case 'totales': return tareaTotales(c, t);
     case 'v': return tareaVideo(c, t);
     case 'canal': return tareaCanal(c);
+    case 'cortos': return tareaCortos(c);
     case 'informes': return tareaInformes(c);
     case 'inf': return tareaInforme(c, t);
     default: return null;
@@ -365,6 +402,8 @@ async function ejecutar(t, c) {
 }
 
 /* ---------- el reparto del trabajo ---------- */
+let hayCortos = false; // ya hay Shorts guardados
+let pedidoCortos = false; // ya se pidió traerlos aparte en esta instancia
 // Se llama desde las visitas al panel, sin hacer esperar a nadie. Hace unas cuantas tareas y deja el resto
 // apuntado para la siguiente visita. Con {forzar: true} empieza un ciclo nuevo aunque no hayan pasado seis horas.
 export async function avanzarYoutube(env, opciones = {}) {
@@ -388,8 +427,18 @@ export async function avanzarYoutube(env, opciones = {}) {
   let ciclo = est.ciclo;
   if (!cola.length) {
     const hace = est.ultimo ? ahora - Date.parse(est.ultimo) : Infinity;
-    if (hace < (opciones.forzar ? MINIMO_FORZAR : CADA)) return { ok: true, motivo: 'al día' };
-    cola = [{ t: 'lista' }, { t: 'canal' }, { t: 'informes' }];
+    if (hace < (opciones.forzar ? MINIMO_FORZAR : CADA)) {
+      // Un ciclo anterior a la pestaña de Shorts no los trajo: se pide solo esa parte, sin esperar a las seis horas.
+      if (!hayCortos) {
+        const r = await db.prepare("SELECT 1 AS x FROM yt_datos WHERE clave = 'cortos'").first();
+        if (r) hayCortos = true;
+      }
+      if (hayCortos || pedidoCortos) return { ok: true, motivo: 'al día' };
+      pedidoCortos = true; // una sola vez por instancia: si falla, el ciclo completo lo reintenta
+      cola = [{ t: 'cortos' }];
+    } else {
+      cola = [{ t: 'lista' }, { t: 'canal' }, { t: 'cortos' }, { t: 'informes' }];
+    }
     ciclo = new Date(ahora).toISOString();
   }
 
@@ -440,9 +489,9 @@ export async function avanzarYoutube(env, opciones = {}) {
 export async function datosEnBruto(db) {
   const corte = masDias(new Date().toISOString().slice(0, 10), -150);
   const r = await db.prepare(
-    "SELECT clave, json FROM yt_datos WHERE clave IN ('videos', 'totales', 'canal') OR clave LIKE 'v:%' OR (clave LIKE 'a:%' AND substr(clave, 5) >= ?)"
+    "SELECT clave, json FROM yt_datos WHERE clave IN ('videos', 'totales', 'canal', 'cortos') OR clave LIKE 'v:%' OR (clave LIKE 'a:%' AND substr(clave, 5) >= ?)"
   ).bind(corte).all();
-  const aparte = { videos: 'null', totales: 'null', canal: 'null' };
+  const aparte = { videos: 'null', totales: 'null', canal: 'null', cortos: 'null' };
   const porVideo = [];
   const alcance = { b: [], c: [] };
   for (const f of r.results || []) {
@@ -453,7 +502,7 @@ export async function datosEnBruto(db) {
       if (alcance[k]) alcance[k].push(`${JSON.stringify(dia)}:${f.json}`);
     }
   }
-  return `{"videos":${aparte.videos},"totales":${aparte.totales},"canal":${aparte.canal},` +
+  return `{"videos":${aparte.videos},"totales":${aparte.totales},"canal":${aparte.canal},"cortos":${aparte.cortos},` +
     `"porVideo":{${porVideo.join(',')}},"alcance":{"b":{${alcance.b.join(',')}},"c":{${alcance.c.join(',')}}}}`;
 }
 
