@@ -21,6 +21,7 @@
   let version = null; // versión de esos datos: así el servidor no repite lo que ya tenemos
   let motor = null; // construirShorts
   let estado = null; // cómo va la carga
+  let avisoActualizar = null; // lo que se dice si se pulsa «Actualizar» y no hace falta cargar nada
   let orden = 'vistas';
   let verTodos = false;
   let temporizador = null;
@@ -172,6 +173,9 @@
         html += `<div class="yt-aviso-grande" style="flex-basis:100%;margin:6px 0 0"><b>Ojo:</b> ${esc(estado.error)} Lo que ves son los últimos datos buenos.</div>`;
       } else if (estado && estado.pendientes > 0) {
         html += '<span>· poniéndome al día…</span>';
+      }
+      if (avisoActualizar && Date.now() < avisoActualizar.hasta) {
+        html += `<div class="yt-aviso-grande" style="flex-basis:100%;margin:6px 0 0">${esc(avisoActualizar.texto)}</div>`;
       }
     }
     caja.innerHTML = html;
@@ -343,6 +347,22 @@
   }
 
   async function actualizarAhora() {
+    // Si la última carga fue hace menos de un cuarto de hora, el servidor no empieza otra (para no gastar el cupo de YouTube):
+    // en vez de dejar el botón mudo, se dice por qué y qué es lo más reciente que hay.
+    const min = estado && estado.ultimo ? (Date.now() - Date.parse(estado.ultimo)) / 60000 : null;
+    if (min !== null && min < 15 && !(estado.pendientes > 0)) {
+      const tope = fechaLarga(P && P.meta && P.meta.datosHasta);
+      avisoActualizar = {
+        texto: `Ya está al día: la última carga fue ${hace(estado.ultimo)}. ` +
+          (tope ? `YouTube entrega los datos con 2 o 3 días de retraso, así que lo más reciente que hay es el ${tope}. ` : '') +
+          'Puedes volver a pulsar pasados 15 minutos.',
+        hasta: Date.now() + 20000,
+      };
+      pintarEstado();
+      setTimeout(pintarEstado, 20500);
+      return;
+    }
+    avisoActualizar = null;
     const b = el('ysActualizar');
     if (b) { b.disabled = true; b.textContent = 'Actualizando…'; }
     try { await fetch('/api/panel/youtube', { method: 'POST' }); } catch (e) { /* se reintenta solo */ }
