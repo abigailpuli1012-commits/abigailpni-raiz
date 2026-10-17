@@ -195,8 +195,9 @@ const BLINDAJE = {
   'content-security-policy':
     "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; " +
     "img-src 'self' data: https://i.ytimg.com; font-src 'self'; connect-src 'self'; " +
-    "base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
-  'x-frame-options': 'DENY',
+    "base-uri 'none'; form-action 'none'; frame-ancestors https://jefa.abigailpni.com",
+  // Solo «Mi jefa» (jefa.abigailpni.com) puede mostrar el panel dentro de su pantalla; cualquier otra web, no.
+  // Se quita X-Frame-Options porque no admite lista de permitidos y bloquearía también a Mi jefa.
   'x-content-type-options': 'nosniff',
   'referrer-policy': 'no-referrer',
   'permissions-policy': 'geolocation=(), microphone=(), camera=(), interest-cohort=()',
