@@ -124,3 +124,6 @@ html body .vistas button{padding:10px 18px;font-size:14px;min-height:44px}
   html body .vistazo::-webkit-scrollbar{display:none}
   html body .vistazo > *{flex:0 0 82%;scroll-snap-align:center;margin:0}
 }
+
+/* dentro de Mi jefa no sale el conejo de Trufa: ahí contesta Martina */
+html.embebido #trufa{display:none!important}
