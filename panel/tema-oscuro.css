@@ -1,0 +1,126 @@
+/* Tema oscuro cristal (solo estética). Se carga el último; no cambia contenido ni funciones. */
+:root{
+  --fondo:#0d0813; --tinta:#f3ecf8; --suave:#b3a7c4; --tenue:#8f84a3;
+  --rosa:#e255b4; --rosa-claro:rgba(226,85,180,.16);
+  --malva:#9b6bff; --malva-claro:rgba(155,107,255,.18);
+  --menta:#5ed1c4; --menta-claro:rgba(94,209,196,.16);
+  --melocoton:#f0b27a; --melocoton-claro:rgba(240,178,122,.15);
+  --azul:#7fb5dc; --azul-claro:rgba(127,181,220,.16);
+  --blanco:rgba(30,18,44,.62); --borde:rgba(255,255,255,.09);
+  --sombra:0 20px 44px -22px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.05) inset;
+  --sup:rgba(255,255,255,.055); --sup2:rgba(255,255,255,.09); --brillo:0 0 26px -6px rgba(226,85,180,.6);
+}
+html body{
+  background:
+    radial-gradient(640px 480px at 6% 2%,rgba(226,85,180,.30),transparent 70%),
+    radial-gradient(660px 520px at 98% 8%,rgba(155,107,255,.26),transparent 70%),
+    radial-gradient(780px 560px at 55% 106%,rgba(226,85,180,.22),transparent 70%),
+    var(--fondo);
+  background-attachment:fixed;color:var(--tinta);
+}
+html body::selection,html body *::selection{background:rgba(226,85,180,.45)}
+/* tarjetas de cristal */
+html body details,html body .tarjeta,html body .globo{
+  background:var(--blanco);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-color:rgba(255,255,255,.09);box-shadow:var(--sombra);
+}
+html body details:hover{box-shadow:var(--sombra),var(--brillo)}
+html body summary:hover{background:rgba(255,255,255,.04)}
+/* superficies que eran casi blancas */
+html body .metrica,html body .yt-vacio,html body .yt-accion,html body .yt-dic div,html body .yt-luz,
+html body .yt-tarjeta,html body .yt-aviso,html body .yt-paq-res td,html body .ys-tabla td,
+html body .sugerencias button,html body .yt-chips button,html body .yt-conmuta,
+html body .periodos button,html body .yt-conmuta button[aria-pressed="false"],
+html body .dice.el{background:var(--sup);border-color:rgba(255,255,255,.09);color:var(--tinta)}
+html body .yt-conmuta button{color:var(--suave)}
+html body .periodos button{color:var(--suave)}
+html body .yt-traductor{background:linear-gradient(135deg,rgba(226,85,180,.14),rgba(155,107,255,.10))}
+html body .yt-aviso-grande{background:var(--melocoton-claro);border-color:rgba(240,178,122,.3);color:#f2d3b2}
+html body .yt-aviso-grande b{color:#ffe3c6}
+html body input,html body textarea,html body select,
+html body form.apuntar input,html body .preguntar input{background:var(--sup);color:var(--tinta);border-color:rgba(255,255,255,.12)}
+html body input::placeholder,html body textarea::placeholder{color:#7d7190}
+html body input:focus{border-color:var(--rosa);box-shadow:0 0 0 3px rgba(226,85,180,.22)}
+/* pistas y barras vacías, filas */
+html body .barra,html body .yt-bar .yt-pista,html body .yt-apilada,html body .yt-tarjeta .yt-pista,
+html body .yt-paq-ctr .yt-pista,html body .ys-num .yt-pista,html body .yt-rel td.yt-rel-c span{background:rgba(255,255,255,.09)}
+html body .yt-rel td.yt-rel-c span.v{background:var(--menta-claro);color:#7be0d3}
+html body .yt-rel td.yt-rel-c span.a{background:var(--melocoton-claro);color:#f2b985}
+html body .yt-rel td.yt-rel-c span.r{background:var(--rosa-claro);color:#ff9bd2}
+html body .yt-paq-res td.yt-era.antes{background:var(--menta-claro);color:#7be0d3}
+html body .yt-paq-res td.yt-era.sobrio{background:var(--rosa-claro);color:#ff9bd2}
+html body .yt-paq-res td.yt-era.nuevo{background:var(--malva-claro);color:#c4a6ff}
+html body th,html body td,html body .yt-video,html body .yt-fila80,html body .yt-aud,html body .yt-paq,html body .ys-fila{border-bottom-color:rgba(255,255,255,.07)}
+html body .metrica .falta{background:var(--rosa-claro);color:#ffb3dc}
+html body .yt-etq span{background:var(--malva-claro);color:#c9b0ff}
+html body .yt-cert{background:rgba(255,255,255,.10);color:var(--suave)}
+html body .yt-luz.g i{background:#6d6280}
+html body .yt-luz.v em,html body .yt-luz.v em{color:#7be0d3}
+html body .yt-luz.a em{color:#f2b985}
+html body .yt-luz.r em,html body .yt-traductor .yt-hago h4,html body .quitar:hover{color:#ff9bd2}
+html body .yt-tip,html body [class*="tooltip"]{background:#1b1028;border-color:rgba(255,255,255,.12);color:var(--tinta)}
+/* botones y píldoras activas */
+html body .periodos button[aria-pressed="true"],html body .yt-conmuta button[aria-pressed="true"]{
+  background:linear-gradient(135deg,var(--rosa),var(--malva));color:#fff;box-shadow:var(--brillo)}
+html body .dice.yo,html body .preguntar button,html body form.apuntar button,html body .yt-n{
+  background:linear-gradient(135deg,#f58ad0,#e255b4);color:#fff}
+/* gráficas dibujadas por JS: se recolorean por atributo, sin tocar el JS */
+html body svg [stroke="#F2DFE5"],html body svg [stroke="#F7EDF1"]{stroke:rgba(255,255,255,.10)}
+html body svg [fill="#B9A4AC"],html body svg [fill="#8C7580"]{fill:#9a8fae}
+html body svg [fill="#F7EDF1"],html body svg [fill="#F2DFE5"]{fill:rgba(255,255,255,.10)}
+html body svg [fill="#fff"],html body svg [fill="#FFFFFF"]{fill:#1b1028}
+html body svg [stroke="#fff"],html body svg [stroke="#FFFFFF"]{stroke:#1b1028}
+/* conejito */
+html body .conejo{filter:drop-shadow(0 0 18px rgba(226,85,180,.55))}
+/* mariposas de adorno */
+.mariposa{position:fixed;pointer-events:none;z-index:0;opacity:.5;filter:drop-shadow(0 0 22px rgba(226,85,180,.7));animation:vuela 9s ease-in-out infinite}
+.mariposa.m1{right:-26px;top:70px;width:170px;transform:rotate(14deg)}
+.mariposa.m2{left:-34px;bottom:30px;width:210px;transform:rotate(-18deg);animation-delay:-4s}
+@keyframes vuela{50%{translate:0 -14px}}
+.envoltura{position:relative;z-index:1}
+@media (max-width:700px){.mariposa.m1{width:110px;top:40px}.mariposa.m2{width:130px;bottom:90px}}
+@media (prefers-reduced-motion:reduce){.mariposa{animation:none}}
+
+/* ===== Estructura: más fácil de usar, sobre todo en móvil (no cambia contenido) ===== */
+html,html body{overflow-x:clip}
+html body details{scroll-margin-top:124px}
+html body summary{min-height:52px;cursor:pointer}
+html body .vistas{position:sticky;top:0;z-index:30;margin:14px -18px 0;padding:10px 18px;gap:8px;
+  background:rgba(13,8,19,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06)}
+html body .vistas button{padding:10px 18px;font-size:14px;min-height:44px}
+.ir-a{position:sticky;top:64px;z-index:25;display:flex;gap:7px;overflow-x:auto;margin:0 -18px 14px;padding:9px 18px;
+  background:rgba(13,8,19,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06);
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+.ir-a::-webkit-scrollbar{display:none}
+.ir-a[hidden]{display:none}
+.ir-a button{flex:none;scroll-snap-align:start;cursor:pointer;font:inherit;font-size:12.5px;white-space:nowrap;min-height:36px;
+  padding:7px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.055);color:var(--suave);transition:.15s}
+.ir-a button:hover{color:#fff;border-color:rgba(226,85,180,.5)}
+.ir-a button.on{background:linear-gradient(135deg,rgba(226,85,180,.40),rgba(155,107,255,.30));color:#fff;border-color:rgba(226,85,180,.55);box-shadow:0 0 18px -6px rgba(226,85,180,.7)}
+.ir-a button.todo{border-style:dashed}
+.arriba{position:fixed;right:16px;bottom:96px;z-index:40;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.12);
+  background:rgba(30,18,44,.85);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 0 22px -6px rgba(226,85,180,.6);
+  opacity:0;pointer-events:none;transform:translateY(8px);transition:.2s}
+.arriba.ver{opacity:1;pointer-events:auto;transform:none}
+@media (max-width:760px){
+  html body .envoltura{padding:16px 14px calc(150px + env(safe-area-inset-bottom))}
+  html body .cabecera{align-items:center}
+  html body h1{font-size:23px}
+  html body .vistas{position:fixed;top:auto;bottom:0;left:0;right:0;margin:0;z-index:60;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;
+    padding:8px 10px calc(8px + env(safe-area-inset-bottom));border-top:1px solid rgba(255,255,255,.10);border-bottom:none;
+    background:rgba(16,9,26,.88)}
+  html body .vistas button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:7px 4px;
+    border-radius:16px;font-size:11.5px;line-height:1.2;text-align:center;min-height:52px;border-color:transparent;background:transparent}
+  html body .vistas button[aria-pressed="true"]{background:linear-gradient(135deg,rgba(226,85,180,.45),rgba(155,107,255,.32));box-shadow:0 0 18px -6px rgba(226,85,180,.7)}
+  .ir-a{top:0;margin:0 -14px 12px;padding:8px 14px}
+  html body details{scroll-margin-top:62px}
+  html body .periodos{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+  html body .periodos button{flex:none;min-height:40px}
+  html body #trufa{bottom:84px;right:12px}
+  .arriba{bottom:150px;right:14px}
+  .mariposa{opacity:.35}
+  /* las tres cifras grandes: una fila que se desliza en vez de tres pantallas de alto */
+  html body .vistazo{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -14px 14px;padding:2px 14px 6px;scrollbar-width:none}
+  html body .vistazo::-webkit-scrollbar{display:none}
+  html body .vistazo > *{flex:0 0 82%;scroll-snap-align:center;margin:0}
+}
