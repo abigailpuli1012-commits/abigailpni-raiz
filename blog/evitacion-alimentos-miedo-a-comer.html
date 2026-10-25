@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Lo que se sabe del trastorno de evitación y restricción (ARFID), y por qué se pasa por alto en las consultas digestivas.">
+<link rel="canonical" href="https://abigailpni.com/blog/evitacion-alimentos-miedo-a-comer">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Soberanía Digestiva">
+<meta property="og:title" content="Cuando quitar alimentos se convierte en miedo a comer · Soberanía Digestiva">
+<meta property="og:description" content="Lo que se sabe del trastorno de evitación y restricción (ARFID), y por qué se pasa por alto en las consultas digestivas.">
+<meta property="og:url" content="https://abigailpni.com/blog/evitacion-alimentos-miedo-a-comer">
+<meta property="og:image" content="https://abigailpni.com/img/evitacion-alimentos-miedo-a-comer.jpg">
+<title>Cuando quitar alimentos se convierte en miedo a comer · Soberanía Digestiva</title>
+<style>
+@font-face{font-family:'Cormorant Garamond';src:url('../fuentes/cormorant-garamond-400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('../fuentes/cormorant-garamond-500.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('../fuentes/cormorant-garamond-600.woff2') format('woff2');font-weight:600;font-display:swap}
+:root{
+  --petroleo:#032532; --medio:#123944; --marfil:#F4F1E9; --blanco:#FFFFFF;
+  --dorado:#B6A47A; --dorado-oscuro:#6E5B32; --gris:#94A4AC;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --r:12px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--marfil);color:var(--petroleo);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.7}
+a{color:inherit}
+.in{padding-left:26px;padding-right:20px;max-width:680px;margin:0 auto}
+
+.maqueta{background:var(--dorado);color:var(--petroleo);font-size:12px;letter-spacing:.08em;padding:8px 26px;text-transform:uppercase}
+
+header{background:var(--petroleo);padding-top:26px;padding-bottom:22px}
+header .in{max-width:1040px;display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.marca{font-family:var(--serif);font-size:15px;letter-spacing:.18em;text-transform:uppercase;color:var(--dorado);text-decoration:none}
+nav{display:flex;gap:20px;font-size:14px}
+nav a{color:rgba(244,241,233,.78);text-decoration:none}
+nav a:hover{color:var(--marfil)}
+
+/* cabecera del artículo */
+.cab{background:var(--petroleo);color:var(--marfil);padding-top:46px;padding-bottom:84px}
+.cab .volver{font-size:13px;color:var(--gris);text-decoration:none}
+.cab .rotulo{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--dorado);margin:34px 0 16px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,9vw,56px);line-height:1.02;letter-spacing:-.018em;margin:0}
+.dek{font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.35;color:var(--dorado);margin:20px 0 0}
+.meta{font-size:13px;color:var(--gris);margin:22px 0 0}
+
+/* test arriba */
+.test{background:var(--blanco);border-radius:var(--r);padding:26px 24px 26px 26px;margin-top:0;position:relative;z-index:2}
+.test p{margin:0}
+.test .t{font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.12}
+.test .d{font-size:15px;color:#3d5560;margin-top:8px;line-height:1.5}
+.boton{display:inline-flex;align-items:center;min-height:56px;padding:0 28px;margin-top:20px;background:var(--petroleo);color:var(--marfil);
+  border-radius:var(--r);text-decoration:none;font-size:16px;font-weight:600;transition:background .25s ease}
+.boton:hover{background:var(--medio)}
+
+/* cuerpo */
+article{padding-top:54px;padding-bottom:30px}
+article p{font-size:18px;margin:0 0 20px}
+article h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,7vw,36px);line-height:1.08;letter-spacing:-.012em;margin:54px 0 16px}
+article h3{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--dorado-oscuro);font-weight:600;margin:34px 0 8px}
+article ul{margin:0 0 20px;padding-left:22px}
+article li{font-size:18px;margin-bottom:10px}
+.destacado{font-family:var(--serif);font-size:clamp(26px,6.6vw,32px);line-height:1.18;color:var(--petroleo);margin:36px 0}
+.momento{background:var(--blanco);border-radius:var(--r);padding:22px 22px 8px 24px;margin:0 0 16px}
+.momento h3{margin-top:0}
+.momento ul{margin-bottom:14px}
+.momento li{font-size:17px}
+.aviso{font-size:15px;color:#3d5560;margin-top:44px}
+.fuentes{background:var(--blanco);border-radius:var(--r);padding:18px 22px;margin-top:40px;font-size:14px;color:#3d5560}
+.fuentes b{color:var(--petroleo)}
+
+.cierre{background:var(--medio);color:var(--marfil);padding-top:80px;padding-bottom:64px}
+.cierre h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,8vw,42px);line-height:1.05;margin:0 0 18px}
+.cierre p{font-size:17px;color:rgba(244,241,233,.82);margin:0 0 6px}
+.cierre .boton{background:var(--marfil);color:var(--petroleo)}
+.cierre .boton:hover{background:var(--blanco)}
+.cierre .otro{display:block;margin-top:22px;font-size:15px;color:rgba(244,241,233,.85);text-underline-offset:.22em}
+
+footer{background:var(--petroleo);padding-top:44px;padding-bottom:50px;font-size:14px;color:rgba(244,241,233,.7)}
+footer .enl{display:flex;flex-wrap:wrap;gap:8px 24px;margin:0 0 20px}
+footer a{color:rgba(244,241,233,.85);text-underline-offset:.2em}
+footer p{margin:0 0 10px}
+/* transiciones suaves entre bloques de color */
+.fundido{height:170px;margin:-50px 0 -40px;position:relative;z-index:1;pointer-events:none}
+.f-pi{background:linear-gradient(180deg,#032532 0%,#0a2b37 10%,#1c3a45 20%,#37515a 30%,#586d72 40%,#7c8b8e 50%,#9fa9a9 60%,#c0c5c1 70%,#dbdcd6 80%,#edebe4 90%,#f4f1e9 100%)}
+.f-im{background:linear-gradient(180deg,#f4f1e9 0%,#eeece4 10%,#dcded8 20%,#c3c9c5 30%,#a4b0af 40%,#839596 50%,#627a7e 60%,#436168 70%,#2a4c55 80%,#183e49 90%,#123944 100%)}
+
+/* apoyos visuales */
+figure{margin:34px 0 38px;background:var(--blanco);border-radius:var(--r);padding:22px 18px 16px 20px}
+figure svg{display:block;width:100%;height:auto}
+figcaption{font-size:14px;line-height:1.5;color:#3d5560;margin-top:12px}
+svg text{font-family:var(--sans);fill:#032532}
+svg .t-serif{font-family:'Cormorant Garamond',Georgia,serif}
+svg .sm{font-size:14px}
+svg .mu{fill:#5a6f78}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* grano de papel, muy sutil */
+body::after{content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.12;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .72  0 0 0 0 .62  0 0 0 0 .42  0 0 0 .9 -.28'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");background-size:220px 220px}
+
+/* dibujo de línea dorada */
+.orn{position:absolute;pointer-events:none;opacity:.34}
+.cab,.cierre{position:relative;overflow:hidden}
+.cab .in,.cierre .in{position:relative;z-index:1}
+.cab .rama{width:130px;right:-34px;top:-12px}
+.cierre .mol{width:150px;right:10px;top:24px;opacity:.28}
+@media (min-width:900px){.cab .rama{width:240px;right:8%}.cierre .mol{width:190px;right:14%}}
+
+/* imagen de cabecera, fundida con el petróleo */
+.cab-img{display:block;width:100%;height:auto;margin-top:34px;pointer-events:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="in">
+    <a class="marca" href="/">Soberanía Digestiva</a>
+    <nav><a href="/#blog">Blog</a><a href="/#guia">La guía</a></nav>
+  </div>
+</header>
+
+<div class="cab">
+  <div class="in">
+    <a class="volver" href="/#blog">Volver al blog</a>
+    <p class="rotulo">Evitación de alimentos</p>
+    <h1>Cuando quitar alimentos se convierte en miedo a comer</h1>
+    <p class="dek">Lo que se sabe del trastorno de evitación y restricción (ARFID), y por qué se pasa por alto en las consultas digestivas.</p>
+    <p class="meta">Lectura de 9 minutos · 1 oct 2026 · También en vídeo</p>
+    <img class="cab-img" src="../img/evitacion-alimentos-miedo-a-comer.jpg" alt="">
+  </div>
+</div>
+<div class="fundido f-pi"></div>
+
+<div class="in">
+  <div class="test">
+    <p class="t">¿Qué patrón se parece más al tuyo?</p>
+    <p class="d">Un test de dos minutos, gratis. No diagnostica nada: te ayuda a ponerle nombre.</p>
+    <a class="boton" href="https://www.abigailpni.com/test">Hacer el test</a>
+  </div>
+</div>
+
+<article>
+  <div class="in">
+    <p>Si hay una lista de alimentos que ya no comes y lleva años creciendo sin que sepas cuándo empezó, esto es para ti. No es para decirte que tienes un trastorno: <b>eso no se diagnostica en un artículo ni en un vídeo.</b> Es para contarte cómo algo tan razonable como quitar lo que te sienta mal puede convertirse en otra cosa, y que esa otra cosa tiene nombre y está descrita.</p>
+
+    <h2>La escena</h2>
+
+    <p>Sábado a las 21:30, en un restaurante, con la carta delante. Los demás eligen entre dos cosas que les apetecen. Tú estás haciendo una operación distinta: buscar qué tiene menos probabilidades de arruinarte el domingo. Y pides lo de siempre, que no es lo que te apetece, sino lo que sabes que no te va a hacer nada. O has dicho que ya habías cenado, o has cenado en casa antes de salir.</p>
+
+    <p>Eso no es ser maniática ni complicada. Es lo que pasa cuando llevas años comiendo con la cabeza puesta en las tres horas de después, y el cuerpo te ha dado motivos para desconfiar.</p>
+
+    <h2>Qué es</h2>
+
+    <p>Se llama <b>trastorno de evitación y restricción de la ingesta de alimentos</b>, ARFID por sus siglas en inglés. Está recogido en el DSM-5, el manual de referencia de psiquiatría, desde 2013.</p>
+
+    <p>Lo primero: <b>no va del peso ni de la imagen corporal.</b> No es como la anorexia. Uno de sus criterios es justo que no haya alteración en cómo percibes tu peso o tu figura. Aquí la comida no se evita para adelgazar, sino por lo que pasa después: dolor, náuseas, hinchazón, vómitos o atragantamiento.</p>
+
+    <p>Tiene tres formas, y suelen mezclarse:</p>
+    <ul>
+      <li><b>Sensorial:</b> evitar alimentos por su textura, su olor o su temperatura. Más asociada a la infancia, aunque también existe en adultos.</li>
+      <li><b>Falta de interés o de apetito:</b> no apetece nada, se tarda una eternidad en terminar el plato y se come porque toca.</li>
+      <li><b>Miedo a las consecuencias:</b> es la forma digestiva, y la que ocupa este artículo.</li>
+    </ul>
+
+    <p>Un matiz: esto no es "los síntomas digestivos causan un trastorno". Va en dos direcciones. El síntoma empuja a restringir, y la restricción empeora el síntoma. Más que una flecha, es un círculo.</p>
+
+    <figure>
+<svg viewBox="0 0 340 327" role="img" aria-labelledby="arfid-tres-formas-t arfid-tres-formas-d">
+  <title id="arfid-tres-formas-t">Las tres formas</title>
+  <desc id="arfid-tres-formas-d">Sensorial, falta de interés y miedo a las consecuencias.</desc>
+  <line x1="24" y1="25" x2="24" y2="235.5" stroke="#E4DFD2" stroke-width="2.5"/>
+  <circle cx="24" cy="25" r="6" fill="#B6A47A" stroke="none" stroke-width="1.5"/>
+  <circle cx="24" cy="140.0" r="6" fill="#B6A47A" stroke="none" stroke-width="1.5"/>
+  <circle cx="24" cy="235.5" r="6" fill="#B6A47A" stroke="none" stroke-width="1.5"/>
+  <rect x="46" y="8" width="288" height="101.0" rx="10" fill="none" stroke="#94A4AC" stroke-width="1.2"/>
+  <text x="57" y="32.5" font-weight="600" font-size="15.5" class="">Sensorial</text>
+  <text x="57" y="56.0" font-size="14.5" style="fill:#3d5560" class="">Textura, olor o temperatura</text>
+  <text x="57" y="75.5" font-size="14.5" style="fill:#3d5560" class="">Más en la infancia, aunque también</text>
+  <text x="57" y="95.0" font-size="14.5" style="fill:#3d5560" class="">en adultos</text>
+  <rect x="46" y="123.0" width="288" height="81.5" rx="10" fill="none" stroke="#94A4AC" stroke-width="1.2"/>
+  <text x="57" y="147.5" font-weight="600" font-size="15.5" class="">Falta de interés o de apetito</text>
+  <text x="57" y="171.0" font-size="14.5" style="fill:#3d5560" class="">No apetece nada y se come porque</text>
+  <text x="57" y="190.5" font-size="14.5" style="fill:#3d5560" class="">toca</text>
+  <rect x="46" y="218.5" width="288" height="101.0" rx="10" fill="none" stroke="#94A4AC" stroke-width="1.2"/>
+  <text x="57" y="243.0" font-weight="600" font-size="15.5" class="">Miedo a las consecuencias</text>
+  <text x="57" y="266.5" font-size="14.5" style="fill:#3d5560" class="">Dolor, náuseas, hinchazón, vómitos</text>
+  <text x="57" y="286.0" font-size="14.5" style="fill:#3d5560" class="">o atragantamiento</text>
+  <text x="57" y="305.5" font-size="14.5" style="fill:#3d5560" class="">Es la forma digestiva</text>
+</svg>
+      <figcaption>Tres formas que suelen mezclarse.</figcaption>
+    </figure>
+
+    <h2>¿Quitar un alimento que me sienta mal es un trastorno?</h2>
+
+    <p>No. Eso es sentido común, y hasta se discute en la propia gastroenterología si esto es una restricción adaptativa o psicopatología. Lo que convierte una conducta sensata en otra cosa no es la conducta, son <b>las consecuencias</b>:</p>
+    <ul>
+      <li>Pérdida de peso sin buscarla.</li>
+      <li>Déficit nutricional.</li>
+      <li>Depender de suplementos para llegar a lo que necesitas.</li>
+      <li>Que tu vida se haya reorganizado alrededor de la comida. Es lo más frecuente y lo que menos se mira.</li>
+    </ul>
+
+    <p>Así que la pregunta útil no es "¿tengo un trastorno?". Es <b>"¿qué me está costando esto?"</b></p>
+
+    <figure>
+<svg viewBox="0 0 340 317" role="img" aria-labelledby="arfid-que-cuesta-t arfid-que-cuesta-d">
+  <title id="arfid-que-cuesta-t">Cuándo una conducta sensata deja de serlo</title>
+  <desc id="arfid-que-cuesta-d">Las consecuencias, no la conducta, marcan la diferencia.</desc>
+  <rect x="30" y="8" width="280" height="59" rx="12" fill="#032532" stroke="none" stroke-width="0"/>
+  <text x="170" y="25" text-anchor="middle" font-weight="600" font-size="16" style="fill:#FFFFFF" class="">Lo que cambia son las</text>
+  <text x="170" y="44" text-anchor="middle" font-weight="600" font-size="16" style="fill:#FFFFFF" class="">consecuencias</text>
+  <line x1="170" y1="67" x2="170" y2="81" stroke="#94A4AC" stroke-width="1.5"/>
+  <rect x="8.0" y="81" width="158.0" height="100.0" rx="10" fill="none" stroke="#94A4AC" stroke-width="1.2"/>
+  <text x="19.0" y="105.5" font-weight="600" font-size="15.5" class="">Pérdida de peso</text>
+  <text x="19.0" y="129.0" font-size="14.5" style="fill:#3d5560" class="">Sin buscarla</text>
+  <rect x="174.0" y="81" width="158.0" height="100.0" rx="10" fill="none" stroke="#94A4AC" stroke-width="1.2"/>
+  <text x="185.0" y="105.5" font-weight="600" font-size="15.5" class="">Déficit</text>
+  <text x="185.0" y="124.0" font-weight="600" font-size="15.5" class="">nutricional</text>
+  <text x="185.0" y="147.5" font-size="14.5" style="fill:#3d5560" class="">O depender de</text>
+  <text x="185.0" y="167.0" font-size="14.5" style="fill:#3d5560" class="">suplementos</text>
+  <rect x="8.0" y="189.0" width="158.0" height="118.5" rx="10" fill="none" stroke="#94A4AC" stroke-width="1.2"/>
+  <text x="19.0" y="213.5" font-weight="600" font-size="15.5" class="">La vida</text>
+  <text x="19.0" y="232.0" font-weight="600" font-size="15.5" class="">alrededor de la</text>
+  <text x="19.0" y="250.5" font-weight="600" font-size="15.5" class="">comida</text>
+  <text x="19.0" y="274.0" font-size="14.5" style="fill:#3d5560" class="">Táperes, cartas,</text>
+  <text x="19.0" y="293.5" font-size="14.5" style="fill:#3d5560" class="">planes</text>
+  <rect x="174.0" y="189.0" width="158.0" height="118.5" rx="10" fill="none" stroke="#94A4AC" stroke-width="1.2"/>
+  <text x="185.0" y="213.5" font-weight="600" font-size="15.5" class="">La pregunta</text>
+  <text x="185.0" y="232.0" font-weight="600" font-size="15.5" class="">útil</text>
+  <text x="185.0" y="255.5" font-size="14.5" style="fill:#3d5560" class="">¿Qué me está</text>
+  <text x="185.0" y="275.0" font-size="14.5" style="fill:#3d5560" class="">costando esto?</text>
+</svg>
+      <figcaption>Lo que marca la diferencia no es la conducta, sino sus consecuencias.</figcaption>
+    </figure>
+
+    <h2>Una escalera de cinco peldaños</h2>
+
+    <p>No llega de golpe. Viene poco a poco y se va normalizando, y por eso desde dentro no se ve. Te propongo mirarla una sola vez, situarte y volver a lo tuyo. No es para vigilarte más, que ya llevas bastante vigilancia encima, ni para ponerte una etiqueta.</p>
+
+    <div class="momento">
+      <h3>Del más suave al más serio</h3>
+      <ul>
+        <li><b>1. La comida deja de ser neutra.</b> Te sientas a la mesa y ya estás calculando, y al terminar te quedas pendiente de a ver qué pasa. Suele empezar después de algo: una gastroenteritis, una intoxicación, un atragantamiento, un reflujo persistente, una época de mucho dolor.</li>
+        <li><b>2. Quitas alimentos concretos y funciona.</b> Tomate, café, chocolate, legumbres, picante. Los síntomas bajan, y tu cabeza no aprende "este alimento me sentaba mal", sino algo más peligroso: "quitar funciona". Desde ahí, cada síntoma nuevo tiene una respuesta automática: ver qué más quitar.</li>
+        <li><b>3. Reduces cantidades y te saltas comidas.</b> Los platos se hacen más pequeños, se pica en vez de comer, y suele caer la cena.</li>
+        <li><b>4. Quitas grupos enteros, con un segundo filtro.</b> La dieta baja en FODMAP tiene buena evidencia en el colon irritable a corto plazo y las guías la plantean como una fase temporal con reintroducción programada. El problema es la salida: si no se ha tratado el terreno, cuando llega el momento de reintroducir vuelven los síntomas, y con ellos el miedo. Además aparece un segundo filtro, el de lo "sano", y se vive con dos listas a la vez.</li>
+        <li><b>5. Ya no va de comida, va de vida.</b> Dejar de comer fuera de casa, táperes a todas partes, mirar la carta del restaurante dos días antes, comer en Navidad algo distinto a lo que come todo el mundo.</li>
+      </ul>
+    </div>
+
+    <figure>
+<svg viewBox="0 0 340 304" role="img" aria-labelledby="escalera-t escalera-d">
+  <title id="escalera-t">Cinco peldaños, del más suave al más serio</title>
+  <desc id="escalera-d">Una escalera de cinco peldaños: la comida deja de ser neutra, se quitan alimentos, se reducen cantidades, se quitan grupos enteros y la vida se organiza alrededor de la comida.</desc>
+  <text x="20" y="14" font-size="12" class="sm mu">más suave</text>
+  <text x="320" y="14" text-anchor="end" font-size="12" class="sm mu">más serio</text>
+  <rect x="20" y="146" width="56" height="28" rx="6" fill="#D9E0E2" stroke="none" stroke-width="0"/>
+  <text x="48" y="168" text-anchor="middle" font-weight="600" font-size="15" style="fill:#032532" class="sm">1</text>
+  <rect x="79" y="122" width="56" height="52" rx="6" fill="#B7C3C8" stroke="none" stroke-width="0"/>
+  <text x="107" y="144" text-anchor="middle" font-weight="600" font-size="15" style="fill:#032532" class="sm">2</text>
+  <rect x="138" y="98" width="56" height="76" rx="6" fill="#8FA2AA" stroke="none" stroke-width="0"/>
+  <text x="166" y="120" text-anchor="middle" font-weight="600" font-size="15" style="fill:#032532" class="sm">3</text>
+  <rect x="197" y="74" width="56" height="100" rx="6" fill="#4F6B76" stroke="none" stroke-width="0"/>
+  <text x="225" y="96" text-anchor="middle" font-weight="600" font-size="15" style="fill:#FFFFFF" class="sm">4</text>
+  <rect x="256" y="50" width="56" height="124" rx="6" fill="#123944" stroke="none" stroke-width="0"/>
+  <text x="284" y="72" text-anchor="middle" font-weight="600" font-size="15" style="fill:#FFFFFF" class="sm">5</text>
+  <text x="20" y="198" font-size="13" class="sm">1.  La comida deja de ser neutra</text>
+  <text x="20" y="218" font-size="13" class="sm">2.  Quitas alimentos y funciona</text>
+  <text x="20" y="238" font-size="13" class="sm">3.  Menos cantidad y saltas comidas</text>
+  <text x="20" y="258" font-size="13" class="sm">4.  Quitas grupos enteros</text>
+  <text x="20" y="278" font-size="13" class="sm">5.  Ya no va de comida, va de vida</text>
+</svg>
+      <figcaption>Sirve para situarte, no para diagnosticarte. Mírala una vez y vuelve a lo tuyo.</figcaption>
+    </figure>
+
+    <p>Un dato curioso: en un grupo de 233 personas con colon irritable, quienes daban positivo en un cribado de conducta alimentaria cumplían mejor la dieta (57 % frente al 35 %). Cumplir a rajatabla no siempre es tan buena señal como parece.</p>
+
+    <h2>Por qué se sube esa escalera con tanta facilidad</h2>
+
+    <p>El mecanismo exacto no está cerrado. Una revisión de 2025 reconoció que no hay estudios suficientes para explicarlo a fondo. Lo que se plantea, y encaja con lo que se ve, es un bucle de tres piezas:</p>
+
+    <ul>
+      <li><b>Un aprendizaje.</b> Comes, llega el dolor o las náuseas (las náuseas crónicas suelen ser el detonador fuerte de la restricción) y eso se repite. El sistema nervioso hace lo que sabe hacer, asociar, y lo hace en las zonas del miedo aprendido. Por eso esto no se quita razonando: puedes saber perfectamente que un alimento no te va a hacer nada y aun así no poder comerlo.</li>
+      <li><b>La restricción cambia el terreno.</b> Con poca variedad, la microbiota pierde diversidad. Se plantea que eso influye en la inflamación de bajo grado y hasta en el propio aprendizaje del miedo. Es un modelo propuesto, no algo demostrado.</li>
+      <li><b>Comer poco empeora la digestión.</b> La motilidad se vuelve más perezosa y la sensibilidad del intestino sube.</li>
+    </ul>
+
+    <figure>
+<svg viewBox="0 0 340 236" role="img" aria-labelledby="evitacion-bucle-t evitacion-bucle-d">
+  <title id="evitacion-bucle-t">El círculo del miedo a comer</title>
+  <desc id="evitacion-bucle-d">El miedo lleva a restringir, restringir empeora el terreno y los síntomas vuelven, con lo que el miedo parece tener razón.</desc>
+  <circle cx="170" cy="128" r="72" fill="none" stroke="#E4DFD2" stroke-width="1"/>
+  <path d="M194.6,60.3 A72,72 0 0 1 240.9,140.5" fill="none" stroke="#032532" stroke-width="1.6"/>
+  <polygon points="240.9,140.5 246.9,132.4 238.0,130.9" fill="#032532"/>
+  <path d="M216.3,183.2 A72,72 0 0 1 123.7,183.2" fill="none" stroke="#032532" stroke-width="1.6"/>
+  <polygon points="123.7,183.2 127.7,192.4 133.5,185.5" fill="#032532"/>
+  <path d="M99.1,140.5 A72,72 0 0 1 145.4,60.3" fill="none" stroke="#032532" stroke-width="1.6"/>
+  <polygon points="145.4,60.3 135.4,59.2 138.5,67.6" fill="#032532"/>
+  <circle cx="170" cy="56" r="7" fill="#B6A47A" stroke="none" stroke-width="1.5"/>
+  <circle cx="232.4" cy="164" r="7" fill="#B6A47A" stroke="none" stroke-width="1.5"/>
+  <circle cx="107.6" cy="164" r="7" fill="#B6A47A" stroke="none" stroke-width="1.5"/>
+  <text x="170" y="32" text-anchor="middle" font-weight="600" class="sm">Miedo al síntoma</text>
+  <text x="246" y="160" font-weight="600" class="sm">Restringes</text>
+  <text x="246" y="179" font-weight="600" class="sm"></text>
+  <text x="94" y="160" text-anchor="end" font-weight="600" class="sm">Empeora el</text>
+  <text x="94" y="179" text-anchor="end" font-weight="600" class="sm">terreno</text>
+  <text x="170" y="136" text-anchor="middle" font-size="22" font-style="italic" class="t-serif">el círculo</text>
+</svg>
+      <figcaption>El miedo acaba teniendo razón, y por eso cuesta tanto salir.</figcaption>
+    </figure>
+
+    <p>Tienes miedo, así que restringes. Restringes, así que el terreno empeora. El terreno empeora, así que vuelven los síntomas. Y el miedo acaba teniendo razón. Es lo más injusto de todo: no te lo estás inventando.</p>
+
+    <p>Y lo que sientes es real. Cuando llevas mucho tiempo recibiendo señales, el umbral de disparo del intestino baja. Es el detector de humos que de tanto saltar se ha quedado tan sensible que salta con el vapor de la ducha. Con el umbral bajo, la misma cantidad de gas se siente el doble. Eso es un mecanismo, no un defecto de carácter.</p>
+
+    <h2>Por qué casi nadie lo pregunta</h2>
+
+    <p>En un hospital se revisaron las historias de 410 adultos derivados a digestivo y se les aplicaron los criterios con codificadores que no conocían a los pacientes. Casi uno de cada cuatro los cumplía. Y de esos, la gran mayoría restringía comida por miedo a síntomas digestivos, sobre todo náuseas, y después hinchazón y dolor. En ese grupo, solo una persona tenía el diagnóstico, y se tardó más de un año y medio en ponérselo.</p>
+
+    <p>Una cautela importante: dar positivo en un cribado no es tener el diagnóstico. Un cribado está hecho a propósito para no dejar fuera a nadie, así que sobreestima. Lo que dice ese número no es cuánta gente lo tiene, sino cuánta gente merecería que se lo preguntaran.</p>
+
+    <p>El trastorno entró en el manual en 2013 y se publica mucho menos sobre él que sobre la anorexia. Y en una consulta de 15 minutos, entre una endoscopia y una analítica, no hay hueco para preguntar cómo te llevas con la comida. Los que piden que se pregunte son los propios gastroenterólogos y las guías de su asociación americana.</p>
+
+    <h2>Qué se hace</h2>
+
+    <p>No hay truco mágico.</p>
+
+    <ul>
+      <li><b>Entender que quitar alimentos está alimentando el problema.</b> Mientras la solución sea quitar, cada síntoma nuevo te llevará a quitar otra cosa, y la lista solo puede ir en una dirección.</li>
+      <li><b>Reintroducir al revés de como lo hace casi todo el mundo</b>, que es esperar a estar perfecta. Lo que se plantea ante este tipo de miedo es una exposición gradual y ordenada, de menos a más temido, acompañada, y avanzando con síntomas <b>leves y manejables</b>: una hinchazón de vez en cuando, una sensación de reflujo. No cólicos marcados, náuseas ni vómitos.</li>
+      <li><b>No es aguantar.</b> Comerte lo que te sienta mal y apretar los dientes no es exposición: es hacerte daño, y suele reforzar el miedo. Si duele mucho, se para.</li>
+      <li><b>Va despacio.</b> Depende de cada caso, pero suelen ser meses, no semanas. Habrá una bajada de síntomas por el camino, y para recuperar una vida funcional hablamos de meses.</li>
+      <li><b>Con ayuda.</b> Si te reconoces en el peldaño 4 o 5, esto se trata con profesionales de conducta alimentaria y de digestivo.</li>
+    </ul>
+
+    <p>Y antes de nada, esto <b>no sustituye</b> que te mire un médico o médica de digestivo. Primero se descarta lo que hay que descartar. Si hay pérdida de peso, sangre, vómitos repetidos, anemia que no se corrige o algo que empezó de golpe, se mira con tu médico antes que nada.</p>
+
+    <figure>
+<svg viewBox="0 0 340 547" role="img" aria-labelledby="arfid-salida-t arfid-salida-d">
+  <title id="arfid-salida-t">Cómo se sale</title>
+  <desc id="arfid-salida-d">Cinco ideas y señales de alarma.</desc>
+  <line x1="24" y1="25" x2="24" y2="361.0" stroke="#E4DFD2" stroke-width="2.5"/>
+  <circle cx="24" cy="25" r="12" fill="#B6A47A" stroke="none" stroke-width="1.5"/>
+  <text x="24" y="30" text-anchor="middle" font-weight="600" font-size="15.1" class="">1</text>
+  <circle cx="24" cy="95.0" r="12" fill="#B6A47A" stroke="none" stroke-width="1.5"/>
+  <text x="24" y="100.0" text-anchor="middle" font-weight="600" font-size="15.1" class="">2</text>
+  <circle cx="24" cy="190.5" r="12" fill="#B6A47A" stroke="none" stroke-width="1.5"/>
+  <text x="24" y="195.5" text-anchor="middle" font-weight="600" font-size="15.1" class="">3</text>
+  <circle cx="24" cy="285.0" r="12" fill="#B6A47A" stroke="none" stroke-width="1.5"/>
+  <text x="24" y="290.0" text-anchor="middle" font-weight="600" font-size="15.1" class="">4</text>
+  <circle cx="24" cy="361.0" r="12" fill="#B6A47A" stroke="none" stroke-width="1.5"/>
+  <text x="24" y="366.0" text-anchor="middle" font-weight="600" font-size="15.1" class="">5</text>
+  <rect x="46" y="8" width="288" height="56.0" rx="10" fill="none" stroke="#94A4AC" stroke-width="1.2"/>
+  <text x="57" y="32.5" font-weight="600" font-size="15.5" class="">Entender que quitar alimentos</text>
+  <text x="57" y="51.0" font-weight="600" font-size="15.5" class="">alimenta el problema</text>
+  <rect x="46" y="78.0" width="288" height="81.5" rx="10" fill="none" stroke="#94A4AC" stroke-width="1.2"/>
+  <text x="57" y="102.5" font-weight="600" font-size="15.5" class="">Reintroducir poco a poco</text>
+  <text x="57" y="126.0" font-size="14.5" style="fill:#3d5560" class="">De menos a más temido, y</text>
+  <text x="57" y="145.5" font-size="14.5" style="fill:#3d5560" class="">acompañada</text>
+  <rect x="46" y="173.5" width="288" height="80.5" rx="10" fill="none" stroke="#94A4AC" stroke-width="1.2"/>
+  <text x="57" y="198.0" font-weight="600" font-size="15.5" class="">Con síntomas leves y</text>
+  <text x="57" y="216.5" font-weight="600" font-size="15.5" class="">manejables</text>
+  <text x="57" y="240.0" font-size="14.5" style="fill:#3d5560" class="">Si duele mucho, se para</text>
+  <rect x="46" y="268.0" width="288" height="62.0" rx="10" fill="none" stroke="#94A4AC" stroke-width="1.2"/>
+  <text x="57" y="292.5" font-weight="600" font-size="15.5" class="">Meses, no semanas</text>
+  <text x="57" y="316.0" font-size="14.5" style="fill:#3d5560" class="">Depende de cada caso</text>
+  <rect x="46" y="344.0" width="288" height="62.0" rx="10" fill="none" stroke="#94A4AC" stroke-width="1.2"/>
+  <text x="57" y="368.5" font-weight="600" font-size="15.5" class="">Con ayuda profesional</text>
+  <text x="57" y="392.0" font-size="14.5" style="fill:#3d5560" class="">Conducta alimentaria y digestivo</text>
+  <rect x="8" y="420.0" width="324" height="119.5" rx="10" fill="#FBF7EC" stroke="#B6A47A" stroke-width="1.5"/>
+  <text x="19" y="444.5" font-weight="600" font-size="15.5" class="">Señales de alarma: tu médico o</text>
+  <text x="19" y="463.0" font-weight="600" font-size="15.5" class="">médica antes</text>
+  <text x="19" y="486.5" font-size="14.5" style="fill:#3d5560" class="">Pérdida de peso sin buscarla, sangre,</text>
+  <text x="19" y="506.0" font-size="14.5" style="fill:#3d5560" class="">vómitos repetidos, anemia que no se</text>
+  <text x="19" y="525.5" font-size="14.5" style="fill:#3d5560" class="">corrige o algo que empezó de golpe.</text>
+</svg>
+      <figcaption>Cómo se sale: despacio, acompañada y con las señales de alarma presentes.</figcaption>
+    </figure>
+
+    <h2>Para quedarte con una cosa</h2>
+
+    <p>Si te has reconocido en algún peldaño: <b>el error no es tuyo.</b> Estabas obedeciendo lo que te dijeron. Nadie te explicó el mecanismo y nadie te preguntó cómo te llevabas con la comida. Lo que más cansa no es tener síntomas, es no poder preverlos. Y saber por qué vienen cambia eso.</p>
+  </div>
+</article>
+
+<div class="fundido f-im"></div>
+<div class="cierre"><svg class="orn mol" viewBox="0 0 180 150" aria-hidden="true"><polygon points="91.4,45.0 91.4,79.0 62.0,96.0 32.6,79.0 32.6,45.0 62.0,28.0" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="91.4" y1="45.0" x2="132" y2="34" stroke="#B6A47A" stroke-width="1"/><circle cx="132" cy="34" r="5" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="62.0" y1="96.0" x2="108" y2="126" stroke="#B6A47A" stroke-width="1"/><circle cx="108" cy="126" r="5" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="32.6" y1="45.0" x2="20" y2="128" stroke="#B6A47A" stroke-width="1"/><circle cx="20" cy="128" r="5" fill="none" stroke="#B6A47A" stroke-width="1"/><circle cx="91.4" cy="45.0" r="3.2" fill="#B6A47A"/><circle cx="91.4" cy="79.0" r="3.2" fill="#B6A47A"/><circle cx="62.0" cy="96.0" r="3.2" fill="#B6A47A"/><circle cx="32.6" cy="79.0" r="3.2" fill="#B6A47A"/><circle cx="32.6" cy="45.0" r="3.2" fill="#B6A47A"/><circle cx="62.0" cy="28.0" r="3.2" fill="#B6A47A"/><line x1="132" y1="34" x2="168" y2="58" stroke="#B6A47A" stroke-width="1"/><circle cx="168" cy="58" r="4" fill="none" stroke="#B6A47A" stroke-width="1"/></svg>
+  <div class="in">
+    <h2>¿Te has reconocido en algún peldaño?</h2>
+    <p>Si algo de esto te preocupa, habla con tu médico o médica. La guía te explica el mecanismo completo, paso a paso.</p>
+    <a class="boton" href="https://abigailpni.com/guia/">Ver la guía</a>
+    <a class="otro" href="https://www.youtube.com/watch?v=X_KLxJJB3oM">Ver el vídeo donde lo explico</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in" style="max-width:1040px">
+    <div class="enl">
+      <a href="https://abigailpni.com/legal/aviso-legal">Aviso legal</a>
+      <a href="https://abigailpni.com/legal/privacidad">Privacidad</a>
+      <a href="mailto:abigail@abigailpni.com">abigail@abigailpni.com</a>
+    </div>
+    <p>Esta web no usa cookies de seguimiento ni de publicidad.</p>
+    <p>Contenido educativo y de divulgación. No sustituye la consulta con un profesional sanitario.</p>
+  </div>
+</footer>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "344546c74ef64c6bbb0f69acd6ef84ef"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

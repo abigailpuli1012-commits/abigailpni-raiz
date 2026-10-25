@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Y qué mirar cuando la respuesta no está en el plato.">
+<link rel="canonical" href="https://abigailpni.com/blog/hipersensibilidad-visceral">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Soberanía Digestiva">
+<meta property="og:title" content="Por qué la misma comida te sienta bien un día y mal otro · Soberanía Digestiva">
+<meta property="og:description" content="Y qué mirar cuando la respuesta no está en el plato.">
+<meta property="og:url" content="https://abigailpni.com/blog/hipersensibilidad-visceral">
+<meta property="og:image" content="https://abigailpni.com/img/hipersensibilidad-visceral.jpg">
+<title>Por qué la misma comida te sienta bien un día y mal otro · Soberanía Digestiva</title>
+<style>
+@font-face{font-family:'Cormorant Garamond';src:url('../fuentes/cormorant-garamond-400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('../fuentes/cormorant-garamond-500.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('../fuentes/cormorant-garamond-600.woff2') format('woff2');font-weight:600;font-display:swap}
+:root{
+  --petroleo:#032532; --medio:#123944; --marfil:#F4F1E9; --blanco:#FFFFFF;
+  --dorado:#B6A47A; --dorado-oscuro:#6E5B32; --gris:#94A4AC;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --r:12px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--marfil);color:var(--petroleo);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.7}
+a{color:inherit}
+.in{padding-left:26px;padding-right:20px;max-width:680px;margin:0 auto}
+
+.maqueta{background:var(--dorado);color:var(--petroleo);font-size:12px;letter-spacing:.08em;padding:8px 26px;text-transform:uppercase}
+
+header{background:var(--petroleo);padding-top:26px;padding-bottom:22px}
+header .in{max-width:1040px;display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.marca{font-family:var(--serif);font-size:15px;letter-spacing:.18em;text-transform:uppercase;color:var(--dorado);text-decoration:none}
+nav{display:flex;gap:20px;font-size:14px}
+nav a{color:rgba(244,241,233,.78);text-decoration:none}
+nav a:hover{color:var(--marfil)}
+
+/* cabecera del artículo */
+.cab{background:var(--petroleo);color:var(--marfil);padding-top:46px;padding-bottom:84px}
+.cab .volver{font-size:13px;color:var(--gris);text-decoration:none}
+.cab .rotulo{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--dorado);margin:34px 0 16px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,9vw,56px);line-height:1.02;letter-spacing:-.018em;margin:0}
+.dek{font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.35;color:var(--dorado);margin:20px 0 0}
+.meta{font-size:13px;color:var(--gris);margin:22px 0 0}
+
+/* test arriba */
+.test{background:var(--blanco);border-radius:var(--r);padding:26px 24px 26px 26px;margin-top:0;position:relative;z-index:2}
+.test p{margin:0}
+.test .t{font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.12}
+.test .d{font-size:15px;color:#3d5560;margin-top:8px;line-height:1.5}
+.boton{display:inline-flex;align-items:center;min-height:56px;padding:0 28px;margin-top:20px;background:var(--petroleo);color:var(--marfil);
+  border-radius:var(--r);text-decoration:none;font-size:16px;font-weight:600;transition:background .25s ease}
+.boton:hover{background:var(--medio)}
+
+/* cuerpo */
+article{padding-top:54px;padding-bottom:30px}
+article p{font-size:18px;margin:0 0 20px}
+article h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,7vw,36px);line-height:1.08;letter-spacing:-.012em;margin:54px 0 16px}
+article h3{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--dorado-oscuro);font-weight:600;margin:34px 0 8px}
+article ul{margin:0 0 20px;padding-left:22px}
+article li{font-size:18px;margin-bottom:10px}
+.destacado{font-family:var(--serif);font-size:clamp(26px,6.6vw,32px);line-height:1.18;color:var(--petroleo);margin:36px 0}
+.momento{background:var(--blanco);border-radius:var(--r);padding:22px 22px 8px 24px;margin:0 0 16px}
+.momento h3{margin-top:0}
+.momento ul{margin-bottom:14px}
+.momento li{font-size:17px}
+.aviso{font-size:15px;color:#3d5560;margin-top:44px}
+.fuentes{background:var(--blanco);border-radius:var(--r);padding:18px 22px;margin-top:40px;font-size:14px;color:#3d5560}
+.fuentes b{color:var(--petroleo)}
+
+.cierre{background:var(--medio);color:var(--marfil);padding-top:80px;padding-bottom:64px}
+.cierre h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,8vw,42px);line-height:1.05;margin:0 0 18px}
+.cierre p{font-size:17px;color:rgba(244,241,233,.82);margin:0 0 6px}
+.cierre .boton{background:var(--marfil);color:var(--petroleo)}
+.cierre .boton:hover{background:var(--blanco)}
+.cierre .otro{display:block;margin-top:22px;font-size:15px;color:rgba(244,241,233,.85);text-underline-offset:.22em}
+
+footer{background:var(--petroleo);padding-top:44px;padding-bottom:50px;font-size:14px;color:rgba(244,241,233,.7)}
+footer .enl{display:flex;flex-wrap:wrap;gap:8px 24px;margin:0 0 20px}
+footer a{color:rgba(244,241,233,.85);text-underline-offset:.2em}
+footer p{margin:0 0 10px}
+/* transiciones suaves entre bloques de color */
+.fundido{height:170px;margin:-50px 0 -40px;position:relative;z-index:1;pointer-events:none}
+.f-pi{background:linear-gradient(180deg,#032532 0%,#0a2b37 10%,#1c3a45 20%,#37515a 30%,#586d72 40%,#7c8b8e 50%,#9fa9a9 60%,#c0c5c1 70%,#dbdcd6 80%,#edebe4 90%,#f4f1e9 100%)}
+.f-im{background:linear-gradient(180deg,#f4f1e9 0%,#eeece4 10%,#dcded8 20%,#c3c9c5 30%,#a4b0af 40%,#839596 50%,#627a7e 60%,#436168 70%,#2a4c55 80%,#183e49 90%,#123944 100%)}
+
+/* apoyos visuales */
+figure{margin:34px 0 38px;background:var(--blanco);border-radius:var(--r);padding:22px 18px 16px 20px}
+figure svg{display:block;width:100%;height:auto}
+figcaption{font-size:14px;line-height:1.5;color:#3d5560;margin-top:12px}
+svg text{font-family:var(--sans);fill:#032532}
+svg .t-serif{font-family:'Cormorant Garamond',Georgia,serif}
+svg .sm{font-size:14px}
+svg .mu{fill:#5a6f78}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* grano de papel, muy sutil */
+body::after{content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.12;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .72  0 0 0 0 .62  0 0 0 0 .42  0 0 0 .9 -.28'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");background-size:220px 220px}
+
+/* dibujo de línea dorada */
+.orn{position:absolute;pointer-events:none;opacity:.34}
+.cab,.cierre{position:relative;overflow:hidden}
+.cab .in,.cierre .in{position:relative;z-index:1}
+.cab .rama{width:130px;right:-34px;top:-12px}
+.cierre .mol{width:150px;right:10px;top:24px;opacity:.28}
+@media (min-width:900px){.cab .rama{width:240px;right:8%}.cierre .mol{width:190px;right:14%}}
+.cab-img{display:block;width:100%;height:auto;margin-top:34px;pointer-events:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="in">
+    <a class="marca" href="/">Soberanía Digestiva</a>
+    <nav><a href="/#blog">Blog</a><a href="/#guia">La guía</a></nav>
+  </div>
+</header>
+
+<div class="cab">
+  <div class="in">
+    <a class="volver" href="/#blog">Volver al blog</a>
+    <p class="rotulo">Hipersensibilidad visceral</p>
+    <h1>Por qué la misma comida te sienta bien un día y mal otro</h1>
+    <p class="dek">Y qué mirar cuando la respuesta no está en el plato.</p>
+    <p class="meta">Lectura de 4 minutos · También en vídeo</p>
+    <img class="cab-img" src="../img/hipersensibilidad-visceral.jpg" alt="">
+  </div>
+</div>
+<div class="fundido f-pi"></div>
+
+<div class="in">
+  <div class="test">
+    <p class="t">¿Qué patrón se parece más al tuyo?</p>
+    <p class="d">Un test de dos minutos, gratis. No diagnostica nada: te ayuda a ponerle nombre.</p>
+    <a class="boton" href="https://www.abigailpni.com/test">Hacer el test</a>
+  </div>
+</div>
+
+<article>
+  <div class="in">
+
+    <p>Mismo plato, misma hora. Un día tu barriga lo acepta y al siguiente reacciona como si le hubieran declarado la guerra. Si llevas meses buscando qué fue distinto, es posible que estés mirando la variable equivocada.</p>
+
+    <h2>El sensor, no el alimento</h2>
+    <p>Tu intestino tiene su propio sistema nervioso, y está conectado con el cerebro, entre otras vías, por el nervio vago. Cuando lleva tiempo expuesto a señales de alarma (dolor repetido, estrés sostenido, inflamación), sube su sensibilidad y empieza a interpretar señales neutras como amenazas.</p>
+    <p>Piensa en una alarma de coche demasiado sensible. No cambia el coche que pasa por la calle: cambia el umbral al que salta. El café del lunes y el del miércoles son el mismo café. Lo que ha cambiado es el umbral.</p>
+
+    <figure>
+      <svg viewBox="0 0 340 232" role="img" aria-labelledby="fa-t fa-d">
+        <title id="fa-t">El mismo café con dos umbrales distintos</title>
+        <desc id="fa-d">Dos barras iguales representan el mismo café. El lunes el umbral está por encima de la barra y no pasa nada. El miércoles el umbral está más bajo, la barra lo supera y salta la alarma.</desc>
+        <text x="90" y="24" text-anchor="middle" class="t-serif" font-size="22">Lunes</text>
+        <text x="250" y="24" text-anchor="middle" class="t-serif" font-size="22">Miércoles</text>
+        <line x1="24" y1="180" x2="316" y2="180" stroke="#94A4AC" stroke-width="1"/>
+        <text x="90" y="92" text-anchor="middle" class="sm mu">mismo café</text>
+        <text x="250" y="92" text-anchor="middle" class="sm mu">mismo café</text>
+        <rect x="72" y="100" width="36" height="80" fill="#B6A47A"/>
+        <rect x="232" y="100" width="36" height="80" fill="#B6A47A"/>
+        <rect x="232" y="100" width="36" height="36" fill="#032532"/>
+        <line x1="44" y1="62" x2="136" y2="62" stroke="#032532" stroke-width="2"/>
+        <text x="44" y="52" class="sm mu">umbral</text>
+        <line x1="204" y1="136" x2="296" y2="136" stroke="#032532" stroke-width="2"/>
+        <text x="274" y="154" class="sm mu">umbral</text>
+        <text x="90" y="203" text-anchor="middle" class="sm" font-weight="600">Umbral alto</text>
+        <text x="90" y="222" text-anchor="middle" class="sm mu">no pasa nada</text>
+        <text x="250" y="203" text-anchor="middle" class="sm" font-weight="600">Umbral bajo</text>
+        <text x="250" y="222" text-anchor="middle" class="sm mu">salta la alarma</text>
+      </svg>
+      <figcaption>El café no cambia. Lo que cambia es la altura a la que salta la alarma.</figcaption>
+    </figure>
+
+    <h2>Qué sube o baja ese umbral</h2>
+    <p>El alimento es solo una de las variables. Las otras:</p>
+    <ul>
+      <li><b>El sueño de las últimas 48 horas</b>, no solo el de anoche.</li>
+      <li><b>El estrés acumulado de los últimos días</b>, no el de ayer.</li>
+      <li><b>La fase hormonal</b>, en las mujeres con ciclo. En la fase premenstrual la sensibilidad visceral aumenta de forma documentada.</li>
+      <li><b>Cómo te relacionas con el síntoma.</b> El miedo al síntoma activa zonas del cerebro que amplifican la señal antes de que llegue a tu conciencia.</li>
+    </ul>
+    <p>Esto último no significa que te lo estés inventando. Lo que sientes es real. Significa que el cerebro participa en cuánto lo sientes.</p>
+
+    <h2>El chequeo que lo mantiene</h2>
+    <p>Son las 11 de la mañana de un jueves y ya estás calculando la cena de esta noche: ¿habrá algo que pueda comer?, ¿tendré que avisar?, ¿y si tengo que levantarme? Todavía no sabes ni el menú.</p>
+    <p class="destacado">La variabilidad no es solo el dolor. Es la gestión constante de lo que puede pasar.</p>
+    <p>Ese chequeo parece prudencia, y no lo haces mal: es lo que hace cualquier persona inteligente cuando lleva tiempo sin respuestas claras. El problema es que, mantenido en el tiempo, entrena al sistema nervioso para estar en alerta.</p>
+
+    <figure>
+      <svg viewBox="0 0 340 236" role="img" aria-labelledby="fb-t fb-d">
+        <title id="fb-t">El bucle del chequeo</title>
+        <desc id="fb-d">Un círculo de tres pasos: notas un síntoma, chequeas y anticipas, el sistema se vuelve más sensible, y vuelve a empezar.</desc>
+        <circle cx="170" cy="128" r="72" fill="none" stroke="#E4DFD2" stroke-width="1"/>
+        <path d="M194.6,60.3 A72,72 0 0 1 240.9,140.5" fill="none" stroke="#032532" stroke-width="1.6"/>
+        <path d="M240.9,140.5 L246.9,132.4 L238.0,130.9 Z" fill="#032532"/>
+        <path d="M216.3,183.2 A72,72 0 0 1 123.7,183.2" fill="none" stroke="#032532" stroke-width="1.6"/>
+        <path d="M123.7,183.2 L127.7,192.4 L133.5,185.5 Z" fill="#032532"/>
+        <path d="M99.1,140.5 A72,72 0 0 1 145.4,60.3" fill="none" stroke="#032532" stroke-width="1.6"/>
+        <path d="M145.4,60.3 L135.4,59.2 L138.5,67.6 Z" fill="#032532"/>
+        <circle cx="170" cy="56" r="7" fill="#B6A47A"/>
+        <circle cx="232.4" cy="164" r="7" fill="#B6A47A"/>
+        <circle cx="107.6" cy="164" r="7" fill="#B6A47A"/>
+        <text x="170" y="32" text-anchor="middle" class="sm" font-weight="600">Notas un síntoma</text>
+        <text x="246" y="160" class="sm" font-weight="600">Chequeas</text>
+        <text x="246" y="179" class="sm" font-weight="600">y anticipas</text>
+        <text x="94" y="160" text-anchor="end" class="sm" font-weight="600">Más</text>
+        <text x="94" y="179" text-anchor="end" class="sm" font-weight="600">sensibilidad</text>
+        <text x="170" y="136" text-anchor="middle" class="t-serif" font-style="italic" font-size="22">el bucle</text>
+      </svg>
+      <figcaption>El chequeo parece prudencia, pero cada vuelta deja al sensor un poco más sensible.</figcaption>
+    </figure>
+
+    <h2>Un día entero con menos alerta</h2>
+    <p>Para probar por una temporada, unas semanas, y ver qué cambia. Tiene dos objetivos a la vez: bajar lo que sube el umbral y dejar de alimentar la alerta.</p>
+
+    <figure>
+      <svg viewBox="0 0 340 204" role="img" aria-labelledby="fc-t fc-d">
+        <title id="fc-t">Cómo suele moverse el umbral a lo largo del día</title>
+        <desc id="fc-d">Esquema orientativo: el umbral es más alto por la mañana y a mediodía, baja entre las 4 y las 6 de la tarde, y se recupera algo por la noche.</desc>
+        <line x1="34" y1="26" x2="34" y2="160" stroke="#94A4AC" stroke-width="1"/>
+        <line x1="34" y1="160" x2="322" y2="160" stroke="#94A4AC" stroke-width="1"/>
+        <text x="42" y="40" class="sm mu">umbral más alto</text>
+        <text x="42" y="152" class="sm mu">más bajo</text>
+        <path d="M52,66 C100,64 112,80 140,82 C176,84 190,128 222,128 C252,128 266,98 296,94 L318,92" fill="none" stroke="#032532" stroke-width="2.2"/>
+        <circle cx="222" cy="128" r="8" fill="#B6A47A" stroke="#032532" stroke-width="1.5"/>
+        <text x="222" y="116" text-anchor="middle" class="sm" font-weight="600" dy="-18">De 4 a 6</text>
+        <text x="70" y="184" text-anchor="middle" class="sm mu">Mañana</text>
+        <text x="140" y="184" text-anchor="middle" class="sm mu">Mediodía</text>
+        <text x="222" y="184" text-anchor="middle" class="sm" font-weight="600">Tarde</text>
+        <text x="296" y="184" text-anchor="middle" class="sm mu">Noche</text>
+      </svg>
+      <figcaption>Esquema orientativo: la tarde suele ser el momento en que el sensor está más reactivo.</figcaption>
+    </figure>
+
+    <div class="momento">
+      <h3>Por la mañana</h3>
+      <ul>
+        <li>No hacer el escáner interno al despertar ("¿cómo estoy hoy?"). Levantarte y hacer otra cosa.</li>
+        <li>De 10 a 15 minutos de luz solar. Ayuda a marcar que el día empieza de forma segura.</li>
+        <li>Desayunar con proteína primero (huevo, pescado, legumbres): estabiliza la glucosa y suaviza el pico de cortisol de la mañana.</li>
+        <li>Comer sin analizar si te va a sentar bien o mal. La anticipación es parte del problema.</li>
+      </ul>
+    </div>
+
+    <div class="momento">
+      <h3>A mediodía</h3>
+      <ul>
+        <li>Sentarte antes de comer. No servir de pie ni comer con el móvil en la mano.</li>
+        <li>Dos minutos respirando antes de empezar.</li>
+        <li>Proteína, grasa saludable y carbohidrato de absorción lenta en el mismo plato.</li>
+        <li>Caminar 10 minutos después. No es para quemar calorías: es para que el músculo use la glucosa sin necesitar tanta insulina.</li>
+      </ul>
+    </div>
+
+    <div class="momento">
+      <h3>Por la tarde (de 4 a 6)</h3>
+      <p style="font-size:17px">Es cuando el umbral suele estar más bajo: el cortisol ha caído y el cansancio acumulado sube. Cuando notes el chequeo automático, en vez de revisar el síntoma, anota tres datos:</p>
+      <ul>
+        <li>Calidad del sueño de las dos últimas noches, de 1 a 5.</li>
+        <li>Carga acumulada de los últimos tres días, de 1 a 5.</li>
+        <li>La fase del ciclo, si te aplica.</li>
+      </ul>
+      <p style="font-size:17px">Apuntas el estado del sensor, no lo que ha hecho sonar la alarma.</p>
+    </div>
+
+    <div class="momento">
+      <h3>Por la noche</h3>
+      <ul>
+        <li>Oscuridad real una hora antes de dormir.</li>
+        <li>Si te aparece el balance del día ("¿ha sido bueno o malo?"), escríbelo en papel. No lo resuelves, pero lo aparcas, y eso basta para que el sistema nervioso descanse.</li>
+      </ul>
+    </div>
+
+    <h2>Qué esperar</h2>
+    <p>Un sistema nervioso que lleva meses o años en alerta no se recalibra en una semana. La primera señal suele ser pequeña y fácil de pasar por alto: necesitar chequearte menos, y pasar horas sin pensar en la barriga.</p>
+
+    <h2>Lo que esto no significa</h2>
+    <p>No significa que sea cosa de la cabeza, ni que la comida no importe. Significa que la comida no es la única variable, y que mirarla sola puede dejarte sin explicación. Tampoco sustituye a la consulta con tu médico o médica.</p>
+
+  </div>
+</article>
+
+<div class="fundido f-im"></div>
+<div class="cierre"><svg class="orn mol" viewBox="0 0 180 150" aria-hidden="true"><polygon points="91.4,45.0 91.4,79.0 62.0,96.0 32.6,79.0 32.6,45.0 62.0,28.0" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="91.4" y1="45.0" x2="132" y2="34" stroke="#B6A47A" stroke-width="1"/><circle cx="132" cy="34" r="5" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="62.0" y1="96.0" x2="108" y2="126" stroke="#B6A47A" stroke-width="1"/><circle cx="108" cy="126" r="5" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="32.6" y1="45.0" x2="20" y2="128" stroke="#B6A47A" stroke-width="1"/><circle cx="20" cy="128" r="5" fill="none" stroke="#B6A47A" stroke-width="1"/><circle cx="91.4" cy="45.0" r="3.2" fill="#B6A47A"/><circle cx="91.4" cy="79.0" r="3.2" fill="#B6A47A"/><circle cx="62.0" cy="96.0" r="3.2" fill="#B6A47A"/><circle cx="32.6" cy="79.0" r="3.2" fill="#B6A47A"/><circle cx="32.6" cy="45.0" r="3.2" fill="#B6A47A"/><circle cx="62.0" cy="28.0" r="3.2" fill="#B6A47A"/><line x1="132" y1="34" x2="168" y2="58" stroke="#B6A47A" stroke-width="1"/><circle cx="168" cy="58" r="4" fill="none" stroke="#B6A47A" stroke-width="1"/></svg>
+  <div class="in">
+    <h2>Si te has reconocido en el chequeo</h2>
+    <p>La guía «El mapa de tu sistema digestivo imprevisible» te explica el mecanismo completo, paso a paso.</p>
+    <a class="boton" href="https://abigailpni.com/guia/">Ver la guía</a>
+    <a class="otro" href="https://www.youtube.com/watch?v=dxe4Nsf62bI">Ver el vídeo donde lo explico</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in" style="max-width:1040px">
+    <div class="enl">
+      <a href="https://abigailpni.com/legal/aviso-legal">Aviso legal</a>
+      <a href="https://abigailpni.com/legal/privacidad">Privacidad</a>
+      <a href="mailto:abigail@abigailpni.com">abigail@abigailpni.com</a>
+    </div>
+    <p>Esta web no usa cookies de seguimiento ni de publicidad.</p>
+    <p>Contenido educativo y de divulgación. No sustituye la consulta con un profesional sanitario.</p>
+  </div>
+</footer>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "344546c74ef64c6bbb0f69acd6ef84ef"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

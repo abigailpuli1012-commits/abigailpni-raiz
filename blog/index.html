@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Lo que pasa en tu barriga, explicado con calma y con lo práctico.">
+<link rel="canonical" href="https://abigailpni.com/blog/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Soberanía Digestiva">
+<meta property="og:title" content="El blog · Soberanía Digestiva">
+<meta property="og:description" content="Lo que pasa en tu barriga, explicado con calma y con lo práctico.">
+<meta property="og:url" content="https://abigailpni.com/blog/">
+<title>El blog · Soberanía Digestiva</title>
+<style>
+@font-face{font-family:'Cormorant Garamond';src:url('../fuentes/cormorant-garamond-400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('../fuentes/cormorant-garamond-500.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('../fuentes/cormorant-garamond-600.woff2') format('woff2');font-weight:600;font-display:swap}
+:root{
+  --petroleo:#032532; --medio:#123944; --marfil:#F4F1E9; --blanco:#FFFFFF;
+  --dorado:#B6A47A; --dorado-oscuro:#6E5B32; --gris:#94A4AC;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --r:12px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--marfil);color:var(--petroleo);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.7}
+a{color:inherit}
+.in{padding-left:26px;padding-right:20px;max-width:680px;margin:0 auto}
+
+.maqueta{background:var(--dorado);color:var(--petroleo);font-size:12px;letter-spacing:.08em;padding:8px 26px;text-transform:uppercase}
+
+header{background:var(--petroleo);padding-top:26px;padding-bottom:22px}
+header .in{max-width:1040px;display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.marca{font-family:var(--serif);font-size:15px;letter-spacing:.18em;text-transform:uppercase;color:var(--dorado);text-decoration:none}
+nav{display:flex;gap:20px;font-size:14px}
+nav a{color:rgba(244,241,233,.78);text-decoration:none}
+nav a:hover{color:var(--marfil)}
+
+/* cabecera del artículo */
+.cab{background:var(--petroleo);color:var(--marfil);padding-top:46px;padding-bottom:84px}
+.cab .volver{font-size:13px;color:var(--gris);text-decoration:none}
+.cab .rotulo{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--dorado);margin:34px 0 16px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,9vw,56px);line-height:1.02;letter-spacing:-.018em;margin:0}
+.dek{font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.35;color:var(--dorado);margin:20px 0 0}
+.meta{font-size:13px;color:var(--gris);margin:22px 0 0}
+
+/* test arriba */
+.test{background:var(--blanco);border-radius:var(--r);padding:26px 24px 26px 26px;margin-top:0;position:relative;z-index:2}
+.test p{margin:0}
+.test .t{font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.12}
+.test .d{font-size:15px;color:#3d5560;margin-top:8px;line-height:1.5}
+.boton{display:inline-flex;align-items:center;min-height:56px;padding:0 28px;margin-top:20px;background:var(--petroleo);color:var(--marfil);
+  border-radius:var(--r);text-decoration:none;font-size:16px;font-weight:600;transition:background .25s ease}
+.boton:hover{background:var(--medio)}
+
+/* cuerpo */
+article{padding-top:54px;padding-bottom:30px}
+article p{font-size:18px;margin:0 0 20px}
+article h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,7vw,36px);line-height:1.08;letter-spacing:-.012em;margin:54px 0 16px}
+article h3{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--dorado-oscuro);font-weight:600;margin:34px 0 8px}
+article ul{margin:0 0 20px;padding-left:22px}
+article li{font-size:18px;margin-bottom:10px}
+.destacado{font-family:var(--serif);font-size:clamp(26px,6.6vw,32px);line-height:1.18;color:var(--petroleo);margin:36px 0}
+.momento{background:var(--blanco);border-radius:var(--r);padding:22px 22px 8px 24px;margin:0 0 16px}
+.momento h3{margin-top:0}
+.momento ul{margin-bottom:14px}
+.momento li{font-size:17px}
+.aviso{font-size:15px;color:#3d5560;margin-top:44px}
+.fuentes{background:var(--blanco);border-radius:var(--r);padding:18px 22px;margin-top:40px;font-size:14px;color:#3d5560}
+.fuentes b{color:var(--petroleo)}
+
+.cierre{background:var(--medio);color:var(--marfil);padding-top:80px;padding-bottom:64px}
+.cierre h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,8vw,42px);line-height:1.05;margin:0 0 18px}
+.cierre p{font-size:17px;color:rgba(244,241,233,.82);margin:0 0 6px}
+.cierre .boton{background:var(--marfil);color:var(--petroleo)}
+.cierre .boton:hover{background:var(--blanco)}
+.cierre .otro{display:block;margin-top:22px;font-size:15px;color:rgba(244,241,233,.85);text-underline-offset:.22em}
+
+footer{background:var(--petroleo);padding-top:44px;padding-bottom:50px;font-size:14px;color:rgba(244,241,233,.7)}
+footer .enl{display:flex;flex-wrap:wrap;gap:8px 24px;margin:0 0 20px}
+footer a{color:rgba(244,241,233,.85);text-underline-offset:.2em}
+footer p{margin:0 0 10px}
+/* transiciones suaves entre bloques de color */
+.fundido{height:170px;margin:-50px 0 -40px;position:relative;z-index:1;pointer-events:none}
+.f-pi{background:linear-gradient(180deg,#032532 0%,#0a2b37 10%,#1c3a45 20%,#37515a 30%,#586d72 40%,#7c8b8e 50%,#9fa9a9 60%,#c0c5c1 70%,#dbdcd6 80%,#edebe4 90%,#f4f1e9 100%)}
+.f-im{background:linear-gradient(180deg,#f4f1e9 0%,#eeece4 10%,#dcded8 20%,#c3c9c5 30%,#a4b0af 40%,#839596 50%,#627a7e 60%,#436168 70%,#2a4c55 80%,#183e49 90%,#123944 100%)}
+
+/* apoyos visuales */
+figure{margin:34px 0 38px;background:var(--blanco);border-radius:var(--r);padding:22px 18px 16px 20px}
+figure svg{display:block;width:100%;height:auto}
+figcaption{font-size:14px;line-height:1.5;color:#3d5560;margin-top:12px}
+svg text{font-family:var(--sans);fill:#032532}
+svg .t-serif{font-family:'Cormorant Garamond',Georgia,serif}
+svg .sm{font-size:14px}
+svg .mu{fill:#5a6f78}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* grano de papel, muy sutil */
+body::after{content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.12;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .72  0 0 0 0 .62  0 0 0 0 .42  0 0 0 .9 -.28'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");background-size:220px 220px}
+
+/* dibujo de línea dorada */
+.orn{position:absolute;pointer-events:none;opacity:.34}
+.cab,.cierre{position:relative;overflow:hidden}
+.cab .in,.cierre .in{position:relative;z-index:1}
+.cab .rama{width:130px;right:-34px;top:-12px}
+.cierre .mol{width:150px;right:10px;top:24px;opacity:.28}
+@media (min-width:900px){.cab .rama{width:240px;right:8%}.cierre .mol{width:190px;right:14%}}
+
+/* imagen de cabecera, fundida con el petróleo */
+.cab-img{display:block;width:100%;height:auto;margin-top:34px;pointer-events:none}
+
+.entradas.lista{display:grid;gap:40px}
+.entrada a{text-decoration:none;display:block;color:#032532}
+.entrada .mini{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;margin-bottom:16px}
+.entrada .f{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6E5B32;margin:0 0 8px}
+.entrada .t{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(25px,6.4vw,31px);line-height:1.12;margin:0}
+.entrada .d{font-size:16px;line-height:1.55;color:#3d5560;margin:10px 0 0}
+.entrada .l{display:inline-block;margin-top:12px;font-size:14px;font-weight:600;color:#6E5B32;text-decoration:underline;text-underline-offset:.22em;text-decoration-thickness:1.5px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="in">
+    <a class="marca" href="/">Soberanía Digestiva</a>
+    <nav><a href="/#blog">Blog</a><a href="/#guia">La guía</a></nav>
+  </div>
+</header>
+
+<div class="cab"><svg class="orn rama" viewBox="0 0 230 210" aria-hidden="true"><path d="M14,196 Q70,84 160,12" fill="none" stroke="#B6A47A" stroke-width="1.1"/><g transform="translate(30.3,165.4) rotate(-112.3)"><path d="M0,0 Q20.2,-13.7 40.4,0 Q20.2,13.7 0,0" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="0" y1="0" x2="34.7" y2="0" stroke="#B6A47A" stroke-width=".7"/></g><g transform="translate(30.3,165.4) rotate(-8.3)"><path d="M0,0 Q20.2,-13.7 40.4,0 Q20.2,13.7 0,0" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="0" y1="0" x2="34.7" y2="0" stroke="#B6A47A" stroke-width=".7"/></g><g transform="translate(45.4,140.5) rotate(-109.5)"><path d="M0,0 Q18.6,-12.7 37.2,0 Q18.6,12.7 0,0" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="0" y1="0" x2="32.0" y2="0" stroke="#B6A47A" stroke-width=".7"/></g><g transform="translate(45.4,140.5) rotate(-5.5)"><path d="M0,0 Q18.6,-12.7 37.2,0 Q18.6,12.7 0,0" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="0" y1="0" x2="32.0" y2="0" stroke="#B6A47A" stroke-width=".7"/></g><g transform="translate(61.5,116.7) rotate(-106.5)"><path d="M0,0 Q17.1,-11.6 34.1,0 Q17.1,11.6 0,0" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="0" y1="0" x2="29.3" y2="0" stroke="#B6A47A" stroke-width=".7"/></g><g transform="translate(61.5,116.7) rotate(-2.5)"><path d="M0,0 Q17.1,-11.6 34.1,0 Q17.1,11.6 0,0" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="0" y1="0" x2="29.3" y2="0" stroke="#B6A47A" stroke-width=".7"/></g><g transform="translate(78.5,94.0) rotate(-103.6)"><path d="M0,0 Q15.5,-10.5 31.0,0 Q15.5,10.5 0,0" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="0" y1="0" x2="26.7" y2="0" stroke="#B6A47A" stroke-width=".7"/></g><g transform="translate(78.5,94.0) rotate(0.4)"><path d="M0,0 Q15.5,-10.5 31.0,0 Q15.5,10.5 0,0" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="0" y1="0" x2="26.7" y2="0" stroke="#B6A47A" stroke-width=".7"/></g><g transform="translate(96.5,72.5) rotate(-100.5)"><path d="M0,0 Q13.9,-9.5 27.9,0 Q13.9,9.5 0,0" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="0" y1="0" x2="24.0" y2="0" stroke="#B6A47A" stroke-width=".7"/></g><g transform="translate(96.5,72.5) rotate(3.5)"><path d="M0,0 Q13.9,-9.5 27.9,0 Q13.9,9.5 0,0" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="0" y1="0" x2="24.0" y2="0" stroke="#B6A47A" stroke-width=".7"/></g><g transform="translate(115.5,52.1) rotate(-97.4)"><path d="M0,0 Q12.4,-8.4 24.8,0 Q12.4,8.4 0,0" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="0" y1="0" x2="21.3" y2="0" stroke="#B6A47A" stroke-width=".7"/></g><g transform="translate(115.5,52.1) rotate(6.6)"><path d="M0,0 Q12.4,-8.4 24.8,0 Q12.4,8.4 0,0" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="0" y1="0" x2="21.3" y2="0" stroke="#B6A47A" stroke-width=".7"/></g><g transform="translate(135.5,32.9) rotate(-94.3)"><path d="M0,0 Q10.8,-7.4 21.6,0 Q10.8,7.4 0,0" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="0" y1="0" x2="18.6" y2="0" stroke="#B6A47A" stroke-width=".7"/></g><g transform="translate(160.0,12.0) rotate(-38.7)"><path d="M0,0 Q10,-6 20,0 Q10,6 0,0" fill="none" stroke="#B6A47A" stroke-width="1"/></g></svg>
+  <div class="in">
+    <a class="volver" href="/">Volver a la portada</a>
+    <p class="rotulo">Soberanía Digestiva</p>
+    <h1>El blog</h1>
+    <p class="dek">Lo que pasa en tu barriga, explicado con calma y con lo práctico.</p>
+    <p class="meta">12 entradas</p>
+  </div>
+</div>
+<div class="fundido f-pi"></div>
+
+<div class="in">
+  <div class="test">
+    <p class="t">¿Qué patrón se parece más al tuyo?</p>
+    <p class="d">Un test de dos minutos, gratis. No diagnostica nada: te ayuda a ponerle nombre.</p>
+    <a class="boton" href="https://www.abigailpni.com/test">Hacer el test</a>
+  </div>
+</div>
+
+<article>
+  <div class="in">
+    <div class="entradas lista">
+      <article class="entrada"><a href="insomnio-y-barriga.html">
+        <img class="mini" src="../img/insomnio-y-barriga.jpg" alt="">
+        <p class="f">18 oct 2026</p>
+        <p class="t">Dormir mal y la barriga: por qué la misma comida te sienta peor al día siguiente</p>
+        <p class="d">Qué hace tu cuerpo por la noche con el intestino, por qué dormir mal baja el umbral y qué se puede cuidar con luz y rutina.</p>
+        <span class="l">Leer</span></a></article>
+      <article class="entrada"><a href="nauseas-despues-de-comer.html">
+        <img class="mini" src="../img/nauseas-despues-de-comer.jpg" alt="">
+        <p class="f">15 oct 2026</p>
+        <p class="t">Náuseas después de comer con las pruebas normales: qué pasa y qué ayuda</p>
+        <p class="d">Por qué aparece la náusea justo después de comer, qué es la dispepsia funcional y un día de gestos para probar por una temporada.</p>
+        <span class="l">Leer</span></a></article>
+      <article class="entrada"><a href="colon-irritable-tres-causas.html">
+        <img class="mini" src="../img/colon-irritable-tres-causas.jpg" alt="">
+        <p class="f">12 oct 2026</p>
+        <p class="t">Colon irritable: tres historias distintas bajo el mismo diagnóstico</p>
+        <p class="d">Tres formas de llegar al mismo diagnóstico, qué cambia en cada una y tres preguntas para hacerte esta noche.</p>
+        <span class="l">Leer</span></a></article>
+      <article class="entrada"><a href="sibo-vuelve-tras-tratamiento.html">
+        <img class="mini" src="../img/sibo-vuelve-tras-tratamiento.jpg" alt="">
+        <p class="f">8 oct 2026</p>
+        <p class="t">SIBO que vuelve tras el tratamiento: por qué recae y qué se mira antes</p>
+        <p class="d">Dos historias con el mismo tratamiento y distinto orden, y lo que se suele mirar antes de tocar a las bacterias.</p>
+        <span class="l">Leer</span></a></article>
+      <article class="entrada"><a href="evitacion-alimentos-miedo-a-comer.html">
+        <img class="mini" src="../img/evitacion-alimentos-miedo-a-comer.jpg" alt="">
+        <p class="f">1 oct 2026</p>
+        <p class="t">Cuando quitar alimentos se convierte en miedo a comer</p>
+        <p class="d">Cinco peldaños para situarte, por qué se forma el círculo vicioso y cómo se sale, siempre con ayuda profesional.</p>
+        <span class="l">Leer</span></a></article>
+      <article class="entrada"><a href="lista-alimentos-encoge.html">
+        <img class="mini" src="../img/lista-alimentos-encoge.jpg" alt="">
+        <p class="f">27 sept 2026</p>
+        <p class="t">Tu lista de alimentos se encoge y sigues con síntomas: cómo recuperar comida en orden</p>
+        <p class="d">Por qué la lista se encoge, qué le pasa a cada alimento y cómo ordenar lo que comes con tres colores.</p>
+        <span class="l">Leer</span></a></article>
+      <article class="entrada"><a href="digestion-lenta-estomago.html">
+        <img class="mini" src="../img/digestion-lenta-estomago.jpg" alt="">
+        <p class="f">20 sept 2026</p>
+        <p class="t">Digestiones lentas: por qué la comida parece quedarse ahí</p>
+        <p class="d">La cadena de avisos de la digestión, por qué el ardor no siempre significa exceso de ácido y cuatro gestos sin riesgo.</p>
+        <span class="l">Leer</span></a></article>
+      <article class="entrada"><a href="hinchazon-sueno-48-horas.html">
+        <img class="mini" src="../img/hinchazon-sueno-48-horas.jpg" alt="">
+        <p class="f">13 sept 2026</p>
+        <p class="t">Hinchazón y sueño: por qué tu barriga responde a las dos últimas noches</p>
+        <p class="d">Por qué el miércoles se tuerce por lo que pasó el domingo y el lunes, y cómo verlo con un número al día.</p>
+        <span class="l">Leer</span></a></article>
+      <article class="entrada"><a href="hinchazon-reacciona-a-todo.html">
+        <img class="mini" src="../img/hinchazon-reacciona-a-todo.jpg" alt="">
+        <p class="f">1 sept 2026</p>
+        <p class="t">Por qué te hinchas con casi todo, y por qué quitar alimentos no lo arregla</p>
+        <p class="d">Por qué el mismo plato te sienta bien un día y mal otro, y dos gestos para después de sentarte a comer.</p>
+        <span class="l">Leer</span></a></article>
+      <article class="entrada"><a href="colon-irritable-dieta.html">
+        <img class="mini" src="../img/colon-irritable-dieta.jpg" alt="">
+        <p class="f">11 ago 2026</p>
+        <p class="t">Colon irritable: por qué la dieta sola no lo arregla</p>
+        <p class="d">El termostato del intestino, por qué quitar alimentos no lo ajusta y dos gestos para empezar.</p>
+        <span class="l">Leer</span></a></article>
+      <article class="entrada"><a href="hipersensibilidad-visceral.html">
+        <img class="mini" src="../img/hipersensibilidad-visceral.jpg" alt="">
+        <p class="f">9 ago 2026</p>
+        <p class="t">Por qué la misma comida te sienta bien un día y mal otro</p>
+        <p class="d">Qué mirar cuando la respuesta no está en el plato, y un día entero con menos alerta.</p>
+        <span class="l">Leer</span></a></article>
+      <article class="entrada"><a href="zonulina-niebla-mental.html">
+        <img class="mini" src="../img/zonulina-niebla-mental.jpg" alt="">
+        <p class="f">4 ago 2026</p>
+        <p class="t">Niebla mental después de comer: qué es la zonulina</p>
+        <p class="d">Qué es la zonulina, qué la activa y un día de pautas para probar por una temporada.</p>
+        <span class="l">Leer</span></a></article>
+    </div>
+  </div>
+</article>
+
+<div class="fundido f-im"></div>
+<div class="cierre"><svg class="orn mol" viewBox="0 0 180 150" aria-hidden="true"><polygon points="91.4,45.0 91.4,79.0 62.0,96.0 32.6,79.0 32.6,45.0 62.0,28.0" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="91.4" y1="45.0" x2="132" y2="34" stroke="#B6A47A" stroke-width="1"/><circle cx="132" cy="34" r="5" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="62.0" y1="96.0" x2="108" y2="126" stroke="#B6A47A" stroke-width="1"/><circle cx="108" cy="126" r="5" fill="none" stroke="#B6A47A" stroke-width="1"/><line x1="32.6" y1="45.0" x2="20" y2="128" stroke="#B6A47A" stroke-width="1"/><circle cx="20" cy="128" r="5" fill="none" stroke="#B6A47A" stroke-width="1"/><circle cx="91.4" cy="45.0" r="3.2" fill="#B6A47A"/><circle cx="91.4" cy="79.0" r="3.2" fill="#B6A47A"/><circle cx="62.0" cy="96.0" r="3.2" fill="#B6A47A"/><circle cx="32.6" cy="79.0" r="3.2" fill="#B6A47A"/><circle cx="32.6" cy="45.0" r="3.2" fill="#B6A47A"/><circle cx="62.0" cy="28.0" r="3.2" fill="#B6A47A"/><line x1="132" y1="34" x2="168" y2="58" stroke="#B6A47A" stroke-width="1"/><circle cx="168" cy="58" r="4" fill="none" stroke="#B6A47A" stroke-width="1"/></svg>
+  <div class="in">
+    <h2>¿Por dónde empezar?</h2>
+    <p>La guía «El mapa de tu sistema digestivo imprevisible» te explica el mecanismo completo, paso a paso.</p>
+    <a class="boton" href="https://abigailpni.com/guia/">Ver la guía</a>
+    <a class="otro" href="https://www.youtube.com/channel/UCYFF4WUtkMjpO7Ies0NKfrg">Ver el canal</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in" style="max-width:1040px">
+    <div class="enl">
+      <a href="https://abigailpni.com/legal/aviso-legal">Aviso legal</a>
+      <a href="https://abigailpni.com/legal/privacidad">Privacidad</a>
+      <a href="mailto:abigail@abigailpni.com">abigail@abigailpni.com</a>
+    </div>
+    <p>Esta web no usa cookies de seguimiento ni de publicidad.</p>
+    <p>Contenido educativo y de divulgación. No sustituye la consulta con un profesional sanitario.</p>
+  </div>
+</footer>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "344546c74ef64c6bbb0f69acd6ef84ef"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
